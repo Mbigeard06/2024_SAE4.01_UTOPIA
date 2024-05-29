@@ -2,7 +2,7 @@
 <?php
 
     session_start();
-    include_once 'includes/dbh.inc.php';
+    //include_once 'includes/dbh.inc.php';
     define('TITLE',"Dashboard| KLiK");
 
     $companyName = "Franklin's Fine Dining";
@@ -79,7 +79,7 @@
                         </ul>
 
                         <br>
-
+                        <!--
                         <div class="tab-content" id="myTabContent">
 
                             <div class="tab-pane fade show active" id="forum" role="tabpanel" aria-labelledby="forum-tab">
@@ -94,7 +94,7 @@
                                     <div class="row mb-2">
 
                                     <?php
-                                        $sql = "select topic_id, topic_subject, topic_date, topic_cat, topic_by, userImg, idUsers, uidUsers, cat_name, (
+                                        /*$sql = "select topic_id, topic_subject, topic_date, topic_cat, topic_by, userImg, idUsers, uidUsers, cat_name, (
                                                     select sum(post_votes)
                                                     from posts
                                                     where post_topic = topic_id
@@ -140,7 +140,7 @@
                                                         </div>
                                                       </div>';
                                             }
-                                        }
+                                        }*/
                                     ?>        
 
 
@@ -160,6 +160,7 @@
                                 <div class="row mb-2">
 
                                     <?php
+                                    /*
                                         $sql = "select * from Blogs, users 
                                                 where blogs.blog_by = users.idUsers
                                                 order by blog_id desc, blog_votes asc
@@ -198,7 +199,7 @@
                                                         </div>
                                                       </div>';
                                             }
-                                        }
+                                        }*/
                                     ?>        
 
 
@@ -218,6 +219,7 @@
                                 <div class="my-3 p-3 bg-white rounded shadow-sm">
 
                                   <?php
+                                  /*
 
                                     $sql = "select p.id, p.subject, p.created, p.poll_desc, p.locked, (
                                                 select count(*) 
@@ -267,7 +269,7 @@
                                             echo '</span>
                                                     </div>';
                                         }
-                                   }
+                                   }*/
                                 ?>
 
                                 </div>    
@@ -286,7 +288,7 @@
                                 <div class="my-3 p-3 bg-white rounded shadow-sm">
 
                                   <?php
-
+/*
                                     $sql = "select event_id, event_by, title, event_date, event_image
                                             from events
                                             where event_date > now()
@@ -333,14 +335,14 @@
                                             echo '</span>
                                                     </div>';
                                         }
-                                   }
+                                   }*/
                                 ?>
 
                                 </div>    
 
                             </div>
 
-                        </div>
+                        </div>-->
 
                     </div>
 
@@ -374,7 +376,7 @@
             var myVar;
 
             function pageLoad() {
-              myVar = setTimeout(showPage, 4000);
+              myVar = setTimeout(showPage, 500);
             }
 
             function showPage() {
