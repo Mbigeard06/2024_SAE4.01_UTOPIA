@@ -202,7 +202,7 @@
 
                                     <div class="col-sm-3 user">
                                         <div class="text-center">
-                                            <img src="uploads/'.$row['userImg'].'" class="img-fluid center-block user-img">
+                                            <img src="uploads/'.$row['userImg'].'" class="img-fluid center-block user-img" alt="">
                                             <h3>'.$row['uidUsers'].'</h3>
                                             <small class="text-muted">'.$row['headline'].'</small><br><br>
                                             <table style="width:100%">

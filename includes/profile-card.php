@@ -1,15 +1,15 @@
 
 
             <div class='card card-profile text-center'>
-                <img alt='' class='card-img-top card-user-cover' src='img/user-cover.png'>
+                <img alt="" class='card-img-top card-user-cover' src='img/user-cover.png'>
                 <div class='card-block'>
                     <a href='profile.php'>
-                        <img src='uploads/<?php echo $_SESSION["userImg"] ?>' class='card-img-profile'>
+                        <img src='uploads/<?php echo $_SESSION["userImg"] ?>' class='card-img-profile' alt="">
                     </a>
                     <?php  
                         if ($_SESSION['userLevel'] == 1)
                         {
-                            echo '<img id="card-admin-badge" src="img/admin-badge.png">';
+                            echo '<img id="card-admin-badge" src="img/admin-badge.png" alt=" ">';
                         }
                     ?>
                     <a href="edit-profile.php">

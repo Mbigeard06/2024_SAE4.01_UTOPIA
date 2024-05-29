@@ -27,7 +27,7 @@
     <body onload="pageLoad()">
         
         <div id="loader-wrapper">
-        <img src='img/500.png' id='loader-logo'>
+        <img src='img/500.png' id='loader-logo' alt="logo klik">
             <div class="loader">
                 <div class="loader__bar"></div>
                 <div class="loader__bar"></div>
@@ -53,7 +53,7 @@
                     <div class="col-sm-7" >
 
                         <div class="text-center p-3">
-                            <img src="img/200.png">
+                            <img src="img/200.png" alt="logo klik">
                             <h2 class='text-muted'>DASHBOARD</h2>
                             <br>
                         </div>
@@ -374,7 +374,7 @@
             var myVar;
 
             function pageLoad() {
-              myVar = setTimeout(showPage, 4000);
+              myVar = setTimeout(showPage, 500);
             }
 
             function showPage() {

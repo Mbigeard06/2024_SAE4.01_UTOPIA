@@ -60,9 +60,9 @@
                     }
                 ?>
               
-              <img class="blog-cover" src="uploads/<?php echo $row['blog_img']; ?>">
+              <img class="blog-cover" src="uploads/<?php echo $row['blog_img']; ?>"alt="">
               
-              <img class="blog-author" src="uploads/<?php echo $row['userImg']; ?>">
+              <img class="blog-author" src="uploads/<?php echo $row['userImg']; ?>" alt="">
               
               <div class="px-5">
                   
@@ -76,7 +76,7 @@
                       
                       <h3>
                             <a href="includes/blog-vote.inc.php?blog=<?php echo $row['blog_id']; ?>" >
-                                <i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i>
+                                <i class="fa fa-thumbs-up fa-2x"></i>
                             </a>  
                             <?php echo $row['blog_votes']; ?>
                       </h3>

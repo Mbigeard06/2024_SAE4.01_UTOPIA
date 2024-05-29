@@ -57,7 +57,7 @@
                                     <div class="card flex-md-row mb-4 shadow-sm h-md-250">
                                       <div class="card-body d-flex flex-column align-items-start">
                                         <strong class="d-inline-block mb-2 text-primary">
-                                            <i class="fa fa-thumbs-up" aria-hidden="true"></i> '.$row['blog_votes'].'
+                                            <i class="fa fa-thumbs-up"></i> '.$row['blog_votes'].'
                                         </strong>
                                         <h3 class="mb-0">
                                           <a class="text-dark" href="blog-page.php?id='.$row['blog_id'].'">'.substr($row['blog_title'],0,10).'...</a>

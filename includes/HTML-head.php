@@ -1,5 +1,6 @@
 
 <!DOCTYPE html>
+<html lang="en">
 <html>
     <head>
         <meta name="description" content="A Social Media Website" />
