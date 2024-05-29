@@ -7,6 +7,16 @@
     $bytes /= (1 << (10 * $pow));
     return round($bytes, $precision) . ' ' . $units[$pow];
 }
+
+function sanitize_input($data) {
+    // Supprime les espaces en début et fin de chaîne
+    $data = trim($data);
+    // Supprime les antislashs
+    $data = stripslashes($data);
+    // Convertit les caractères spéciaux en entités HTML
+    $data = htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
+    return $data;
+}
 session_start();
 
 if (isset($_POST['update-profile']))
@@ -17,9 +27,9 @@ if (isset($_POST['update-profile']))
      $startCpuTime = microtime(true);
     require 'dbh.inc.php';
     
-    
+    //Récupération des informations
     $email = $_POST['email'];
-    $f_name = $_POST['f-name'];
+    $f_name = preg_replace('/[^a-zA-Z]/', '', $_POST['f-name']);
     $l_name = $_POST['l-name'];
     $oldPassword = $_POST['old-pwd'];
     $password = $_POST['pwd'];
@@ -29,6 +39,7 @@ if (isset($_POST['update-profile']))
     $bio = $_POST['bio'];
     
     
+    //Vérification de la validité du nouveau mail
     if (empty($email))
     {
         header("Location: ../edit-profile.php?error=emptyemail");
@@ -44,19 +55,24 @@ if (isset($_POST['update-profile']))
         $sql = "SELECT * FROM users WHERE uidUsers=?;";
         $stmt = mysqli_stmt_init($conn);
         
+        //Echec de la requete SQL
         if (!mysqli_stmt_prepare($stmt, $sql))
         {
             header("Location: ../edit-profile.php?error=sqlerror");
             exit();
         }
+        //Reussite de la requepte SQL
         else
         {
+            //Ajout des paramètres à la requête
             mysqli_stmt_bind_param($stmt, "s", $_SESSION['userUid']);
+            //Execution de la requete
             mysqli_stmt_execute($stmt);
             
+            //Recuperation du resultat
             $result = mysqli_stmt_get_result($stmt);
-           
             
+            //Recuperation du password
             if($row = mysqli_fetch_assoc($result))
             {
                 $pwdChange = false;
@@ -142,20 +158,6 @@ if (isset($_POST['update-profile']))
                             mysqli_stmt_bind_param($stmt, "sssssssss", $f_name, $l_name, $email,
                                 $gender, $headline, $bio, 
                                 $FileNameNew, $hashedPwd, $_SESSION['userUid']);
-/*
-                                $endCpuTime = microtime(true);
-                                $cpuTime = $endCpuTime - $startCpuTime;
-                                $cpuUsage = getrusage()['ru_utime.tv_sec'];
-                                $cpuUtilisé = ($cpuTime / $cpuUsage) * 100;
-                                $data_to_write = "\nLa mise à jour du mot de passe utilise :" . $cpuUtilisé ."% du CPU";
-                                file_put_contents('C:\Users\Bigeard\Desktop\CPU_Plien.txt', $data_to_write, FILE_APPEND);
-
-                                $memory_after = memory_get_usage();
-                                $memory_used = $memory_after - $memory_before;
-                                $memory_formatted = formatBytes($memory_used);
-                                $data_to_write = "\nLa mise à jour du mot de passe occupe :" . $memory_formatted;
-                                file_put_contents('C:\Users\Bigeard\Desktop\Occupation mémoire_Plien.txt', $data_to_write, FILE_APPEND);
-                                */
                         }
                         else
                         {
