@@ -4,10 +4,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">
-                    <h2 class="logo"><a href="index.php"><img src='img/200.png' alt=""></a></h2>
+                    <a href="index.php">
+                        <img src='img/200.png' alt="logo klik">
+                    </a>
                 </div>
                 <div class="col-sm-2">
-                    <h5>Get started</h5>
+                    <h2>Get started</h2>
                     <ul>
                         <li><a href="index.php">Home</a></li>
                         <li><a href="team.php">The Team</a></li>
@@ -16,7 +18,7 @@
                     </ul>
                 </div>
                 <div class="col-sm-2">
-                    <h5>About us</h5>
+                    <h2>About us</h2>
                     <ul>
                         <li><a href="_klik creators/klik_saad.php">Muhammad Saad</a></li>
                         <li><a href="_klik creators/klik_anas-imran.php">Anas Imran</a></li>
@@ -25,15 +27,16 @@
                     </ul>
                 </div>
                 <div class="col-sm-2">
-                    <h5>Support</h5>
+                    <h2>Support</h2>
                     <ul>
                         <li><a href="contact.php">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-3">
                     <div class="social-networks">
-                        <a href="https://github.com/msaad1999/KLiK--PHP-coded-Social-Media-Website" 
-                           class="twitter"><i class="fa fa-github fa-2x"></i></a>
+                        <a href="https://github.com/msaad1999/KLiK--PHP-coded-Social-Media-Website" class="twitter" title="Link to github repository">
+                            <i class="fa fa-github fa-2x"></i>
+                        </a>
                     </div>
                     <a class="btn btn-default" href="contact.php">Contact us</a>
                 </div>

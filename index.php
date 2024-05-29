@@ -59,22 +59,18 @@
                         </div>
 
 
-                        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+                        <ul class="nav nav-tabs justify-content-center" id="myTab">
                             <li class="nav-item">
-                              <a class="nav-link active" id="forum-tab" data-toggle="tab" href="#forum" role="tab" 
-                                 aria-controls="forum" aria-selected="true">Recent Forums</a>
+                              <a class="nav-link active" id="forum-tab" data-toggle="tab" href="#forum">Recent Forums</a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link" id="blog-tab" data-toggle="tab" href="#blog" role="tab" 
-                                 aria-controls="blog" aria-selected="false">Recent Blogs</a>
+                              <a class="nav-link" id="blog-tab" data-toggle="tab" href="#blog">Recent Blogs</a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link" id="poll-tab" data-toggle="tab" href="#poll" role="tab" 
-                                 aria-controls="poll" aria-selected="false">Recent Polls</a>
+                              <a class="nav-link" id="poll-tab" data-toggle="tab" href="#poll">Recent Polls</a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link" id="event-tab" data-toggle="tab" href="#event" role="tab" 
-                                 aria-controls="event" aria-selected="false">Recent Events</a>
+                              <a class="nav-link" id="event-tab" data-toggle="tab" href="#event">Recent Events</a>
                             </li>
                         </ul>
 
@@ -82,7 +78,7 @@
 
                         <div class="tab-content" id="myTabContent">
 
-                            <div class="tab-pane fade show active" id="forum" role="tabpanel" aria-labelledby="forum-tab">
+                            <div class="tab-pane fade show active" id="forum" aria-labelledby="forum-tab">
 
                                 <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
                                     <img class="mr-3" src="img/200.png" alt="" width="48" height="48">
@@ -126,7 +122,7 @@
                                                                 </a>
                                                           <div class="card-body d-flex flex-column align-items-start">
                                                             <strong class="d-inline-block mb-2 text-primary text-center  ml-auto">
-                                                                <i class="fa fa-chevron-up" aria-hidden="true"></i><br>'.$row['upvotes'].'
+                                                                <i class="fa fa-chevron-up"></i><br>'.$row['upvotes'].'
                                                             </strong>
                                                             <h6 class="mb-0">
                                                               <a class="text-dark" href="posts.php?topic='.$row['topic_id'].'">'
@@ -148,7 +144,7 @@
 
                             </div>
 
-                            <div class="tab-pane fade" id="blog" role="blog" aria-labelledby="blog-tab">
+                            <div class="tab-pane fade" id="blog" aria-labelledby="blog-tab">
 
                                 <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
                                     <img class="mr-3" src="img/200.png" alt="" width="48" height="48">
@@ -182,7 +178,7 @@
                                                         <div class="card flex-md-row mb-4 shadow-sm h-md-250">
                                                           <div class="card-body d-flex flex-column align-items-start">
                                                             <strong class="d-inline-block mb-2 text-primary">
-                                                                <i class="fa fa-thumbs-up" aria-hidden="true"></i> '.$row['blog_votes'].'
+                                                                <i class="fa fa-thumbs-up"></i> '.$row['blog_votes'].'
                                                             </strong>
                                                             <h6 class="mb-0">
                                                               <a class="text-dark" href="blog-page.php?id='.$row['blog_id'].'">'.substr($row['blog_title'],0,10).'...</a>
@@ -206,7 +202,7 @@
 
                             </div>
 
-                            <div class="tab-pane fade" id="poll" role="poll" aria-labelledby="poll-tab">
+                            <div class="tab-pane fade" id="poll" aria-labelledby="poll-tab">
 
                                 <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
                                     <img class="mr-3" src="img/200.png" alt="" width="48" height="48">
@@ -242,9 +238,9 @@
                                         while ($row = mysqli_fetch_assoc($result))
                                         {
 
-                                            echo '<a href="poll.php?poll='.$row['id'].'">
+                                            echo '<a href="poll.php?poll='.$row['id'].'" title="Link to poll">
                                                 <div class="media text-muted pt-3">
-                                                    <img src="img/poll-cover.png" alt="" class="mr-2 rounded div-img poll-img">
+                                                    <img src="img/poll-cover.png" alt="poll image" class="mr-2 rounded div-img poll-img">
                                                     <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray ">
                                                       <strong class="d-block text-gray-dark">'.ucwords($row['subject']).'</strong></a>
                                                           '.date("F jS, Y", strtotime($row['created'])).'
@@ -274,7 +270,7 @@
 
                             </div>
 
-                            <div class="tab-pane fade" id="event" role="event" aria-labelledby="event-tab">
+                            <div class="tab-pane fade" id="event" aria-labelledby="event-tab">
 
                                 <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
                                     <img class="mr-3" src="img/200.png" alt="" width="48" height="48">
@@ -309,9 +305,9 @@
                                             $later = new DateTime($row['event_date']);
                                             $diff = $later->diff($earlier)->format("%a");
 
-                                            echo '<a href="event-page.php?id='.$row['event_id'].'">
+                                            echo '<a href="event-page.php?id='.$row['event_id'].'" title="Link to poll">
                                                 <div class="media text-muted pt-3">
-                                                    <img src="uploads/'.$row['event_image'].'" alt="" class="mr-2 rounded div-img poll-img">
+                                                    <img src="uploads/'.$row['event_image'].'" alt="Image of event" class="mr-2 rounded div-img poll-img">
                                                     <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                                                       <strong class="d-block text-gray-dark">'.ucwords($row['title']).'</strong></a>
                                                       '.date("F jS, Y", strtotime($row['event_date'])).'<br><br>
@@ -321,8 +317,8 @@
 
                                             if ($_SESSION['userLevel'] == 1 || $_SESSION['userId'] == $row['event_by'])
                                             {
-                                                echo '<a href="includes/delete-event.php?id='.$row['event_id'].'&page=forum" >
-                                                        <i class="fa fa-trash" aria-hidden="true" style="color: red;"></i>
+                                                echo '<a href="includes/delete-event.php?id='.$row['event_id'].'&page=forum" title="Link to delete an event">
+                                                        <i class="fa fa-trash" style="color: red;"></i>
                                                       </a>
                                                     </span>';
                                             }
@@ -347,8 +343,8 @@
                     <div class="col-sm-2">
 
                         <div class="text-center p-3 mt-5">
-                            <a href="team.php" target="_blank">
-                                <i class="creater-icon fa fa-users fa-5x" aria-hidden="true"></i>
+                            <a href="team.php" target="_blank" title="Link to the development team">
+                                <i class="creater-icon fa fa-users fa-5x"></i>
                             </a>
                             <p><br>THE CREATORS</p>
                         </div>

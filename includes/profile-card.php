@@ -4,7 +4,7 @@
                 <img alt="" class='card-img-top card-user-cover' src='img/user-cover.png'>
                 <div class='card-block'>
                     <a href='profile.php'>
-                        <img src='uploads/<?php echo $_SESSION["userImg"] ?>' class='card-img-profile' alt="">
+                        <img src='uploads/<?php echo $_SESSION["userImg"] ?>' class='card-img-profile' alt="Profile picture">
                     </a>
                     <?php  
                         if ($_SESSION['userLevel'] == 1)
@@ -12,8 +12,8 @@
                             echo '<img id="card-admin-badge" src="img/admin-badge.png" alt=" ">';
                         }
                     ?>
-                    <a href="edit-profile.php">
-                        <i class="fa fa-pencil fa-2x edit-profile" aria-hidden="true"></i>
+                    <a href="edit-profile.php" title="Link to profile edition">
+                        <i class="fa fa-pencil fa-2x edit-profile"></i>
                     </a>
                     <h4 class='card-title'>
                     <?php echo ucwords($_SESSION['userUid']); ?>
