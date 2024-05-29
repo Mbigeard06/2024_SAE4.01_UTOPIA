@@ -1,43 +1,20 @@
 <?php
- function formatBytes($bytes, $precision = 2) {
-    $units = array('B', 'KB', 'MB', 'GB', 'TB');
-    $bytes = max($bytes, 0);
-    $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
-    $pow = min($pow, count($units) - 1);
-    $bytes /= (1 << (10 * $pow));
-    return round($bytes, $precision) . ' ' . $units[$pow];
-}
-
-function sanitize_input($data) {
-    // Supprime les espaces en début et fin de chaîne
-    $data = trim($data);
-    // Supprime les antislashs
-    $data = stripslashes($data);
-    // Convertit les caractères spéciaux en entités HTML
-    $data = htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
-    return $data;
-}
 session_start();
 
 if (isset($_POST['update-profile']))
 {
-     //prend la taille du debut 
-     $memory_before = memory_get_usage(); 
-     ///prend le cpu au debut 
-     $startCpuTime = microtime(true);
     require 'dbh.inc.php';
     
     //Récupération des informations
-    $email = $_POST['email'];
-    $f_name = preg_replace('/[^a-zA-Z]/', '', $_POST['f-name']);
-    $l_name = $_POST['l-name'];
-    $oldPassword = $_POST['old-pwd'];
-    $password = $_POST['pwd'];
-    $passwordRepeat  = $_POST['pwd-repeat'];
-    $gender = $_POST['gender'];
-    $headline = $_POST['headline'];
-    $bio = $_POST['bio'];
-    
+    $email = strip_tags($_POST['email']);
+    $f_name = preg_replace('/[^a-zA-ZÀ-ÖØ-öø-ÿ@_\s-]/u', '', $_POST['f-name']);
+    $l_name = preg_replace('/[^a-zA-ZÀ-ÖØ-öø-ÿ@_\s-]/u', '', $_POST['l-name']);
+    $oldPassword = strip_tags($_POST['old-pwd']);
+    $password = strip_tags($_POST['pwd']);
+    $passwordRepeat  = strip_tags($_POST['pwd-repeat']);
+    $gender = strip_tags($_POST['gender']);
+    $headline = strip_tags($_POST['headline']);
+    $bio = strip_tags($_POST['bio']);
     
     //Vérification de la validité du nouveau mail
     if (empty($email))
@@ -179,19 +156,7 @@ if (isset($_POST['update-profile']))
                         $_SESSION['headline'] = $headline;
                         $_SESSION['bio'] = $bio;
                         $_SESSION['userImg'] = $FileNameNew;
-
-                        $endCpuTime = microtime(true);
-                        $cpuTime = $endCpuTime - $startCpuTime;
-                        $cpuUsage = getrusage()['ru_utime.tv_sec'];
-                        $cpuUtilisé = ($cpuTime / $cpuUsage) * 100;
-                        $data_to_write = "\nLa mise à jour du profil utilise :" . $cpuUtilisé ."% du CPU";
-                        file_put_contents('C:\Users\Bigeard\Desktop\CPU_Plien.txt', $data_to_write, FILE_APPEND);
                         
-                        $memory_after = memory_get_usage();
-                        $memory_used = $memory_after - $memory_before;
-                        $memory_formatted = formatBytes($memory_used);
-                        $data_to_write = "\nLa mise à jour du profil occupe :" . $memory_formatted;
-                        file_put_contents('C:\Users\Bigeard\Desktop\Occupation mémoire_Plien.txt', $data_to_write, FILE_APPEND);
 
                         header("Location: ../edit-profile.php?edit=success");
                         exit();
