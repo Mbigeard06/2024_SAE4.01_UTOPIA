@@ -2,7 +2,7 @@
 /**
  * Définit les méthodes nécessaires pour interagir avec les données des utilisateurs.
  */
-interface IUserDao {
+interface IUserDAO {
     /**
      * Récupère un utilisateur en fonction de son nom d'utilisateur.
      *
