@@ -42,11 +42,12 @@ class UserDao implements IUserDao {
      * @return bool True si les informations d'identification sont valides, sinon False.
      */
     public function verifyUserCredentials($username, $password) {
+        $result = false;
         $user = $this->getUserByUsername($username);
         if (!empty($user)) {
             $user = $user[0];
-            return password_verify($password, $user['pwdUsers']);
+            $result = password_verify($password, $user['pwdUsers']);
         }
-        return false;
+        return $result;
     }
 }
