@@ -1,11 +1,11 @@
 <?php
 require_once 'Database.php'; 
-require_once 'IDatabase.php';
+require_once "IUserDAO.php";
 
 /**
  * Représente un objet d'accès aux données (DAO) pour les utilisateurs.
  */
-class UserDao implements IUserDao {
+class UserDAO implements IUserDAO {
     private IDatabase $db;
 
     public function __construct() {

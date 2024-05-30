@@ -1,5 +1,7 @@
 <?php
 
+require_once "IDatabase.php";
+
 /**
  * Class Database
  *
