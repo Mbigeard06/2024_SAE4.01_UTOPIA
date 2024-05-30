@@ -1,4 +1,5 @@
 <?php
+use Model\Exceptions\PasswordNoMatchException;
  function formatBytes($bytes, $precision = 2) {
     $units = array('B', 'KB', 'MB', 'GB', 'TB');
     $bytes = max($bytes, 0);
@@ -9,11 +10,6 @@
 }
 if (isset($_POST['signup-submit']))
 {
-    //prend la taille du debut 
-    $memory_before = memory_get_usage(); 
-
-     ///prend le cpu au debut 
-     $startCpuTime = microtime(true);
     require 'dbh.inc.php';
     
     
@@ -49,8 +45,7 @@ if (isset($_POST['signup-submit']))
     }
     else if ($password !== $passwordRepeat)
     {
-        header("Location: ../signup.php?error=passwordcheck&uid=".$userName."&mail=".$email);
-        exit();
+        throw new PasswordNoMatchException();
     }
     else
     {
