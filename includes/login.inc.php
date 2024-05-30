@@ -2,14 +2,13 @@
 
 if (isset($_POST['login-submit'])) {
 
-
+    require_once "../Model/Data/UserDAO.php";
     //require 'dbh.inc.php';
-    require_once("../Model/DAO/Database.php");
 
+    $userDAO = new UserDAO();
     $mailuid = $_POST['mailuid'];
     $password = $_POST['pwd'];
 
-    $db = new Database();
 
 
 
@@ -17,10 +16,9 @@ if (isset($_POST['login-submit'])) {
         header("Location: ../login.php?error=emptyfields");
         exit();
     } else {
-        $sql = "SELECT * FROM users WHERE uidUsers=?;";
-        $user = $db->executeQuery($sql, array($mailuid));
+        $user = $userDAO->getUserByUsername($mailuid);
         $row = $user[0];
-        
+
         session_start();
         $_SESSION['userId'] = $row['idUsers'];
         $_SESSION['userUid'] = $row['uidUsers'];
@@ -33,10 +31,10 @@ if (isset($_POST['login-submit'])) {
         $_SESSION['bio'] = $row['bio'];
         $_SESSION['userImg'] = $row['userImg'];
         $_SESSION['coverImg'] = $row['coverImg'];
-        
-       
 
-        
+
+
+
 
         header("Location: ../index.php?login=success");
         exit();
