@@ -31,7 +31,7 @@ class UserDao implements IUserDao {
      */
     public function createUser($userData) {
         $sql = "INSERT INTO users (uidUsers, emailUsers, pwdUsers, f_name, l_name, gender, headline, bio, userImg) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $this->db->executeUpdate($sql, $userData);
+        $this->db->executeNonQuery($sql, $userData);
     }
 
     /**
