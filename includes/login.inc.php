@@ -1,11 +1,6 @@
 <?php
 if (isset($_POST['login-submit']))
 {
-     //prend la taille du debut 
-     $memory_before = memory_get_usage(); 
-    ///prend le cpu au debut 
-    $startCpuTime = microtime(true);
-
     require 'dbh.inc.php';
     
     $mailuid = $_POST['mailuid'];
@@ -57,20 +52,6 @@ if (isset($_POST['login-submit']))
                     $_SESSION['userImg'] = $row['userImg'];
                     $_SESSION['coverImg'] = $row['coverImg'];
                     
-                    ///prend le cpu a la fin de la fonction et retourne a la consomation total
-                   $endCpuTime = microtime(true);
-                    $cpuTime = $endCpuTime - $startCpuTime;
-                    $cpuUsage = getrusage()['ru_utime.tv_sec'];
-                    $cpuUtilisé = ($cpuTime / $cpuUsage) * 100;
-                    $data_to_write = "\nLa connexion d'un utilisateur utilise :" . $cpuUtilisé ."% du CPU";
-                    file_put_contents('C:\Users\Bigeard\Desktop\CPU_Plien.txt', $data_to_write, FILE_APPEND);
-
-                    $memory_after = memory_get_usage();
-                    $memory_used = $memory_after - $memory_before;
-                    $memory_formatted = formatBytes($memory_used);
-                    $data_to_write = "\nLa connexion d'un utilisateur occupe :" . $memory_formatted;
-                    file_put_contents('C:\Users\Bigeard\Desktop\Occupation mémoire_Plien.txt', $data_to_write, FILE_APPEND);
-
                     header("Location: ../index.php?login=success");
                     exit();
                 }
