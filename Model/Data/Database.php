@@ -5,7 +5,7 @@
  *
  * Gère la connexion à la base de données et l'exécution de requêtes SQL.
  */
-class Database
+class Database implements IDatabase
 {
     /**
      * @var PDO $db Instance de PDO pour la connexion à la base de données.
@@ -29,25 +29,14 @@ class Database
         );
     }
 
-    /**
-     * Exécute une requête SQL sans retour de résultat (INSERT, UPDATE, DELETE).
-     *
-     * @param string $request La requête SQL à exécuter.
-     * @param array $params Les paramètres pour la requête SQL.
-     */
+
     public function executeNonQuery(string $request, array $params = [])
     {
         $stmt = $this->db->prepare($request);
         $stmt->execute($params);
     }
 
-    /**
-     * Exécute une requête SQL et retourne le résultat sous forme de tableau associatif.
-     *
-     * @param string $request La requête SQL à exécuter.
-     * @param array $params Les paramètres pour la requête SQL.
-     * @return array Le résultat de la requête sous forme de tableau associatif.
-     */
+
     public function executeQuery(string $request, array $params = []): array
     {
         $stmt = $this->db->prepare($request);
