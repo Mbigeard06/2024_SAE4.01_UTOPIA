@@ -1,22 +1,47 @@
 <?php
-if (isset($_POST['login-submit']))
-{
-    require 'dbh.inc.php';
-    
+
+if (isset($_POST['login-submit'])) {
+
+
+    //require 'dbh.inc.php';
+    require_once("../Model/DAO/Database.php");
+
     $mailuid = $_POST['mailuid'];
     $password = $_POST['pwd'];
-    
-    if (empty($mailuid) || empty($password))
-    {
+
+    $db = new Database();
+
+
+
+    if (empty($mailuid) || empty($password)) {
         header("Location: ../login.php?error=emptyfields");
         exit();
-    }
-    else
-    {
+    } else {
         $sql = "SELECT * FROM users WHERE uidUsers=?;";
-        $stmt = mysqli_stmt_init($conn);
+        $user = $db->executeQuery($sql, array($mailuid));
+        $row = $user[0];
         
-        if (!mysqli_stmt_prepare($stmt, $sql))
+        session_start();
+        $_SESSION['userId'] = $row['idUsers'];
+        $_SESSION['userUid'] = $row['uidUsers'];
+        $_SESSION['userLevel'] = $row['userLevel'];
+        $_SESSION['emailUsers'] = $row['emailUsers'];
+        $_SESSION['f_name'] = $row['f_name'];
+        $_SESSION['l_name'] = $row['l_name'];
+        $_SESSION['gender'] = $row['gender'];
+        $_SESSION['headline'] = $row['headline'];
+        $_SESSION['bio'] = $row['bio'];
+        $_SESSION['userImg'] = $row['userImg'];
+        $_SESSION['coverImg'] = $row['coverImg'];
+        
+       
+
+        
+
+        header("Location: ../index.php?login=success");
+        exit();
+
+        /*if (!mysqli_stmt_prepare($stmt, $sql))
         {
             header("Location: ../login.php?error=sqlerror");
             exit();
@@ -73,5 +98,6 @@ if (isset($_POST['login-submit']))
  else 
 {
     header("Location: ../login.php");
-    exit();
+    exit();*/
+    }
 }
