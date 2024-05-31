@@ -1,3 +1,5 @@
 <?php
+require_once("./Router/Router.php");
 
-echo "hello";
+$router = new Router();
+$router->routing($_GET,$_POST);

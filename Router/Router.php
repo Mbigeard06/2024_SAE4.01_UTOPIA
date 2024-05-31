@@ -1,8 +1,9 @@
 <?php
-require_once("../Controllers/UserController.php");
-foreach(glob("Routes/*.php") as $file){
+require_once("Controllers/UserController.php");
+require_once("Routes/RouteConnexion.php");
+/*foreach(glob("Routes/*.php") as $file){
     require_once($file);
-}
+}*/
 
 class Router{
     private array $routesList;
@@ -28,6 +29,7 @@ class Router{
                 $this->routesList[$get["action"]]->action();
             }
             else{
+                // todo : Vérifier la session sinon renvoyer index
                 $this->routesList["connexion"]->action();
             }
         }
