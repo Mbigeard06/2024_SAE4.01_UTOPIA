@@ -48,4 +48,4 @@ class view{
 }
 
 
-?>s
+?>
