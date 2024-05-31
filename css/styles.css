@@ -37,15 +37,58 @@ h1 {
 /* [Login page] cover */
 
 #cover {
-    background: #222 url('../img/cover2.png') center center no-repeat;
-    background-size: cover;
-    color: white;
+    background: #fffdd0;
     height: 100%;
     text-align: center;
     display: flex;
     align-items: center;
 }
 
+.form-inline{
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#name_login{
+    width: 400px;
+    margin-bottom: 20px;
+    background-color: white;
+    color: black;
+}
+
+#name_login::placeholder{
+    color: black;
+}
+
+#password_login{
+    width: 400px;
+    margin-bottom: 20px;
+    background-color: white;
+    color: black;
+}
+
+#password_login::placeholder{
+    color: black;
+}
+
+#btn_login{
+    box-shadow: none;
+    color: white;
+    background-color: #A72400;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    width: 100px;
+}
+
+#btn_login:hover{
+    background-color: #222;
+    cursor: pointer;
+}
+
+#link_signup_login{
+    color: darkblue;
+}
 
 #signup {
     background: url('../img/cover2.png') center center no-repeat;

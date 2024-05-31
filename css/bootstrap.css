@@ -8851,6 +8851,10 @@ button.bg-dark:focus {
   font-style: italic !important;
 }
 
+.text-black{
+  color: #000 !important;
+}
+
 .text-white {
   color: #fff !important;
 }

@@ -49,12 +49,12 @@
                     <form method="post" action="includes/login.inc.php" class="form-inline justify-content-center">
                         <div class="form-group">
                             <label class="sr-only">Name</label>
-                            <input type="text" id="name" name="mailuid"
+                            <input type="text" id="name_login" name="mailuid"
                                    class="form-control form-control-lg mr-1" placeholder="Username">
                         </div>
                         <div class="form-group">
                             <label class="sr-only">Email</label>
-                            <input type="password" id="password" name="pwd"
+                            <input type="password" id="password_login" name="pwd"
                                    class="form-control form-control-lg mr-1" placeholder="Password">
                         </div>
                         <input type="submit" class="btn btn-dark btn-lg mr-1" name="login-submit" value="Login">
