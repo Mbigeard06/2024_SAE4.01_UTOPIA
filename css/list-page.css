@@ -28,6 +28,17 @@ body {
 }
 .text-white-50 { color: black; }
 
+.btn-warning{
+  background-color: #A72400 !important;
+}
+
+.text-primary{
+  color: black !important;
+}
+.fa.fa-chevron-up{
+  color: black !important; 
+}
+
 .bg-purple { background-color: black; }
 
 .lh-100 { line-height: 1; }
