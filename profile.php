@@ -51,13 +51,13 @@
             
             
           <div class="col-sm-8 text-center" id="user-section">
-              <img class="cover-img" src="img/user-cover.png">
-              <img class="profile-img" src="uploads/<?php echo $user['userImg']; ?>">
+              <img class="cover-img" src="img/user-cover.png" alt="">
+              <img class="profile-img" src="uploads/<?php echo $user['userImg']; ?>" alt="">
               
               <?php  
                     if ($user['userLevel'] === 1)
                     {
-                        echo '<img id="admin-badge" src="img/admin-badge.png">';
+                        echo '<img id="admin-badge" src="img/admin-badge.png" alt="">';
                     }
               ?>
               
@@ -110,7 +110,7 @@
                         {
                             echo '<div class="col-sm-4" style="padding-bottom: 30px;"></div>
                                 <div class="col-sm-4">
-                                    <img class="profile-empty-img" src="img/empty.png">
+                                    <img class="profile-empty-img" src="img/empty.png" alt="">
                                   </div>
                                   <div class="col-sm-4" style="padding-bottom: 30px;"></div>
                                     </div>
@@ -166,7 +166,7 @@
                         {
                             echo '<div class="col-sm-4" style="padding-bottom: 30px;"></div>
                                 <div class="col-sm-4">
-                                    <img class="profile-empty-img" src="img/empty.png">
+                                    <img class="profile-empty-img" src="img/empty.png" alt="">
                                   </div>
                                   <div class="col-sm-4" style="padding-bottom: 30px;"></div>
                                     </div>
@@ -226,7 +226,7 @@
                         {
                             echo '<div class="col-sm-4" style="padding-bottom: 30px;"></div>
                                 <div class="col-sm-4">
-                                    <img class="profile-empty-img" src="img/empty.png">
+                                    <img class="profile-empty-img" src="img/empty.png" alt="">
                                   </div>
                                   <div class="col-sm-4" style="padding-bottom: 30px;"></div>
                                     </div>

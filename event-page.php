@@ -79,9 +79,9 @@
                         }
                     ?>
 
-                    <img class="blog-cover" src="uploads/<?php echo $row['event_image']; ?>">
+                    <img class="blog-cover" src="uploads/<?php echo $row['event_image']; ?>" alt="">
 
-                    <img class="blog-author" src="uploads/<?php echo $row['userImg']; ?>">
+                    <img class="blog-author" src="uploads/<?php echo $row['userImg']; ?>" alt="">
 
                     <div class="px-5">
                         <div class="text-center px-5">

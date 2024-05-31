@@ -77,10 +77,6 @@ if (isset($_POST['login-submit'])) {
                     $_SESSION['userImg'] = $row['userImg'];
                     $_SESSION['coverImg'] = $row['coverImg'];
                     
-                   
-
-                    
-
                     header("Location: ../index.php?login=success");
                     exit();
                 }

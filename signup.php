@@ -22,7 +22,7 @@
                         
                         <div class="signup-left position-fixed text-center">
                             
-                            <img src="img/200.png">
+                            <img src="img/200.png" alt="logo klik">
                             <br><br><br>
                             <?php
                             
@@ -167,7 +167,7 @@
                                 <label for="toggle-off" class="btn-r">F</label>
                             </div>
                             <div class="form-group col-md-6 align-self-center">
-                                <img id="blah" class="rounded" src="#" alt="your image" class="img-responsive rounded"
+                                <img id="blah" class="rounded" src="#" alt="" class="img-responsive rounded"
                                      style="height: 200px; width: 190px; object-fit: cover;">
                                 <br><br><label class="btn btn-primary ">
                                     Set Avatar <input type="file" id="imgInp" name='dp' hidden>

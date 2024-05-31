@@ -31,7 +31,7 @@
                 else 
                 {
                     echo '<div class="incoming_msg">
-                            <div class="incoming_msg_img"> <img class="chat_people_inbox_img" src="uploads/'.$user_form_img.'"> </div>
+                            <div class="incoming_msg_img"> <img class="chat_people_inbox_img" src="uploads/'.$user_form_img.'" alt=""> </div>
                              <div class="received_msg">
                                 <div class="received_withd_msg">
                                  <p>'.$message.'</p>
@@ -46,7 +46,7 @@
         }else{
             echo "<div class='text-center'>
                     <br>
-                    <img src='img/empty.png' style='width:500px;'>
+                    <img src='img/empty.png' style='width:500px;' alt="">
                 </div>";
         }
     }

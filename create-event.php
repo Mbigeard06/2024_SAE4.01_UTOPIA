@@ -31,7 +31,7 @@
                                         <label class="btn btn-primary position-absolute mt-2 ml-2">
                                             Change Event Cover Image <input type="file" id="imgInp" name='dp' hidden>
                                         </label>
-                                        <img class="cover-img " id="blah"  src="#"> 
+                                        <img class="cover-img " id="blah"  src="#" alt=""> 
                                         
                                         <br><br><br>
 					<span class="contact2-form-title">
