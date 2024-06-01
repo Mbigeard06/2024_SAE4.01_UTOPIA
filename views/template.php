@@ -9,10 +9,11 @@
     <link href="css/footer.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
     <link rel="shortcut icon" href="img/favicon.png" />
+    <title><?= $title?></title>
 </head>
 
 <body>
-    <?= $contenu ?>
+    <?= $content ?>
 </body>
 
 </html>

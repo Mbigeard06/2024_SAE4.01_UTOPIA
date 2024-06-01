@@ -1,51 +1,46 @@
 <?php
-class view{
-    private string $fichier;
-    private string $titre;
-    
-    public function __construct(string $action) {
+class view
+{
+    private string $file;
+    private string $title;
+
+    public function __construct(string $action)
+    {
         // Détermination du nom du fichier vue à partir de l'action
-        $this->fichier = "Views/view" . $action . ".php";
-        $this->titre = $action;
+        $this->file = "Views/view" . $action . ".php";
+        $this->title = $action;
     }
 
     // Génère et affiche la vue
-    public function generer(array $donnees) {
+    public function generate(array $data)
+    {
         // Génération de la partie spécifique de la vue
-        $contenu = $this->genererFichier($this->fichier, $donnees);
+        $content = $this->generateFile($this->file, $data);
         // Génération du gabarit commun utilisant la partie spécifique
-        $vue = $this->genererFichier('Views/gabarit.php',
-        array('titre' => $this->titre, 'contenu' => $contenu));
+        $view = $this->generateFile(
+            'Views/template.php',
+            array('title' => $this->title, 'content' => $content)
+        );
         // Renvoi de la vue au navigateur
-        echo $vue;
+        echo $view;
     }
 
     // Génère un fichier vue et renvoie le résultat produit
-    private function genererFichier(string $fichier, array $donnees) {
-        if (file_exists($fichier)) {
+    private function generateFile(string $file, array $data)
+    {
+        if (file_exists($file)) {
             // Rend les éléments du tableau $donnees accessibles dans la vue
             // Voir la documentation de extract
-            extract($donnees);
+            extract($data);
             // Démarrage de la temporisation de sortie
             ob_start();
             // Inclut le fichier vue
             // Son résultat est placé dans le tampon de sortie
-            require $fichier;
+            require $file;
             // Arrêt de la temporisation et renvoi du tampon de sortie
             return ob_get_clean();
-        }
-        else {
-            throw new Exception("Fichier '$fichier' introuvable");
+        } else {
+            throw new Exception("Fichier '$file' introuvable");
         }
     }
-
-    //Récupérer le titre
-    public function getTitre() {
-        return $this->titre;
-    }
-
-
 }
-
-
-?>

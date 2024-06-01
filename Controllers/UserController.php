@@ -7,6 +7,6 @@ require_once("Views/View.php");
 class UserController{
     public function displayConnexion(){
         $view = new View("Login");
-        $view->generer([]);
+        $view->generate([]);
     }
 }
