@@ -3,20 +3,31 @@
 require_once("Router/Route.php");
 require_once("Controllers/UserController.php");
 
-class RouteConnexion extends Route{
 
-    private UserController $controller;
+class RouteConnexion extends Route
+{
 
-    public function __construct($controller)
+    private UserController $userController;
+
+    public function __construct($userController)
     {
-        $this->controller = $controller;
+        $this->userController = $userController;
     }
 
-    protected function get(array $params = []){
-        $this->controller->displayConnexion();
+    protected function get(array $params = [])
+    {
+        $this->userController->displayConnexion();
     }
 
-    protected function post(array $params = []){
-        
+    protected function post(array $params = [])
+    {
+        $authorized = $this->userController->verifyConnexionAttempt($params["mailuid"], $params["pwd"]);
+        if ($authorized) {
+            header("Location: index.php?action=index");
+            exit;
+        } else {
+            header("Location: index.php?action=connexion");
+            exit;
+        }
     }
 }

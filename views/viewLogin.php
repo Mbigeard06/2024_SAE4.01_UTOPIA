@@ -46,7 +46,7 @@
                             }
                         }
                     ?>
-                    <form method="post" action="includes/login.inc.php" class="form-inline justify-content-center">
+                    <form method="post" action="index.php?action=connexion" class="form-inline justify-content-center">
                         <div class="form-group">
                             <label class="sr-only">Name</label>
                             <input type="text" id="name" name="mailuid"

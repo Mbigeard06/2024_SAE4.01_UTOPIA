@@ -1,9 +1,12 @@
 <?php
-require_once("Controllers/UserController.php");
-require_once("Routes/RouteConnexion.php");
-/*foreach(glob("Routes/*.php") as $file){
+
+foreach(glob("Controllers/*.php") as $file){
     require_once($file);
-}*/
+}
+
+foreach(glob("Router/Routes/*.php") as $file){
+    require_once($file);
+}
 
 class Router{
     private array $routesList;
@@ -16,10 +19,12 @@ class Router{
     }
 
     private function createControllersList():void{
+        $this->controllersList["main"] = new MainController();
         $this->controllersList["user"] = new UserController();
     }
 
     private function createRoutesList():void{
+        $this->routesList["index"] = new RouteIndex($this->controllersList["main"]);
         $this->routesList["connexion"] = new RouteConnexion($this->controllersList["user"]);
     }
 
