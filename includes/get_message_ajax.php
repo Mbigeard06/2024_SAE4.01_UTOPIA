@@ -46,7 +46,7 @@
         }else{
             echo "<div class='text-center'>
                     <br>
-                    <img src='img/empty.png' style='width:500px;' alt="">
+                    <img src='img/empty.png' style='width:500px;' alt=''>
                 </div>";
         }
     }
