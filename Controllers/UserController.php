@@ -1,8 +1,11 @@
 <?php
 
+use Model\Exceptions\BadLoginOrPasswordException;
+
 require_once("Model/Managers/UserManager.php");
 require_once("Views/View.php");
 require_once("Model/Logic/User.php");
+require_once("Model/Exceptions/BadLoginOrPasswordException.php");
 
 
 class UserController
@@ -15,15 +18,25 @@ class UserController
         $this->userManager = new UserManager();
     }
 
-    public function displayConnexion()
+    public function displayConnexion(Exception $e = null)
     {
         $view = new View("Login");
-        $view->generate(["title" => "Authentification"]);
+        if(isset($e)){
+            $view->generate(["title" => "Authentification", "exception" => $e->getMessage()]);
+        }
+        else{
+            $view->generate(["title" => "Authentification"]);
+        }
+        
     }
 
     public function verifyConnexionAttempt(string $username, string $password): bool
     {
-        return $this->userManager->verifyUserCredentials($username, $password);
+        $response = $this->userManager->verifyUserCredentials($username, $password);
+        if(!$response){
+            throw new BadLoginOrPasswordException();
+        }
+        return $response;
     }
 
     public function getUserByUsername(string $username): User
@@ -39,7 +52,7 @@ class UserController
             "lastName" => $data["l_name"],
             "level" => $data["userLevel"],
             "headline" => $data["headline"],
-            "profilePicture"=>$data["userImg"]
+            "profilePicture" => $data["userImg"]
         ];
         $user  = new User($formattedData);
         return $user;

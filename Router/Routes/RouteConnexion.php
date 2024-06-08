@@ -1,5 +1,7 @@
 <?php
 
+use Model\Exceptions\BadLoginOrPasswordException;
+
 require_once("Router/Route.php");
 require_once("Controllers/UserController.php");
 
@@ -23,11 +25,14 @@ class RouteConnexion extends Route
     {
         $username = $params["mailuid"];
         $password = $params["pwd"];
-        $authorized = $this->userController->verifyConnexionAttempt($username, $password);
-        if ($authorized) {
+        try{
+            $this->userController->verifyConnexionAttempt($username, $password);
             $user = $this->userController->getUserByUsername($username);
             $_SESSION["connectedUser"] = $user;
+            header("Location: index.php");exit;
         }
-        header("Location: index.php");exit;
+        catch(Exception $e){
+            $this->userController->displayConnexion($e);
+        }       
     }
 }

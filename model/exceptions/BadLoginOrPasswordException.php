@@ -9,7 +9,7 @@ use Exception;
  */
 class BadLoginOrPasswordException extends Exception
 {
-    public function __construct($message = "Nom d'utilisateur ou mot de passe invalide", $code = 0, $previous = null)
+    public function __construct($message = "Invalid login or password", $code = 0, $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }
