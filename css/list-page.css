@@ -26,9 +26,20 @@ body {
     visibility: visible;
   }
 }
-.text-white-50 { color: rgba(255, 255, 255, .5); }
+.text-white-50 { color: black; }
 
-.bg-purple { background-color: #B0B0B0; }
+.btn-warning{
+  background-color: #A72400 !important;
+}
+
+.text-primary{
+  color: black !important;
+}
+.fa.fa-chevron-up{
+  color: black !important; 
+}
+
+.bg-purple { background-color: black; }
 
 .lh-100 { line-height: 1; }
 .lh-125 { line-height: 1.25; }
@@ -53,7 +64,7 @@ body {
 }
 
 a {
-    color: gray;
+    color: black;
 }
 
 a:hover {

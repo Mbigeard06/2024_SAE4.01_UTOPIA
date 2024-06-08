@@ -30,14 +30,6 @@
 <body>
 
 <?php
- function formatBytes($bytes, $precision = 2) {
-    $units = array('B', 'KB', 'MB', 'GB', 'TB');
-    $bytes = max($bytes, 0);
-    $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
-    $pow = min($pow, count($units) - 1);
-    $bytes /= (1 << (10 * $pow));
-    return round($bytes, $precision) . ' ' . $units[$pow];
-}
     include 'includes/navbar.php';
 
     if (isset($_POST['submit-reply']))
@@ -202,7 +194,7 @@
 
                                     <div class="col-sm-3 user">
                                         <div class="text-center">
-                                            <img src="uploads/'.$row['userImg'].'" class="img-fluid center-block user-img">
+                                            <img src="uploads/'.$row['userImg'].'" class="img-fluid center-block user-img" alt="">
                                             <h3>'.$row['uidUsers'].'</h3>
                                             <small class="text-muted">'.$row['headline'].'</small><br><br>
                                             <table style="width:100%">

@@ -67,12 +67,12 @@
                                   <br>'.$row['cat_description'].'
                             </p>
                             <span class="text-right text-primary"> 
-                                Forums: '.$row['forums'].' <i class="fa fa-book" aria-hidden="true"></i><br>';
+                                Forums: '.$row['forums'].' <i class="fa fa-book" ></i><br>';
                     
                     if ($_SESSION['userLevel'] == 1)
                     {
                         echo '<a href="includes/delete-category.php?id='.$row['cat_id'].'&page=categories" >
-                                <i class="fa fa-trash" aria-hidden="true" style="color: red;"></i>
+                                <i class="fa fa-trash" style="color: red;"></i>
                               </a>
                             </span>';
                     }
