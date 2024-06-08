@@ -37,23 +37,60 @@ h1 {
 /* [Login page] cover */
 
 #cover {
-    background: #222 url('../img/cover2.png') center center no-repeat;
-    background-size: cover;
-    color: white;
+    background: #fffdd0;
     height: 100%;
     text-align: center;
     display: flex;
     align-items: center;
 }
 
-
-#signup {
-    background: url('../img/cover2.png') center center no-repeat;
-    background-size: cover; 
-    background-attachment: fixed;
-    width: 100%;
-    
+.form-inline{
+    flex-direction: column;
+    justify-content: space-between;
 }
+
+#name_login{
+    width: 400px;
+    margin-bottom: 20px;
+    background-color: white;
+    color: black;
+}
+
+#name_login::placeholder{
+    color: black;
+}
+
+#password_login{
+    width: 400px;
+    margin-bottom: 20px;
+    background-color: white;
+    color: black;
+}
+
+#password_login::placeholder{
+    color: black;
+}
+
+#btn_login{
+    box-shadow: none;
+    color: white;
+    background-color: #A72400;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    width: 100px;
+}
+
+#btn_login:hover{
+    background-color: #222;
+    cursor: pointer;
+}
+
+#link_signup_login{
+    color: blue;
+    text-decoration: underline;
+}
+
 
 #signup-form {
     text-align: center;
@@ -79,6 +116,98 @@ h1 {
     color: white;
     font-size: 0.8rem;
     padding: 2.5rem 0;
+}
+
+/* --------------Signup page----------------------- */
+
+.btn-primary {
+    color: black;
+    background-color: white;
+    border-color: black;
+}
+
+.btn-primary:hover{
+    color: white;
+    background-color: #A72400;
+    border-color: unset;
+}
+
+
+#blah{
+    height: 150px !important;
+    width:150px !important;
+}
+
+#bottom_page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+#profile_pic{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+label{
+    margin-bottom: 2px !important;
+    margin-top: 10px !important;
+
+}
+
+.rounded{
+    margin-top:20px !important;
+    margin-right: 20px !important;
+    margin-bottom: 20px !important;
+}
+.text-center{
+    text-align: unset !important;
+}
+
+.signup-left{
+    margin-top: 50px !important;
+    margin-left: 130px !important;
+
+}
+
+@media (min-width: 576px) {
+    .offset-sm-6 {
+        margin-left: unset !important;
+    }
+}
+.row{
+    justify-content: center;
+}
+
+.position-fixed{
+    position:unset !important;
+}
+
+
+#signup {
+    background: #fffdd0;
+    background-size: cover; 
+    background-attachment: fixed;
+    width: 100%;
+}
+
+.btn-light{
+    box-shadow: none;
+    color: white;
+    background-color: #A72400;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    width: 270px;
+    margin-bottom:40px;
+}
+.btn-light:hover{
+    background-color: black;
+    color: white;
 }
 
 /* --------------Profile card---------------------- */

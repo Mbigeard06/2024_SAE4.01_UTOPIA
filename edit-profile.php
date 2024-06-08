@@ -26,7 +26,7 @@
             </div>
         <div class="col-sm-8 text-center" id="user-section">
               
-              <img class="cover-img" id='blah-cover' src="img/user-cover.png">
+              <img class="cover-img" id='blah-cover' src="img/user-cover.png" alt="">
               
               <form action="includes/profileUpdate.inc.php" method='post' enctype="multipart/form-data"
                     style="padding: 0 30px 0 30px;">
@@ -35,13 +35,13 @@
                     <label class="btn btn-primary">
                         Change Avatar <input type="file" id="imgInp" name='dp' hidden>
                     </label>
-                    <img class="profile-img" id="blah"  src="#"> 
+                    <img class="profile-img" id="blah"  src="#" alt=""> 
 
 
                     <?php  
                           if ($_SESSION['userLevel'] === 1)
                           {
-                              echo '<img id="admin-badge" src="img/admin-badge.png">';
+                              echo '<img id="admin-badge" src="img/admin-badge.png" alt="">';
                           }
                     ?>
 

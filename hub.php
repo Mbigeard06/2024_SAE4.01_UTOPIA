@@ -184,7 +184,7 @@
                 while ($row = mysqli_fetch_assoc($result))
                 {
                     
-                    echo '<a href="poll.php?poll='.$row['id'].'">
+                    echo '<a href="poll.php?poll='.$row['id'].'" title="Link to poll">
                         <div class="media text-muted pt-3">
                             <img src="img/poll-cover.png" alt="" class="mr-2 rounded div-img">
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">

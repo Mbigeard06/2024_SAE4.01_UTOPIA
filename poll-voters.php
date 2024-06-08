@@ -39,7 +39,7 @@
           <div class="col-sm-9" id="user-section">
               
               
-              <img class="event-cover" src="img/pollpage-cover.png">
+              <img class="event-cover" src="img/pollpage-cover.png" alt="">
               
               
               <div class="px-5 my-5">
@@ -79,14 +79,14 @@
                                     $row2 = mysqli_fetch_assoc($result2);
                                     if(empty($row2))
                                     {
-                                        echo '<img class="empty-img" src="img/empty.png">
+                                        echo '<img class="empty-img" src="img/empty.png" alt="">
                                                 <br><br><hr><br>';
                                         continue;
                                     }
                                     do
                                     {
                                         echo '<a href="profile.php?id='.$row2['idUsers'].'">
-                                            <h6><img class="voter-avatar" src="uploads/'.$row2['userImg'].'" > 
+                                            <h6><img class="voter-avatar" src="uploads/'.$row2['userImg'].'" alt=""> 
                                                 '.ucwords($row2['uidUsers']).'<a>
                                             </h6><br>';
                                     }while ($row2 = mysqli_fetch_assoc($result2));
