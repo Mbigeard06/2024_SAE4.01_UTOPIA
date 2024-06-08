@@ -55,7 +55,7 @@
                       <a href='./message.php?id=<?php echo $row['idUsers']; ?>'><div class="chat_list ">
                             <div class="chat_people">
                                 <div class="chat_img"> 
-                                    <img class="chat_people_img" src="uploads/<?php echo $row['userImg'] ?>"> 
+                                    <img class="chat_people_img" src="uploads/<?php echo $row['userImg'] ?>" alt=""> 
                                 </div>
                               <div class="chat_ib">
                                 <h5>
