@@ -29,13 +29,17 @@ class Router{
     }
 
     public function routing($get, $post){
+        session_start();
         if(empty($post)){
             if(isset($get["action"])){
                 $this->routesList[$get["action"]]->action();
             }
             else{
-                // todo : Vérifier la session sinon renvoyer index
-                $this->routesList["connexion"]->action();
+                if(isset($_SESSION["connectedUser"])){
+                    $this->routesList["index"]->action();
+                }else{
+                    $this->routesList["connexion"]->action();
+                }
             }
         }
         else{

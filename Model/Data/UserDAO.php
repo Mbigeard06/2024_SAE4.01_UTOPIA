@@ -18,7 +18,7 @@ class UserDAO implements IUserDAO {
      * @param string $username Le nom d'utilisateur de l'utilisateur à récupérer.
      * @return array|null Les données de l'utilisateur ou null si l'utilisateur n'existe pas.
      */
-    public function getUserByUsername($username) {
+    public function getUserByUsername($username):array {
         $sql = "SELECT * FROM users WHERE uidUsers = ?";
         return $this->db->executeQuery($sql, array($username));
     }
@@ -41,7 +41,7 @@ class UserDAO implements IUserDAO {
      * @param string $password Le mot de passe de l'utilisateur à vérifier.
      * @return bool True si les informations d'identification sont valides, sinon False.
      */
-    public function verifyUserCredentials($username, $password) {
+    public function verifyUserCredentials($username, $password){
         $result = false;
         $user = $this->getUserByUsername($username);
         if (!empty($user)) {

@@ -12,4 +12,8 @@ class UserManager{
     public function verifyUserCredentials(string $username, string $password):bool{
         return $this->userDao->verifyUserCredentials($username, $password);
     }
+
+    public function getUserByUsername(string $username):array{
+        return $this->userDao->getUserByUsername($username);
+    }
 }

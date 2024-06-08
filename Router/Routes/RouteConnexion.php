@@ -21,13 +21,13 @@ class RouteConnexion extends Route
 
     protected function post(array $params = [])
     {
-        $authorized = $this->userController->verifyConnexionAttempt($params["mailuid"], $params["pwd"]);
+        $username = $params["mailuid"];
+        $password = $params["pwd"];
+        $authorized = $this->userController->verifyConnexionAttempt($username, $password);
         if ($authorized) {
-            header("Location: index.php?action=index");
-            exit;
-        } else {
-            header("Location: index.php?action=connexion");
-            exit;
+            $user = $this->userController->getUserByUsername($username);
+            $_SESSION["connectedUser"] = $user;
         }
+        header("Location: index.php");exit;
     }
 }

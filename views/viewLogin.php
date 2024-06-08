@@ -6,7 +6,7 @@
                     <h5 class="text-white">Spreading Ideas</h5>
                     <br>
                     <?php
-                    
+                    /*
                         if(isset($_GET['error']))
                         {
                             if($_GET['error'] == 'emptyfields')
@@ -45,6 +45,7 @@
                                       </div>';
                             }
                         }
+                    */
                     ?>
                     <form method="post" action="index.php?action=connexion" class="form-inline justify-content-center">
                         <div class="form-group">
