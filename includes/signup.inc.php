@@ -37,6 +37,7 @@ if (isset($_POST['signup-submit']))
     else if ($password !== $passwordRepeat)
     {
         throw new PasswordNoMatchException();
+        throw new PasswordNoMatchException();
     }
     else
     {

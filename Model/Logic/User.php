@@ -6,11 +6,15 @@
  */
 class User
 {
+    private int $id;
     private string $username;
     private string $email;
     private string $password;
     private string $firstName;
     private string $lastName;
+    private int $level;
+    private string $headline;
+    private string $profilePicture;
 
      /**
      * Constructeur de la classe User.
@@ -20,6 +24,22 @@ class User
     public function __construct(array $data)
     {
         $this->hydrate($data);
+    }
+
+
+    /**
+     * Retourne l'id de l'utilisateur
+     * @return int
+     */
+    public function getId():int{
+        return $this->id;
+    }
+
+    /**
+     * Définit l'id de l'utilisateur 
+     */
+    public function setId(int $id){
+        $this->id = $id;
     }
 
     /**
@@ -123,6 +143,58 @@ class User
     }
 
     /**
+     * Retourne le niveaqu d'acréditation de l'utilisateur
+     * @return int 
+     */
+    public function getLevel():int{
+        return $this->level;
+    }
+
+    /**
+     * Défini le niveau d'acréditation de l'utilisateur
+     * @param int $level
+     */
+    public function setLevel(int $level){
+        $this->level = $level;
+    }
+
+    /**
+     * Retourne la bio de l'utilisateur
+     * @return string 
+     */
+    public function getHeadline():string{
+        return $this->headline;
+    }
+
+
+    /**
+     * Définit la bio de l'utilisateur 
+     * @param string $headline
+     */
+    public function setHeadline(string $headline){
+        $this->headline = $headline;
+    }
+
+
+    /**
+     * Retourne la photo de profile de l'utilisateur 
+     * @return string
+     */
+    public function getProfilePicture():string{
+        return $this->profilePicture;
+    }
+
+
+    /**
+     * Définit la photo de profile de l'utilisateur
+     * @param string $profilePicture
+     */
+    public function setProfilePicture(string $profilePicture){
+        $this->profilePicture = $profilePicture;
+    }
+
+
+    /**
      * Hydrate l'objet avec un tableau de données.
      *
      * @param array $data Tableau associatif de données pour remplir l'objet.
@@ -132,7 +204,7 @@ class User
         foreach ($data as $key => $value) {
             $method = 'set' . ucfirst($key);
             if (method_exists($this, $method)) {
-                $this->$method($value);
+                $this->$method($value);      
             }
         }
     }
