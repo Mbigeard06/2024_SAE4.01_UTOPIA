@@ -97,8 +97,8 @@ include 'includes/HTML-head.php';
           <label for="l-name">Last Name</label>
           <input type="text" class="form-control" id="l-name" name="l-name" placeholder="Last name" maxlength="35">
 
-          <label for="l-name">Gender</label>
-          <select name="gender" class="form-control">
+          <label for="gender">Gender</label>
+          <select name="gender" id="gender" class="form-control">
             <option value="m">Man</option>
             <option value="w">Woman</option>
             <option value="dwts">Don't want to say</option>
@@ -119,7 +119,8 @@ include 'includes/HTML-head.php';
             <input type="submit" class="btn btn-light btn-lg" name="signup-submit" value="Signup">
 
             <a href="login.php">
-              <i class="fa fa-sign-in fa-2x social-icon" aria-hidden="true"></i>
+              <p hidden>_</p>
+              <i class="fa fa-sign-in fa-2x social-icon" aria-hidden="true" href="login.php"></i>
             </a>
           </div>
 
