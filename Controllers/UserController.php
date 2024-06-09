@@ -57,4 +57,10 @@ class UserController
         $user  = new User($formattedData);
         return $user;
     }
+
+    public function disconnect():void{
+        session_unset();
+        session_destroy();
+        header("location: index.php");
+    }
 }

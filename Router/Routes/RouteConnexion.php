@@ -1,6 +1,5 @@
 <?php
 
-use Model\Exceptions\BadLoginOrPasswordException;
 
 require_once("Router/Route.php");
 require_once("Controllers/UserController.php");

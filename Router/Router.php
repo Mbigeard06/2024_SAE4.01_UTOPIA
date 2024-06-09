@@ -26,6 +26,7 @@ class Router{
     private function createRoutesList():void{
         $this->routesList["index"] = new RouteIndex($this->controllersList["main"]);
         $this->routesList["connexion"] = new RouteConnexion($this->controllersList["user"]);
+        $this->routesList["disconnection"] = new RouteDisconnection($this->controllersList["user"]);
     }
 
     public function routing($get, $post){
