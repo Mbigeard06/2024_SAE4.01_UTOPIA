@@ -1,4 +1,4 @@
-<div class='card card-profile text-center'>
+<div class='card card-profile center-index'>
     <img alt="" class='card-img-top card-user-cover' src='img/user-cover.png'>
     <div class='card-block'>
         <a href='profile.php'>
