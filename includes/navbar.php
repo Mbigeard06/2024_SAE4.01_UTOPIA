@@ -43,7 +43,7 @@
                   </div>
                 </li>
                 <li class="nav-item px-3">
-                  <a class="nav-link" href="includes/logout.inc.php" title="Link to logout">
+                  <a class="nav-link" href="index.php?action=disconnection" title="Link to logout">
                       <i class="fa fa-sign-out fa-2x"></i>
                   </a>
                 </li>
