@@ -16,4 +16,8 @@ class UserManager{
     public function getUserByUsername(string $username):array{
         return $this->userDao->getUserByUsername($username);
     }
+
+    public function signup(array $data):void{
+        $this->userDao->createUser($data);
+    }
 }

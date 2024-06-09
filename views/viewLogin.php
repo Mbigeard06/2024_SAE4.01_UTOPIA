@@ -54,7 +54,7 @@
                     <input type="submit" id="btn_login" name="login-submit" value="Login">
                 </form>
                 <br>
-                <p>Don't have an account yet ? Signup <a id="link_signup_login" href="signup.php">here</a></p>
+                <p>Don't have an account yet ? Signup <a id="link_signup_login" href="index.php?action=signup">here</a></p>
 
                 <br><br>
                 <div class="position-absolute login-icons">

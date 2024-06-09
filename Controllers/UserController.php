@@ -30,6 +30,11 @@ class UserController
         
     }
 
+    public function displaySignup(){
+        $view = new View("Signup");
+        $view->generate(["title"=>"Sign Up"]);
+    }
+
     public function verifyConnexionAttempt(string $username, string $password): bool
     {
         $response = $this->userManager->verifyUserCredentials($username, $password);
@@ -62,5 +67,9 @@ class UserController
         session_unset();
         session_destroy();
         header("location: index.php");
+    }
+
+    public function signup(array $data):void{
+        $this->userManager->signup($data);
     }
 }
