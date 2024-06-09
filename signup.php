@@ -83,8 +83,9 @@ include 'includes/HTML-head.php';
           <label for="name">Username</label>
           <input type="text" class="form-control" id="name" name="uid" placeholder="Username" maxlength="25">
           <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" name="mail" placeholder="Email" title="Please enter an email adress that ends with @gmail.com">
+          <input type="email" class="form-control" id="email" name="mail" placeholder="Email" title="Please enter a valid email address, e.g., user@example.com">
 
+          
           <label for="pwd">Password</label>
           <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Password">
           <label for="pwd-repeat">Confirmation</label>
@@ -108,6 +109,7 @@ include 'includes/HTML-head.php';
             <br><br><label class="btn btn-primary ">
               Set Avatar <input type="file" id="imgInp" name='dp' hidden>
             </label>
+            <p class="text-muted mt-10">Maximum size: 5MB, 320x320 pixels</p>
           </div>
 
           </form>
