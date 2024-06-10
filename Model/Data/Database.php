@@ -24,7 +24,7 @@ class Database implements IDatabase
         $this->db = new PDO(
             "mysql:host=localhost;dbname=klik_database",
             "root",
-            "",
+            "lol123",#A modifier
             array(
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
             )

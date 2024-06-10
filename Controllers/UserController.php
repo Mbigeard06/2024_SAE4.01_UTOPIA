@@ -1,40 +1,48 @@
 <?php
 
+use Model\Exceptions\BadCaptchaResponse;
 use Model\Exceptions\BadLoginOrPasswordException;
 
 require_once("Model/Managers/UserManager.php");
 require_once("Views/View.php");
 require_once("Model/Logic/User.php");
+require_once("Model/Logic/Captcha.php");
 require_once("Model/Exceptions/BadLoginOrPasswordException.php");
+require_once("Model/Exceptions/BadCaptchaResponse.php");
 
 
 class UserController
 {
 
     private UserManager $userManager;
+    private Captcha $captcha;
 
     public function __construct()
     {
         $this->userManager = new UserManager();
+        $this->captcha = new Captcha();
     }
 
     public function displayConnexion(Exception $e = null)
     {
         $view = new View("Login");
-        if(isset($e)){
-            $view->generate(["title" => "Authentification", "exception" => $e->getMessage()]);
+        $params = ["title" => "Authentification", "captcha" => $this->captcha];
+        if (isset($e)) {
+            $params["exception"] = $e->getMessage();
         }
-        else{
-            $view->generate(["title" => "Authentification"]);
-        }
-        
+        $view->generate($params);
     }
 
-    public function verifyConnexionAttempt(string $username, string $password): bool
+    public function verifyConnexionAttempt(string $username, string $password,string $captchaRep): bool
     {
-        $response = $this->userManager->verifyUserCredentials($username, $password);
-        if(!$response){
-            throw new BadLoginOrPasswordException();
+        if($this->captcha->validate($captchaRep)){
+            $response = $this->userManager->verifyUserCredentials($username, $password);
+            if(!$response){
+                throw new BadLoginOrPasswordException();
+            }
+        }
+        else{
+            throw new BadCaptchaResponse($captchaRep);
         }
         return $response;
     }
@@ -56,6 +64,10 @@ class UserController
         ];
         $user  = new User($formattedData);
         return $user;
+    }
+
+    public function checkCaptcha(string $resp): bool{
+        return $this->captcha->validate($resp);
     }
 
     public function disconnect():void{

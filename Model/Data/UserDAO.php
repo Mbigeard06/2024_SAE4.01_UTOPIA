@@ -2,6 +2,7 @@
 require_once 'Database.php'; 
 require_once "IUserDAO.php";
 
+
 /**
  * Représente un objet d'accès aux données (DAO) pour les utilisateurs.
  */

@@ -24,8 +24,9 @@ class RouteConnexion extends Route
     {
         $username = $params["mailuid"];
         $password = $params["pwd"];
+        $captchaRep = $params['captcha'];
         try{
-            $this->userController->verifyConnexionAttempt($username, $password);
+            $this->userController->verifyConnexionAttempt($username, $password,$captchaRep);
             $user = $this->userController->getUserByUsername($username);
             $_SESSION["connectedUser"] = $user;
             header("Location: index.php");exit;
