@@ -18,7 +18,7 @@ if (isset($_GET['id']) && isset($_SESSION['userId']) && ($_SESSION['userLevel'] 
         $page = 'forum';
     }
     
-    $sql = "delete from categories where cat_id=?";
+    $sql = "delete from categories where idCategory=?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql))
     {

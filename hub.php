@@ -36,7 +36,7 @@
         
         <?php
 
-            $sql = "select blog_id, blog_img, blog_date, blog_votes, blog_title, blog_content, uidUsers
+            $sql = "select idBlog, blog_img, blog_date, blog_votes, blog_title, blog_content, uidUsers
                     from blogs, users
                     where blogs.blog_by = users.idUsers
                     order by blog_votes desc
@@ -56,7 +56,7 @@
                 while ($row = mysqli_fetch_assoc($result))
                 {
                     
-                    echo '<a href="blog-page.php?id='.$row['blog_id'].'">
+                    echo '<a href="blog-page.php?id='.$row['idBlog'].'">
                         <div class="media text-muted pt-3">
                             <img src="uploads/'.$row['blog_img'].'" alt="" class="mr-2 rounded div-img ">
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray ">
@@ -68,7 +68,7 @@
                     
                     if ($_SESSION['userLevel'] == 1 || $_SESSION['userLevel'] == $row['blog_by'])
                     {
-                        echo '<a href="includes/delete-blog.php?id='.$row['blog_id'].'&page=forum" >
+                        echo '<a href="includes/delete-blog.php?id='.$row['idBlog'].'&page=forum" >
                                 <i class="fa fa-trash" aria-hidden="true" style="color: red;"></i>
                               </a>
                             </span>';
@@ -99,7 +99,7 @@
         
         <?php
 
-            $sql = "select event_id, event_by, title, event_date, event_image
+            $sql = "select idEvent, event_by, title, event_date, event_image
                     from events
                     where event_date > now()
                     order by event_date 
@@ -121,7 +121,7 @@
                     $later = new DateTime($row['event_date']);
                     $diff = $later->diff($earlier)->format("%a");
                     
-                    echo '<a href="event-page.php?id='.$row['event_id'].'">
+                    echo '<a href="event-page.php?id='.$row['idEvent'].'">
                         <div class="media text-muted pt-3">
                             <img src="uploads/'.$row['event_image'].'" alt="" class="mr-2 rounded div-img">
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
@@ -133,7 +133,7 @@
                     
                     if ($_SESSION['userLevel'] == 1 || $_SESSION['userId'] == $row['event_by'])
                     {
-                        echo '<a href="includes/delete-event.php?id='.$row['event_id'].'&page=forum" >
+                        echo '<a href="includes/delete-event.php?id='.$row['idEvent'].'&page=forum" >
                                 <i class="fa fa-trash" aria-hidden="true" style="color: red;"></i>
                               </a>
                             </span>';

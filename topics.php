@@ -25,7 +25,7 @@
             if(isset($_GET['cat']))
             {
                 $sql = "select * from categories "
-                        . "where cat_id = ?";
+                        . "where idCategory = ?";
                 
                 $stmt = mysqli_stmt_init($conn);  
 
@@ -86,7 +86,7 @@
             }
             
             $sql .= "topics.topic_by = users.idUsers
-                    and topics.topic_cat = categories.cat_id
+                    and topics.topic_cat = categories.idCategory
                     order by topic_id asc ";
             $stmt = mysqli_stmt_init($conn);  
             

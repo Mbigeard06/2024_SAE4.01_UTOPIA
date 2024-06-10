@@ -37,7 +37,7 @@
         
         <?php
 
-            $sql = "select event_id, event_by, title, event_date, event_image
+            $sql = "select idEvent, event_by, title, event_date, event_image
                     from events
                     order by event_date desc";
             $stmt = mysqli_stmt_init($conn);    
@@ -64,7 +64,7 @@
                         $diff = $later->diff($earlier)->format("%a").' days remaining';
                     }
                     
-                    echo '<a href="event-page.php?id='.$row['event_id'].'">
+                    echo '<a href="event-page.php?id='.$row['idEvent'].'">
                         <div class="media text-muted pt-3">
                             <img src="uploads/'.$row['event_image'].'" alt="" class="mr-2 rounded div-img">
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
@@ -76,7 +76,7 @@
                     
                     if ($_SESSION['userLevel'] == 1 || $_SESSION['userId'] == $row['event_by'])
                     {
-                        echo '<a href="includes/delete-event.php?id='.$row['event_id'].'&page=forum" >
+                        echo '<a href="includes/delete-event.php?id='.$row['idEvent'].'&page=forum" >
                                 <i class="fa fa-trash" aria-hidden="true" style="color: red;"></i>
                               </a>
                             </span>';

@@ -38,12 +38,12 @@
         
         <?php
 
-            $sql = "select cat_id, cat_name, cat_description, (
+            $sql = "select idCategory, cat_name, cat_description, (
                         select count(*) from topics
-                        where topics.topic_cat = cat_id
+                        where topics.topic_cat = idCategory
                         ) as forums
                     from categories
-                    order by forums desc, cat_id asc
+                    order by forums desc, idCategory asc
                     LIMIT 5";
             $stmt = mysqli_stmt_init($conn);    
 
@@ -59,7 +59,7 @@
                 while ($row = mysqli_fetch_assoc($result))
                 {
                     
-                    echo '<a href="topics.php?cat='.$row['cat_id'].'">
+                    echo '<a href="topics.php?cat='.$row['idCategory'].'">
                         <div class="media text-muted pt-3">
                             <img src="img/forum-cover.png" alt="" class="mr-2 rounded div-img ">
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray ">
@@ -71,7 +71,7 @@
                     
                     if ($_SESSION['userLevel'] == 1)
                     {
-                        echo '<a href="includes/delete-category.php?id='.$row['cat_id'].'&page=forum" >
+                        echo '<a href="includes/delete-category.php?id='.$row['idCategory'].'&page=forum" >
                                 <i class="fa fa-trash" aria-hidden="true" style="color: red;"></i>
                               </a>
                             </span>';
@@ -118,7 +118,7 @@
                         ) as upvotes
                     from topics, users, categories 
                     where topics.topic_by = users.idUsers
-                    and topics.topic_cat = categories.cat_id
+                    and topics.topic_cat = categories.idCategory
                     order by upvotes desc, topic_id asc 
                     LIMIT 5";
             $stmt = mysqli_stmt_init($conn);    

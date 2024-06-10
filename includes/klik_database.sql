@@ -32,7 +32,7 @@ use klik_database;
 --
 
 CREATE TABLE `blogs` (
-  `blog_id` int(11) NOT NULL,
+  `idBlog` int(11) NOT NULL,
   `blog_title` varchar(100) NOT NULL,
   `blog_img` varchar(1000) NOT NULL DEFAULT 'default.png',
   `blog_by` int(11) NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE `blogs` (
 -- Dumping data for table `blogs`
 --
 
-INSERT INTO `blogs` (`blog_id`, `blog_title`, `blog_img`, `blog_by`, `blog_date`, `blog_votes`, `blog_content`) VALUES
+INSERT INTO `blogs` (`idBlog`, `blog_title`, `blog_img`, `blog_by`, `blog_date`, `blog_votes`, `blog_content`) VALUES
 (2, 'First Blog', 'default.png', 24, '2018-12-09', 1, 'Random Content'),
 (3, 'Another Blog', 'default.png', 24, '2018-12-09', 0, 'This blog also contains some random content but in more quantity.'),
 (4, 'Third Blog', 'default.png', 24, '2018-12-09', 0, 'Sorry for boring you with random stuff.'),
@@ -71,7 +71,7 @@ INSERT INTO `blogs` (`blog_id`, `blog_title`, `blog_img`, `blog_by`, `blog_date`
 --
 
 CREATE TABLE `blogvotes` (
-  `voteId` int(11) NOT NULL,
+  `idBlogvotes` int(11) NOT NULL,
   `voteBlog` int(11) NOT NULL,
   `voteBy` int(11) NOT NULL,
   `voteDate` date NOT NULL,
@@ -82,7 +82,7 @@ CREATE TABLE `blogvotes` (
 -- Dumping data for table `blogvotes`
 --
 
-INSERT INTO `blogvotes` (`voteId`, `voteBlog`, `voteBy`, `voteDate`, `vote`) VALUES
+INSERT INTO `blogvotes` (`idBlogvotes`, `voteBlog`, `voteBy`, `voteDate`, `vote`) VALUES
 (6, 12, 24, '2018-12-21', 1),
 (7, 13, 24, '2018-12-23', 1),
 (8, 15, 35, '2018-12-24', 1),
@@ -107,7 +107,7 @@ CREATE TRIGGER `calc_blog_votes_after_delete` AFTER DELETE ON `blogvotes` FOR EA
 
 		update blogs
         set blogs.blog_votes = blogs.blog_votes - old.vote
-        where blogs.blog_id = old.voteBlog;	
+        where blogs.idBlog = old.voteBlog;	
 
 END
 $$
@@ -117,7 +117,7 @@ CREATE TRIGGER `calc_blog_votes_after_insert` AFTER INSERT ON `blogvotes` FOR EA
 	
 	update blogs
         set blogs.blog_votes = blogs.blog_votes + new.vote
-        where blogs.blog_id = new.voteBlog;	
+        where blogs.idBlog = new.voteBlog;	
 		
     END
 $$
@@ -127,7 +127,7 @@ CREATE TRIGGER `calc_blog_votes_after_update` AFTER UPDATE ON `blogvotes` FOR EA
 	
 		update blogs
         set blogs.blog_votes = blogs.blog_votes + (new.vote * 2)
-        where blogs.blog_id = new.voteBlog;	
+        where blogs.idBlog = new.voteBlog;	
 		
     END
 $$
@@ -140,7 +140,7 @@ DELIMITER ;
 --
 
 CREATE TABLE `categories` (
-  `cat_id` int(8) NOT NULL,
+  `idCategory` int(8) NOT NULL,
   `cat_name` varchar(255) NOT NULL,
   `cat_description` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -149,7 +149,7 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`cat_id`, `cat_name`, `cat_description`) VALUES
+INSERT INTO `categories` (`idCategory`, `cat_name`, `cat_description`) VALUES
 (4, 'finance sciences', 'all topics related to finance and economy like making double decker chocolate cake and how to end the world in 3 days'),
 (5, 'gardening', 'different gardening techniques used to torture helpless victims and make them dream of attending horrible opera performances'),
 (8, 'sad', 'sadsadsadsad'),
@@ -163,7 +163,7 @@ INSERT INTO `categories` (`cat_id`, `cat_name`, `cat_description`) VALUES
 --
 
 CREATE TABLE `conversation` (
-  `id` int(11) NOT NULL,
+  `idConversation` int(11) NOT NULL,
   `user_one` int(11) NOT NULL,
   `user_two` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -172,7 +172,7 @@ CREATE TABLE `conversation` (
 -- Dumping data for table `conversation`
 --
 
-INSERT INTO `conversation` (`id`, `user_one`, `user_two`) VALUES
+INSERT INTO `conversation` (`idConversation`, `user_one`, `user_two`) VALUES
 (15, 24, 30),
 (16, 24, 25),
 (17, 25, 30),
@@ -198,7 +198,7 @@ INSERT INTO `conversation` (`id`, `user_one`, `user_two`) VALUES
 --
 
 CREATE TABLE `events` (
-  `event_id` int(11) NOT NULL,
+  `idEvent` int(11) NOT NULL,
   `event_by` int(11) NOT NULL,
   `title` varchar(100) NOT NULL,
   `date_created` date NOT NULL,
@@ -210,7 +210,7 @@ CREATE TABLE `events` (
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`event_id`, `event_by`, `title`, `date_created`, `event_date`, `event_image`) VALUES
+INSERT INTO `events` (`idEvent`, `event_by`, `title`, `date_created`, `event_date`, `event_image`) VALUES
 (21, 24, 'annual suicide competition', '2018-12-23', '2019-01-01', 'event-cover.png'),
 (22, 24, 'Flat Earther Convention 2019', '2018-12-24', '2018-12-02', 'event-cover.png'),
 (23, 24, 'Food Gala', '2018-12-24', '2018-12-25', '5c209ba7d3f583.51289913.jpg'),
@@ -226,7 +226,7 @@ INSERT INTO `events` (`event_id`, `event_by`, `title`, `date_created`, `event_da
 --
 
 CREATE TABLE `event_info` (
-  `event_id` int(11) NOT NULL,
+  `idEvent` int(11) NOT NULL,
   `event` int(11) NOT NULL,
   `title` varchar(100) NOT NULL,
   `headline` varchar(100) NOT NULL,
@@ -237,7 +237,7 @@ CREATE TABLE `event_info` (
 -- Dumping data for table `event_info`
 --
 
-INSERT INTO `event_info` (`event_id`, `event`, `title`, `headline`, `description`) VALUES
+INSERT INTO `event_info` (`idEvent`, `event`, `title`, `headline`, `description`) VALUES
 (13, 21, 'annual suicide competition', 'lezz go kill ourselves bois!', 'time to suicide!'),
 (14, 22, 'Flat Earther Convention 2019', 'They are deceiving us!! Open your eyes!', 'The flat Earth society encourages you to open your eyes to the realities of the world. what we we donot realize is that the government and Satan are lying to us that the earth is round. But we KNOW. deep down in our hearts, we KNOW that the earth is the shape of a velociraptor. And we WILL make the world believe it or burn'),
 (15, 23, 'Food Gala', 'lets get FAT! like Anas Kamal', 'FOOD IS GOOD FOOD IS LIFE<br> I WANT FOOD I WANT SPICE'),
@@ -490,7 +490,7 @@ INSERT INTO `posts` (`post_id`, `post_content`, `post_date`, `post_topic`, `post
 --
 
 CREATE TABLE `postvotes` (
-  `voteId` int(11) NOT NULL,
+  `idBlogvotes` int(11) NOT NULL,
   `votePost` int(11) NOT NULL,
   `voteBy` int(11) NOT NULL,
   `voteDate` date NOT NULL,
@@ -501,7 +501,7 @@ CREATE TABLE `postvotes` (
 -- Dumping data for table `postvotes`
 --
 
-INSERT INTO `postvotes` (`voteId`, `votePost`, `voteBy`, `voteDate`, `vote`) VALUES
+INSERT INTO `postvotes` (`idBlogvotes`, `votePost`, `voteBy`, `voteDate`, `vote`) VALUES
 (1, 89, 24, '2018-12-15', 1),
 (2, 82, 24, '2018-12-17', 1),
 (3, 100, 24, '2018-12-16', 1),
@@ -675,14 +675,14 @@ INSERT INTO `users` (`idUsers`, `userLevel`, `f_name`, `l_name`, `uidUsers`, `em
 -- Indexes for table `blogs`
 --
 ALTER TABLE `blogs`
-  ADD PRIMARY KEY (`blog_id`),
+  ADD PRIMARY KEY (`idBlog`),
   ADD KEY `blog_by` (`blog_by`);
 
 --
 -- Indexes for table `blogvotes`
 --
 ALTER TABLE `blogvotes`
-  ADD PRIMARY KEY (`voteId`),
+  ADD PRIMARY KEY (`idBlogvotes`),
   ADD KEY `voteBlog` (`voteBlog`),
   ADD KEY `voteBy` (`voteBy`);
 
@@ -690,7 +690,7 @@ ALTER TABLE `blogvotes`
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
-  ADD PRIMARY KEY (`cat_id`),
+  ADD PRIMARY KEY (`idCategory`),
   ADD UNIQUE KEY `cat_name_unique` (`cat_name`);
 
 --
@@ -705,14 +705,14 @@ ALTER TABLE `conversation`
 -- Indexes for table `events`
 --
 ALTER TABLE `events`
-  ADD PRIMARY KEY (`event_id`),
+  ADD PRIMARY KEY (`idEvent`),
   ADD KEY `events_ibfk_1` (`event_by`);
 
 --
 -- Indexes for table `event_info`
 --
 ALTER TABLE `event_info`
-  ADD PRIMARY KEY (`event_id`),
+  ADD PRIMARY KEY (`idEvent`),
   ADD KEY `event` (`event`),
   ADD KEY `title` (`title`);
 
@@ -760,7 +760,7 @@ ALTER TABLE `posts`
 -- Indexes for table `postvotes`
 --
 ALTER TABLE `postvotes`
-  ADD PRIMARY KEY (`voteId`),
+  ADD PRIMARY KEY (`idBlogvotes`),
   ADD KEY `voteBy` (`voteBy`);
 
 --
@@ -791,19 +791,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `blog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idBlog` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `blogvotes`
 --
 ALTER TABLE `blogvotes`
-  MODIFY `voteId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `idBlogvotes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `cat_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idCategory` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `conversation`
@@ -815,13 +815,13 @@ ALTER TABLE `conversation`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `idEvent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `event_info`
 --
 ALTER TABLE `event_info`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idEvent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `messages`
@@ -857,7 +857,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `postvotes`
 --
 ALTER TABLE `postvotes`
-  MODIFY `voteId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `idBlogvotes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `pwdreset`
@@ -891,7 +891,7 @@ ALTER TABLE `blogs`
 -- Constraints for table `blogvotes`
 --
 ALTER TABLE `blogvotes`
-  ADD CONSTRAINT `blogvotes_ibfk_1` FOREIGN KEY (`voteBlog`) REFERENCES `blogs` (`blog_id`),
+  ADD CONSTRAINT `blogvotes_ibfk_1` FOREIGN KEY (`voteBlog`) REFERENCES `blogs` (`idBlog`),
   ADD CONSTRAINT `blogvotes_ibfk_2` FOREIGN KEY (`voteBy`) REFERENCES `users` (`idUsers`);
 
 --
@@ -911,7 +911,7 @@ ALTER TABLE `events`
 -- Constraints for table `event_info`
 --
 ALTER TABLE `event_info`
-  ADD CONSTRAINT `event_info_ibfk_1` FOREIGN KEY (`event`) REFERENCES `events` (`event_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `event_info_ibfk_1` FOREIGN KEY (`event`) REFERENCES `events` (`idEvent`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `messages`
@@ -958,7 +958,7 @@ ALTER TABLE `postvotes`
 -- Constraints for table `topics`
 --
 ALTER TABLE `topics`
-  ADD CONSTRAINT `topics_ibfk_1` FOREIGN KEY (`topic_cat`) REFERENCES `categories` (`cat_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `topics_ibfk_1` FOREIGN KEY (`topic_cat`) REFERENCES `categories` (`idCategory`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `topics_ibfk_2` FOREIGN KEY (`topic_by`) REFERENCES `users` (`idUsers`) ON UPDATE CASCADE;
 COMMIT;
 

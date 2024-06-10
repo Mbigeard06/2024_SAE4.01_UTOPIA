@@ -41,7 +41,7 @@
                 <?php
 
                     $sql = "select * from blogs, users 
-                            where blog_id = ? 
+                            where idBlog = ? 
                             and blogs.blog_by = users.idUsers";
 
                     $stmt = mysqli_stmt_init($conn);    
@@ -75,7 +75,7 @@
                   <div class="blog-likes pr-1 pt-5">
                       
                       <h3>
-                            <a href="includes/blog-vote.inc.php?blog=<?php echo $row['blog_id']; ?>" >
+                            <a href="includes/blog-vote.inc.php?blog=<?php echo $row['idBlog']; ?>" >
                                 <i class="fa fa-thumbs-up fa-2x"></i>
                             </a>  
                             <?php echo $row['blog_votes']; ?>

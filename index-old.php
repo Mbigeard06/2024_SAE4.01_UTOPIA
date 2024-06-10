@@ -101,7 +101,7 @@
                                                     ) as upvotes
                                                 from topics, users, categories 
                                                 where topics.topic_by = users.idUsers
-                                                and topics.topic_cat = categories.cat_id
+                                                and topics.topic_cat = categories.idCategory
                                                 order by topic_id desc, upvotes asc 
                                                 LIMIT 6";
                                         $stmt = mysqli_stmt_init($conn);    
@@ -163,7 +163,7 @@
                                     /*
                                         $sql = "select * from Blogs, users 
                                                 where blogs.blog_by = users.idUsers
-                                                order by blog_id desc, blog_votes asc
+                                                order by idBlog desc, blog_votes asc
                                                 LIMIT 6";
                                         $stmt = mysqli_stmt_init($conn);    
 
@@ -186,13 +186,13 @@
                                                                 <i class="fa fa-thumbs-up" aria-hidden="true"></i> '.$row['blog_votes'].'
                                                             </strong>
                                                             <h6 class="mb-0">
-                                                              <a class="text-dark" href="blog-page.php?id='.$row['blog_id'].'">'.substr($row['blog_title'],0,10).'...</a>
+                                                              <a class="text-dark" href="blog-page.php?id='.$row['idBlog'].'">'.substr($row['blog_title'],0,10).'...</a>
                                                             </h6>
                                                             <small class="mb-1 text-muted">'.date("F jS, Y", strtotime($row['blog_date'])).'</small>
                                                             <small class="card-text mb-auto">'.substr($row['blog_content'],0,40).'...</small>
-                                                            <a href="blog-page.php?id='.$row['blog_id'].'">Continue reading</a>
+                                                            <a href="blog-page.php?id='.$row['idBlog'].'">Continue reading</a>
                                                           </div>
-                                                          <a href="blog-page.php?id='.$row['blog_id'].'">
+                                                          <a href="blog-page.php?id='.$row['idBlog'].'">
                                                           <img class="card-img-right flex-auto d-none d-lg-block blogindex-cover" 
                                                                 src="uploads/'.$row['blog_img'].'" alt="Card image cap">
                                                                     </a>
@@ -289,7 +289,7 @@
 
                                   <?php
 /*
-                                    $sql = "select event_id, event_by, title, event_date, event_image
+                                    $sql = "select idEvent, event_by, title, event_date, event_image
                                             from events
                                             where event_date > now()
                                             order by event_date asc
@@ -311,7 +311,7 @@
                                             $later = new DateTime($row['event_date']);
                                             $diff = $later->diff($earlier)->format("%a");
 
-                                            echo '<a href="event-page.php?id='.$row['event_id'].'">
+                                            echo '<a href="event-page.php?id='.$row['idEvent'].'">
                                                 <div class="media text-muted pt-3">
                                                     <img src="uploads/'.$row['event_image'].'" alt="" class="mr-2 rounded div-img poll-img">
                                                     <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
@@ -323,7 +323,7 @@
 
                                             if ($_SESSION['userLevel'] == 1 || $_SESSION['userId'] == $row['event_by'])
                                             {
-                                                echo '<a href="includes/delete-event.php?id='.$row['event_id'].'&page=forum" >
+                                                echo '<a href="includes/delete-event.php?id='.$row['idEvent'].'&page=forum" >
                                                         <i class="fa fa-trash" aria-hidden="true" style="color: red;"></i>
                                                       </a>
                                                     </span>';

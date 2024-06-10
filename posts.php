@@ -74,7 +74,7 @@
     
     
     $sql = "select * from topics, categories where topic_id=? "
-            . "and topic_cat = cat_id";
+            . "and topic_cat = idCategory";
     $stmt = mysqli_stmt_init($conn);
     
     if (!mysqli_stmt_prepare($stmt, $sql))
