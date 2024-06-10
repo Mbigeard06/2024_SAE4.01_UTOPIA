@@ -4,8 +4,16 @@ require_once("Views/View.php");
 
 class MainController
 {
+    private ForumController $forumController;
+
+    public function __construct()
+    {
+        $this->forumController = new ForumController();
+    }
+
     public function displayIndex()
     {
+        $forums = $this->forumController->getAllForums();
         $view = new View("Index");
         $connectedUser = $_SESSION["connectedUser"];
         $badge = "";
@@ -18,7 +26,8 @@ class MainController
             "badge" => $badge,
             "username" => ucwords($connectedUser->getUsername()),
             "name" => ucwords($connectedUser->getFirstName() . " " . $connectedUser->getLastName()),
-            "headline" => $connectedUser->getHeadline()
+            "headline" => $connectedUser->getHeadline(),
+            "forums" => $forums
         ]);
     }
 }

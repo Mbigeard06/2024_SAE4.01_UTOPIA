@@ -91,7 +91,7 @@
                                   </div>
                                 </div>  
 
-                                    <div class="row mb-2">
+                                <div class="row mb-2">
 
                                     <?php
                                         /*$sql = "select topic_id, topic_subject, topic_date, topic_cat, topic_by, userImg, idUsers, uidUsers, cat_name, (
