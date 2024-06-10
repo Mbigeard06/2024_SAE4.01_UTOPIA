@@ -11,14 +11,14 @@ img{ max-width:100%;}
 .inbox_people {
   background: #f8f8f8 none repeat scroll 0 0;
   float: left;
-  overflow: hidden;
   width: 40%; border-right:1px solid #c4c4c4;
+  height: 140vh;
 }
 .inbox_msg {
   border: 1px solid #c4c4c4;
   clear: both;
   overflow: hidden;
-  height: 90vh;
+  height: 100vh;
 }
 .top_spac{ margin: 20px 0 0;}
 
@@ -69,7 +69,7 @@ img{ max-width:100%;}
     background-color: #CCE1E8;
 }
 .inbox_chat { 
-    height: 550px; 
+    height: 100vh; 
     overflow-y: scroll;
 }
 .msg_history {
@@ -109,7 +109,7 @@ img{ max-width:100%;}
   float: left;
   padding: 0;
   width: 60%;
-  background-image: url('../img/orange-bg.png');
+  background-color: #FFFDD0;
   background-size: cover;
   background-repeat: none;
 }
@@ -157,7 +157,7 @@ img{ max-width:100%;}
 }
 .messaging { padding: 0 0 50px 0;}
 .msg_history {
-  height: 516px;
+  height: 850px;
   overflow-y: auto;
 }
 .msg_history {
