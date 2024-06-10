@@ -47,7 +47,7 @@ class poll {
 
     public function getPolls($i, $pollType = 'single'){
         $pollData = array();
-        $sql = "SELECT * FROM ".$this->pollTbl." WHERE status = '1' AND id=".$i." ORDER BY created DESC";
+        $sql = "SELECT * FROM ".$this->pollTbl." WHERE status = '1' AND idPoll=".$i." ORDER BY created DESC";
         $pollResult = $this->getQuery($sql, $pollType);
         
         if(!empty($pollResult)){
@@ -96,17 +96,17 @@ class poll {
     public function getResult($pollID){
         $resultData = array();
         if(!empty($pollID)){
-            $sql = "SELECT p.subject, count(v.id) as total_votes  FROM ".$this->voteTbl." as v LEFT JOIN ".$this->pollTbl." as p ON p.id = v.poll_id WHERE poll_id = ".$pollID;
+            $sql = "SELECT p.subject, count(v.idPollvotes) as total_votes  FROM ".$this->voteTbl." as v LEFT JOIN ".$this->pollTbl." as p ON p.idPoll = v.poll_id WHERE poll_id = ".$pollID;
             $pollResult = $this->getQuery($sql,'single');
             if(!empty($pollResult)){
                 $resultData['poll'] = $pollResult['subject'];
                 $resultData['total_votes'] = $pollResult['total_votes'];
                 
-                $sql2 = "SELECT o.id, o.name, ( "
+                $sql2 = "SELECT o.idPolloptions, o.name, ( "
                         . "SELECT COUNT(*) "
                         . "from " . $this->voteTbl . " v "
                         . "WHERE v.poll_id = " . $pollID . " "
-                        . "AND v.poll_option_id = o.id "
+                        . "AND v.poll_option_id = o.idPolloptions "
                         . ") as vote_count "
                         . "FROM " . $this->optTbl . " o "
                         . "WHERE o.poll_id = " . $pollID . ";";

@@ -111,15 +111,15 @@
         
         <?php
 
-            $sql = "select topic_id, topic_subject, topic_date, topic_cat, topic_by, userImg, idUsers, uidUsers, cat_name, (
+            $sql = "select idTopic, topic_subject, topic_date, topic_cat, topic_by, userImg, idUsers, uidUsers, cat_name, (
                             select sum(post_votes)
                         from posts
-                        where post_topic = topic_id
+                        where post_topic = idTopic
                         ) as upvotes
                     from topics, users, categories 
                     where topics.topic_by = users.idUsers
                     and topics.topic_cat = categories.idCategory
-                    order by upvotes desc, topic_id asc 
+                    order by upvotes desc, idTopic asc 
                     LIMIT 5";
             $stmt = mysqli_stmt_init($conn);    
 
@@ -135,7 +135,7 @@
                 while ($row = mysqli_fetch_assoc($result))
                 {
                     
-                    echo '<a href="posts.php?topic='.$row['topic_id'].'">
+                    echo '<a href="posts.php?topic='.$row['idTopic'].'">
                         <div class="media text-muted pt-3">
                             <img src="uploads/'.$row['userImg'].'" alt="" class="mr-2 rounded div-img">
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
@@ -149,7 +149,7 @@
                     
                     if ($_SESSION['userLevel'] == 1 || $_SESSION['userId'] == $row['idUsers'])
                     {
-                        echo '<a href="includes/delete-forum.php?id='.$row['topic_id'].'&page=forum" >
+                        echo '<a href="includes/delete-forum.php?id='.$row['idTopic'].'&page=forum" >
                                 <i class="fa fa-trash" aria-hidden="true" style="color: red;"></i>
                               </a>
                             </span>';

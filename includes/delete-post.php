@@ -15,7 +15,7 @@ if (isset($_GET['topic']) && isset($_GET['post']) && ($_GET['by'] == $_SESSION['
     $post = $_GET['post'];
     $topic = $_GET['topic'];
     
-    $sql = "delete from posts where post_id=?";
+    $sql = "delete from posts where idPosts=?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql))
     {

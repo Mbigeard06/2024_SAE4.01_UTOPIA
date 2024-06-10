@@ -178,7 +178,7 @@
                             {
                                 echo '<div class="col-sm-4" style="padding-bottom: 30px;">
                                         <div class="card user-blogs">
-                                            <a href="posts.php?topic='.$row['topic_id'].'">
+                                            <a href="posts.php?topic='.$row['idTopic'].'">
                                             <img class="card-img-top" src="img/forum-cover.png" alt="Card image cap">
                                             <div class="card-block p-2">
                                               <p class="card-title">'.ucwords($row['topic_subject']).'</p>

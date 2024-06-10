@@ -203,7 +203,9 @@ CREATE TABLE `events` (
   `title` varchar(100) NOT NULL,
   `date_created` date NOT NULL,
   `event_date` varchar(10) NOT NULL,
-  `event_image` varchar(200) NOT NULL
+  `event_image` varchar(200) NOT NULL,
+  `headline` varchar(200) NOT NULL,
+  `description` varchar(6000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -253,7 +255,7 @@ INSERT INTO `event_info` (`idEvent`, `event`, `title`, `headline`, `description`
 --
 
 CREATE TABLE `messages` (
-  `id` int(11) NOT NULL,
+  `idMessage` int(11) NOT NULL,
   `conversation_id` int(11) NOT NULL,
   `user_from` int(11) NOT NULL,
   `user_to` int(11) NOT NULL,
@@ -264,7 +266,7 @@ CREATE TABLE `messages` (
 -- Dumping data for table `messages`
 --
 
-INSERT INTO `messages` (`id`, `conversation_id`, `user_from`, `user_to`, `message`) VALUES
+INSERT INTO `messages` (`idMessage`, `conversation_id`, `user_from`, `user_to`, `message`) VALUES
 (2, 15, 24, 30, 'mmm'),
 (3, 15, 30, 24, 'hello'),
 (4, 15, 24, 30, 'aaa'),
@@ -345,7 +347,7 @@ INSERT INTO `messages` (`id`, `conversation_id`, `user_from`, `user_to`, `messag
 --
 
 CREATE TABLE `polls` (
-  `id` int(11) NOT NULL,
+  `idPoll` int(11) NOT NULL,
   `subject` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
@@ -359,7 +361,7 @@ CREATE TABLE `polls` (
 -- Dumping data for table `polls`
 --
 
-INSERT INTO `polls` (`id`, `subject`, `created`, `modified`, `status`, `created_by`, `poll_desc`, `locked`) VALUES
+INSERT INTO `polls` (`idPoll`, `subject`, `created`, `modified`, `status`, `created_by`, `poll_desc`, `locked`) VALUES
 (12, 'killing', '2018-12-04 20:27:26', '2018-12-04 20:27:26', '1', 24, '', 1),
 (14, 'How to kill Linear Algebra', '2018-12-05 22:38:43', '2018-12-05 22:38:43', '1', 24, 'linear algebra has caused more deaths then eating pizza with pepsi in the last 69 years', 0),
 (15, 'how to eat water', '2018-12-05 23:02:28', '2018-12-05 23:02:28', '1', 24, 'pls pls help me i dying of hunger i need a cigarette asap ', 1),
@@ -372,7 +374,7 @@ INSERT INTO `polls` (`id`, `subject`, `created`, `modified`, `status`, `created_
 --
 
 CREATE TABLE `poll_options` (
-  `id` int(11) NOT NULL,
+  `idPolloptions` int(11) NOT NULL,
   `poll_id` int(11) NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
@@ -384,7 +386,7 @@ CREATE TABLE `poll_options` (
 -- Dumping data for table `poll_options`
 --
 
-INSERT INTO `poll_options` (`id`, `poll_id`, `name`, `created`, `modified`, `status`) VALUES
+INSERT INTO `poll_options` (`idPolloptions`, `poll_id`, `name`, `created`, `modified`, `status`) VALUES
 (7, 12, 'gun', '2018-12-04 20:27:26', '2018-12-04 20:27:26', '1'),
 (8, 12, 'opera', '2018-12-04 20:27:26', '2018-12-04 20:27:26', '1'),
 (9, 12, 'poison', '2018-12-04 20:27:26', '2018-12-04 20:27:26', '1'),
@@ -409,7 +411,7 @@ INSERT INTO `poll_options` (`id`, `poll_id`, `name`, `created`, `modified`, `sta
 --
 
 CREATE TABLE `poll_votes` (
-  `id` int(11) NOT NULL,
+  `idPollvotes` int(11) NOT NULL,
   `poll_id` int(11) NOT NULL,
   `poll_option_id` int(11) NOT NULL,
   `vote_by` int(11) NOT NULL
@@ -419,7 +421,7 @@ CREATE TABLE `poll_votes` (
 -- Dumping data for table `poll_votes`
 --
 
-INSERT INTO `poll_votes` (`id`, `poll_id`, `poll_option_id`, `vote_by`) VALUES
+INSERT INTO `poll_votes` (`idPollvotes`, `poll_id`, `poll_option_id`, `vote_by`) VALUES
 (6, 12, 7, 24),
 (8, 12, 10, 25),
 (11, 12, 10, 27),
@@ -439,7 +441,7 @@ INSERT INTO `poll_votes` (`id`, `poll_id`, `poll_option_id`, `vote_by`) VALUES
 --
 
 CREATE TABLE `posts` (
-  `post_id` int(8) NOT NULL,
+  `idPosts` int(8) NOT NULL,
   `post_content` text NOT NULL,
   `post_date` datetime NOT NULL,
   `post_topic` int(8) NOT NULL,
@@ -451,7 +453,7 @@ CREATE TABLE `posts` (
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`post_id`, `post_content`, `post_date`, `post_topic`, `post_by`, `post_votes`) VALUES
+INSERT INTO `posts` (`idPosts`, `post_content`, `post_date`, `post_topic`, `post_by`, `post_votes`) VALUES
 (82, 'qqqqq', '2018-11-19 16:03:59', 31, 26, 1),
 (83, 'qqqqq', '2018-11-19 16:05:30', 31, 26, 1),
 (84, 'go away', '2018-11-19 16:06:36', 31, 24, 1),
@@ -490,7 +492,7 @@ INSERT INTO `posts` (`post_id`, `post_content`, `post_date`, `post_topic`, `post
 --
 
 CREATE TABLE `postvotes` (
-  `idBlogvotes` int(11) NOT NULL,
+  `idPostvotes` int(11) NOT NULL,
   `votePost` int(11) NOT NULL,
   `voteBy` int(11) NOT NULL,
   `voteDate` date NOT NULL,
@@ -501,7 +503,7 @@ CREATE TABLE `postvotes` (
 -- Dumping data for table `postvotes`
 --
 
-INSERT INTO `postvotes` (`idBlogvotes`, `votePost`, `voteBy`, `voteDate`, `vote`) VALUES
+INSERT INTO `postvotes` (`idPostvotes`, `votePost`, `voteBy`, `voteDate`, `vote`) VALUES
 (1, 89, 24, '2018-12-15', 1),
 (2, 82, 24, '2018-12-17', 1),
 (3, 100, 24, '2018-12-16', 1),
@@ -544,7 +546,7 @@ CREATE TRIGGER `calc_forum_votes_after_delete` AFTER DELETE ON `postvotes` FOR E
 
 		update posts
         set posts.post_votes = posts.post_votes - old.vote
-        where posts.post_id = old.votePost;	
+        where posts.idPosts = old.votePost;	
 
 END
 $$
@@ -554,7 +556,7 @@ CREATE TRIGGER `calc_forum_votes_after_insert` AFTER INSERT ON `postvotes` FOR E
 	
 	update posts
         set posts.post_votes = posts.post_votes + new.vote
-        where posts.post_id = new.votePost;	
+        where posts.idPosts = new.votePost;	
 		
     END
 $$
@@ -564,7 +566,7 @@ CREATE TRIGGER `calc_forum_votes_after_update` AFTER UPDATE ON `postvotes` FOR E
 	
 		update posts
         set posts.post_votes = posts.post_votes + (new.vote * 2)
-        where posts.post_id = new.votePost;	
+        where posts.idPosts = new.votePost;	
 		
     END
 $$
@@ -577,7 +579,7 @@ DELIMITER ;
 --
 
 CREATE TABLE `pwdreset` (
-  `pwdResetId` int(11) NOT NULL,
+  `idPwdReset` int(11) NOT NULL,
   `pwdResetEmail` text NOT NULL,
   `pwdResetSelector` text NOT NULL,
   `pwdResetToken` longtext NOT NULL,
@@ -588,7 +590,7 @@ CREATE TABLE `pwdreset` (
 -- Dumping data for table `pwdreset`
 --
 
-INSERT INTO `pwdreset` (`pwdResetId`, `pwdResetEmail`, `pwdResetSelector`, `pwdResetToken`, `pwdResetExpires`) VALUES
+INSERT INTO `pwdreset` (`idPwdReset`, `pwdResetEmail`, `pwdResetSelector`, `pwdResetToken`, `pwdResetExpires`) VALUES
 (1, 'owaisrehman110@gmail.com', '73abf7a3e5e48bce', '$2y$10$9ytyvfXk8gb8gRzVfRglwevJBy6o46WDrp2ncNj58Y8sjWM4iNSTi', '1543912151'),
 (2, '', '459ea1feb0d537ee', '$2y$10$jlC8JTnnikaZ7.4g4UMIHeIlqgJfe3iA4OFlruh5OQNtWVf1FfZqi', '1545078648'),
 (4, 'asd@as.asd', 'fb72aeade725bc83', '$2y$10$HTEtmrlaWZpcspmoFAa90Owrd5V4UDorSyWapnRzGOjqxFkHKTexC', '1545079924'),
@@ -604,7 +606,7 @@ INSERT INTO `pwdreset` (`pwdResetId`, `pwdResetEmail`, `pwdResetSelector`, `pwdR
 --
 
 CREATE TABLE `topics` (
-  `topic_id` int(8) NOT NULL,
+  `idTopic` int(8) NOT NULL,
   `topic_subject` varchar(255) NOT NULL,
   `topic_date` datetime NOT NULL,
   `topic_cat` int(8) NOT NULL,
@@ -615,7 +617,7 @@ CREATE TABLE `topics` (
 -- Dumping data for table `topics`
 --
 
-INSERT INTO `topics` (`topic_id`, `topic_subject`, `topic_date`, `topic_cat`, `topic_by`) VALUES
+INSERT INTO `topics` (`idTopic`, `topic_subject`, `topic_date`, `topic_cat`, `topic_by`) VALUES
 (31, 'how to plant a nuclear bomb', '2018-11-18 11:13:00', 5, 24),
 (32, 'how to kill myself', '2018-11-18 11:22:59', 5, 24),
 (35, 'lol', '2018-11-21 16:04:52', 5, 25),
@@ -752,7 +754,7 @@ ALTER TABLE `poll_votes`
 -- Indexes for table `posts`
 --
 ALTER TABLE `posts`
-  ADD PRIMARY KEY (`post_id`),
+  ADD PRIMARY KEY (`idPosts`),
   ADD KEY `post_topic` (`post_topic`),
   ADD KEY `post_by` (`post_by`);
 
@@ -767,13 +769,13 @@ ALTER TABLE `postvotes`
 -- Indexes for table `pwdreset`
 --
 ALTER TABLE `pwdreset`
-  ADD PRIMARY KEY (`pwdResetId`);
+  ADD PRIMARY KEY (`idPwdReset`);
 
 --
 -- Indexes for table `topics`
 --
 ALTER TABLE `topics`
-  ADD PRIMARY KEY (`topic_id`),
+  ADD PRIMARY KEY (`idTopic`),
   ADD KEY `topic_cat` (`topic_cat`),
   ADD KEY `topic_by` (`topic_by`);
 
@@ -851,7 +853,7 @@ ALTER TABLE `poll_votes`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `idPosts` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT for table `postvotes`
@@ -863,13 +865,13 @@ ALTER TABLE `postvotes`
 -- AUTO_INCREMENT for table `pwdreset`
 --
 ALTER TABLE `pwdreset`
-  MODIFY `pwdResetId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idPwdReset` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `topics`
 --
 ALTER TABLE `topics`
-  MODIFY `topic_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `idTopic` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -945,7 +947,7 @@ ALTER TABLE `poll_votes`
 -- Constraints for table `posts`
 --
 ALTER TABLE `posts`
-  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`post_topic`) REFERENCES `topics` (`topic_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`post_topic`) REFERENCES `topics` (`idTopic`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`post_by`) REFERENCES `users` (`idUsers`) ON UPDATE CASCADE;
 
 --

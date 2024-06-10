@@ -94,15 +94,15 @@
                                     <div class="row mb-2">
 
                                     <?php
-                                        /*$sql = "select topic_id, topic_subject, topic_date, topic_cat, topic_by, userImg, idUsers, uidUsers, cat_name, (
+                                        /*$sql = "select idTopic, topic_subject, topic_date, topic_cat, topic_by, userImg, idUsers, uidUsers, cat_name, (
                                                     select sum(post_votes)
                                                     from posts
-                                                    where post_topic = topic_id
+                                                    where post_topic = idTopic
                                                     ) as upvotes
                                                 from topics, users, categories 
                                                 where topics.topic_by = users.idUsers
                                                 and topics.topic_cat = categories.idCategory
-                                                order by topic_id desc, upvotes asc 
+                                                order by idTopic desc, upvotes asc 
                                                 LIMIT 6";
                                         $stmt = mysqli_stmt_init($conn);    
 
@@ -120,7 +120,7 @@
                                             {
                                                 echo '<div class="col-md-6">
                                                         <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-                                                        <a href="posts.php?topic='.$row['topic_id'].'">
+                                                        <a href="posts.php?topic='.$row['idTopic'].'">
                                                         <img class="card-img-left flex-auto d-none d-lg-block blogindex-cover" 
                                                                 src="img/forum-cover.png" alt="Card image cap">
                                                                 </a>
@@ -129,12 +129,12 @@
                                                                 <i class="fa fa-chevron-up" aria-hidden="true"></i><br>'.$row['upvotes'].'
                                                             </strong>
                                                             <h6 class="mb-0">
-                                                              <a class="text-dark" href="posts.php?topic='.$row['topic_id'].'">'
+                                                              <a class="text-dark" href="posts.php?topic='.$row['idTopic'].'">'
                                                                 .substr(ucwords($row['topic_subject']),0,15).'...</a>
                                                             </h6>
                                                             <small class="mb-1 text-muted">'.date("F jS, Y", strtotime($row['topic_date'])).'</small>
                                                             <small class="card-text mb-auto">Created By: '.ucwords($row['uidUsers']).'</small>
-                                                            <a href="posts.php?topic='.$row['topic_id'].'">Go To Forum</a>
+                                                            <a href="posts.php?topic='.$row['idTopic'].'">Go To Forum</a>
                                                           </div>
 
                                                         </div>
