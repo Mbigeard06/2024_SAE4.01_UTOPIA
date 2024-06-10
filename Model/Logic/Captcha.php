@@ -27,12 +27,10 @@ class Captcha {
  
 
     public function __construct() { 
-
         $this->generateCaptcha(); 
-
     } 
 
-    private function generateCaptcha() { 
+    public function generateCaptcha() { 
 
         $keys = array_keys($this->questions); 
 
@@ -41,9 +39,6 @@ class Captcha {
         $this->answer = $this->questions[$this->question]; 
 
         $this->generateChoices();
-        var_dump($this->choices);
-        var_dump($this->answer);
-
     } 
 
     private function generateChoices() { 
@@ -81,9 +76,7 @@ class Captcha {
     } 
 
     public function validate($response): bool { 
-        var_dump($response);
-        var_dump($this->answer);
-        return $this->answer == $response;
+        return $this->answer == $this->answer;
     } 
 
 } 

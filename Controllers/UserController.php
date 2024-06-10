@@ -24,7 +24,7 @@ class UserController
     }
 
     public function displayConnexion(Exception $e = null)
-    {
+    {   
         $view = new View("Login");
         $params = ["title" => "Authentification", "captcha" => $this->captcha];
         if (isset($e)) {
@@ -64,10 +64,6 @@ class UserController
         ];
         $user  = new User($formattedData);
         return $user;
-    }
-
-    public function checkCaptcha(string $resp): bool{
-        return $this->captcha->validate($resp);
     }
 
     public function disconnect():void{
