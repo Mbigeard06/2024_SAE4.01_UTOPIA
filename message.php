@@ -122,7 +122,6 @@
 
                                             mysqli_stmt_execute($stmt);
                                             $conver = mysqli_stmt_get_result($stmt);
-                                            mysqli_stmt_store_result($stmt);
 
                                             if (mysqli_num_rows($conver) > 0)
                                             {
@@ -172,8 +171,8 @@
                         <textarea id="message" type="text" class="write_msg form-control-plaintext" style="background-color: white;" 
                                   placeholder="Type a message"></textarea>
 
-                        <button id="reply" class="msg_send_btn" 
-                                type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                        <button id="reply" class="msg_send_btn" style="width: 100px;height: 100px;margin-top: 30px;margin-right: 30px;"
+                                type="button"><i class="fa fa-paper-plane-o fa-2x" aria-hidden="true"></i></button>
                     </div>
                 </div>
               </div>
