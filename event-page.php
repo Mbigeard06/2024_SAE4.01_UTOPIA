@@ -42,12 +42,11 @@
 
                     <?php
 
-                        $sql = "select e.event_date, e.event_id, e.event_by, e.title, e.event_image, i.description,
-                                    u.uidUsers, u.userImg, i.headline as e_headline
-                                from events e, event_info i, users u
-                                where e.event_id = ? 
-                                and e.event_by = u.idUsers
-                                and e.event_id = i.event";
+                        $sql = "select e.event_date, e.idEvent, e.event_by, e.title, e.event_image, e.description,
+                                    u.uidUsers, u.userImg, e.headline as e_headline
+                                from events e, users u
+                                where e.idEvent = ? 
+                                and e.event_by = u.idUsers;
 
                         $stmt = mysqli_stmt_init($conn);    
 
