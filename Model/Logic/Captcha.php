@@ -11,7 +11,6 @@ class Captcha {
         "Quelle est la couleur du ciel un jour clair ?" => "Bleu", 
 
         "Combien de jours dans une semaine ?" => "7", 
-
         "Quelle est la première lettre de l'alphabet ?" => "A" 
 
     ]; 
