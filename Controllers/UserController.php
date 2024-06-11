@@ -30,6 +30,11 @@ class UserController
         $view->generate($params);
     }
 
+    public function displaySignup(){
+        $view = new View("Signup");
+        $view->generate(["title"=>"Sign Up"]);
+    }
+
     public function verifyConnexionAttempt(string $username, string $password, string $captchaRep): bool
     {
         //Récupération du captcha
@@ -69,6 +74,10 @@ class UserController
         session_unset();
         session_destroy();
         header("location: index.php");
+    }
+
+    public function signup(array $data):void{
+        $this->userManager->signup($data);
     }
 }
 ?>
