@@ -13,19 +13,17 @@ require_once("Model/Exceptions/BadCaptchaResponse.php");
 class UserController
 {
     private UserManager $userManager;
-    private Captcha $captcha;
 
     public function __construct()
     {
         $this->userManager = new UserManager();
-        echo("<script>alert('Création');</script>");
+    
     }
 
     public function displayConnexion(Exception $e = null)
     {
-        $this->createCaptcha();
         $view = new View("Login");
-        $params = ["title" => "Authentification", "captcha" => $this->captcha];
+        $params = ["title" => "Authentification", "captcha" => new Captcha()];
         if (isset($e)) {
             $params["exception"] = $e->getMessage();
         }
@@ -34,18 +32,16 @@ class UserController
 
     public function verifyConnexionAttempt(string $username, string $password, string $captchaRep): bool
     {
-        $this->createCaptcha();
-        if ($this->captcha->validate($captchaRep)) {
+        //Récupération du captcha
+        $captcha = new Captcha();
+        if ($captcha->validate($captchaRep)) {
             $response = $this->userManager->verifyUserCredentials($username, $password);
             if (!$response) {
                 throw new BadLoginOrPasswordException();
             }
         } else {
-            unset($_SESSION["captcha"]);
-            throw new BadCaptchaResponse($this->captcha->getResp() . " == " . $captchaRep);
+            throw new BadCaptchaResponse();
         }
-        var_dump($this->captcha->getChoices());
-        unset($_SESSION["captcha"]);
         return $response;
     }
 
@@ -66,19 +62,6 @@ class UserController
         ];
         $user = new User($formattedData);
         return $user;
-    }
-
-    //Create the captcha
-    private function createCaptcha(): void{
-        if(!isset($_SESSION["captcha"])){
-            $this->captcha = new Captcha();
-            // Enregistrez le captcha dans la session
-            $_SESSION["captcha"] = serialize($this->captcha);
-        }
-        else {
-            // Récupérez le captcha depuis la session
-            $this->captcha = unserialize($_SESSION["captcha"]);
-        }
     }
 
     public function disconnect(): void

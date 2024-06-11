@@ -1,6 +1,6 @@
 <?php 
 
-class Captcha { 
+class Captcha {
 
     private $questions = [ 
 
@@ -16,19 +16,30 @@ class Captcha {
 
     ]; 
 
- 
-
     private string $question; 
 
     private string $answer; 
 
     private array $choices; 
 
- 
-
-    public function __construct() { 
-        $this->generateCaptcha(); 
-    } 
+    /**
+     * Constructeur du captcha
+     */
+    public function __construct(){
+        //La session n'a pas de captcha
+        if(!isset($_SESSION["captcha"])){
+            $this->generateCaptcha();
+            // Enregistrez le captcha dans la session
+            $_SESSION["captcha"] = serialize($this);
+        }
+        else {
+            // Récupération du captcha depuis la session
+            $captcha = unserialize($_SESSION["captcha"]);
+            $this->question = $captcha->question;
+            $this->answer = $captcha->answer;
+            $this->choices = $captcha->choices;            
+        }
+    }
 
     public function generateCaptcha() { 
 
