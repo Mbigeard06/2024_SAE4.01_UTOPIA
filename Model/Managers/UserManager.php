@@ -1,6 +1,16 @@
 <?php
+
+use Model\Exceptions\PwdSpecialCharsException;
+use Model\Exceptions\PwdTooShortException;
+use Model\Exceptions\PwdUppercaseLetterException;
+use Model\Exceptions\PwdWthNumberException;
+
 require_once("Model/Data/IUserDAO.php");
 require_once("Model/Data/UserDAO.php");
+require_once("Model/Exceptions/PwdTooShortException.php");
+require_once("Model/Exceptions/PwdUppercaseLetterException.php");
+require_once("Model/Exceptions/PwdSpecialCharsException.php");
+require_once("Model/Exceptions/PwdWthNumberException.php");
 
 class UserManager{
     private IUserDAO $userDao;
@@ -18,6 +28,33 @@ class UserManager{
     }
 
     public function signup(array $data):void{
-        $this->userDao->createUser($data);
+        //Le mot de passe est valide
+        if ($this->checkPassword($data[2])) {
+            //Hashing du password
+            $data[2] = password_hash($data[2], PASSWORD_DEFAULT);
+            $this->userDao->createUser($data);
+        }
+    }
+
+    /**
+     * Vérifie que le mot de passe correspond aux critères de sécurité
+     */
+    public function checkPassword(string $pwd): bool{
+        //nombre de caractères inférieur à 12
+        if (strlen($pwd) < 12) {
+            throw new PwdTooShortException();
+        }
+        //ne contient pas de majuscule
+        if (!preg_match('/[A-Z]/', $pwd)) {
+            throw new PwdUppercaseLetterException();
+        }
+        //ne contient pas de caractères spéciaux
+        if (!preg_match('/[\W_]/', $pwd)) {
+            throw new PwdSpecialCharsException();
+        }
+        if (!preg_match('/\d/', $pwd)) {
+            throw new PwdWthNumberException();
+        }
+        return true;
     }
 }

@@ -19,6 +19,16 @@
                     </div>
                 </div>
 
+                <?php
+                if (isset($exception)) {
+                    echo (
+                        '<div class="alert alert-danger" role="alert">
+                            <strong>Error: </strong>'.$exception.'
+                        </div>'
+                    );
+                }
+                ?>
+
                 <div class="col-sm-6 offset-sm-6 text-center">
                     <label for="name">Username</label>
                     <input type="text" class="form-control" id="name" name="uid" placeholder="Username" maxlength="25">

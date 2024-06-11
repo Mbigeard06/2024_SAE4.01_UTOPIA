@@ -7,8 +7,8 @@ require_once("Model/Managers/UserManager.php");
 require_once("Views/View.php");
 require_once("Model/Logic/User.php");
 require_once("Model/Logic/Captcha.php");
-require_once("Model/Exceptions/BadLoginOrPasswordException.php");
-require_once("Model/Exceptions/BadCaptchaResponse.php");
+require_once("Model/exceptions/BadLoginOrPasswordException.php");
+require_once("Model/exceptions/BadCaptchaResponse.php");
 
 class UserController
 {
@@ -30,20 +30,30 @@ class UserController
         $view->generate($params);
     }
 
-    public function displaySignup(){
+    /**
+     * Affiche la page d'inscription
+     */
+    public function displaySignup(Exception $e = null)
+    {
         $view = new View("Signup");
-        $view->generate(["title"=>"Sign Up"]);
+        $params = ["title" => "Sign Up"];
+        if (isset($e)) {
+            $params["exception"] = $e->getMessage();
+        }
+        $view->generate($params);
     }
 
+    ///Verification de la connexion
     public function verifyConnexionAttempt(string $username, string $password, string $captchaRep): bool
     {
+        //test des credentials
+        $response = $this->userManager->verifyUserCredentials($username, $password);
+        if (!$response) {
+            throw new BadLoginOrPasswordException();
+        }
         //Récupération du captcha
         $captcha = new Captcha();
         if ($captcha->validate($captchaRep)) {
-            $response = $this->userManager->verifyUserCredentials($username, $password);
-            if (!$response) {
-                throw new BadLoginOrPasswordException();
-            }
         } else {
             throw new BadCaptchaResponse();
         }

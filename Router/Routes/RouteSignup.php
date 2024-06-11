@@ -22,18 +22,23 @@ class RouteSignup extends Route
 
     protected function post(array $params = [])
     {
-        $data = [
-            $params["uid"],
-            $params["mail"],
-            password_hash($params["pwd"], PASSWORD_DEFAULT),
-            $params["f-name"],
-            $params["l-name"],
-            $params["gender"],
-            "",
-            "",
-            "default.png"
-        ];
-        $this->userController->signup($data);
-        header("location: index.php");
+        try{
+            $data = [
+                $params["uid"],
+                $params["mail"],
+                $params["pwd"],
+                $params["f-name"],
+                $params["l-name"],
+                $params["gender"],
+                "",
+                "",
+                "default.png"
+            ];
+            $this->userController->signup($data);
+            header("location: index.php");
+        }
+        catch (Exception $e) {
+            $this->userController->displaySignup($e);
+        }
     }
 }
