@@ -91,26 +91,8 @@
                             </div>
 
                             <div class="row mb-2">
-                                <?php foreach ($blogs as $blog) { ?>
-                                    <div class="col-md-6">
-                                        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-                                            <div class="card-body d-flex flex-column align-items-start">
-                                                <strong class="d-inline-block mb-2 text-primary">
-                                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i><?= $blog->getVotes()?>
-                                                </strong>
-                                                <h6 class="mb-0">
-                                                    <a class="text-dark" href="blog-page.php?id=<?= $blog->getId() ?>"><?= substr($blog->getTitle(),0,10)?>...</a>
-                                                </h6>
-                                                <small class="mb-1 text-muted"><?= strtotime($blog->getDate()->format('Y-m-d H:i:s'))?></small>
-                                                <small class="card-text mb-auto"><?= substr($blog->getContent(),0,40)?>...</small>
-                                                <a href="blog-page.php?id=<?= $blog->getId() ?>">Continue reading</a>
-                                            </div>
-                                            <a href="blog-page.php?id=<?= $blog->getId() ?>">
-                                                <img class="card-img-right flex-auto d-none d-lg-block blogindex-cover" src="uploads/<?= $blog->getImage() ?>" alt="Card image cap">
-                                            </a>
-                                        </div>
-                                    </div>
-                                <?php } ?>
+
+
 
 
                             </div>
