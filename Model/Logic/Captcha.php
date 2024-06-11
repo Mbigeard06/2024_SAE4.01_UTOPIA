@@ -72,11 +72,14 @@ class Captcha {
     public function getChoices() { 
 
         return $this->choices; 
-
     } 
 
+    public function getResp(): string{
+        return $this->answer;
+    }
+
     public function validate($response): bool { 
-        return $this->answer == $this->answer;
+        return $this->answer == $response;
     } 
 
 } 
