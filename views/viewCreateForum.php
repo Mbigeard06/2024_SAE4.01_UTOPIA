@@ -4,7 +4,7 @@
     <div class="bg-contact2" style="background-image: url('img/banner.png');">
         <div class="container-contact2">
             <div class="wrap-contact2">
-                <form class="contact2-form" method="post" action="includes/create-topic.inc.php">
+                <form class="contact2-form" method="post" action="index.php?action=create-forum">
                     <span class="contact2-form-title">
                         Create A Forum
                     </span>

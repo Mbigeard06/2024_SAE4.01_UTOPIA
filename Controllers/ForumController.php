@@ -41,4 +41,14 @@ class ForumController
         }
         return $forums;
     }
+
+    public function createForum(array $data){
+        $dataFormatted = [
+            $data["topic-subject"],
+            (new DateTime("now"))->format('Y-m-d H:i:s'),
+            $data["topic-cat"],
+            $_SESSION["connectedUser"]->getId()
+        ];
+        $this->forumManager->createForum($dataFormatted);
+    }
 }

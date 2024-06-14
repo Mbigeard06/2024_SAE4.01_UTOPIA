@@ -14,6 +14,7 @@ class RouteCreateForum extends Route{
 
 
     protected function post(array $params=[]):void{
-
+        $this->forumController->createForum($params);
+        header("Location: index.php");exit;
     }
 }

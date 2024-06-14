@@ -13,4 +13,8 @@ class ForumManager{
     public function getAllForums():array{
         return $this->forumDAO->getAllForums();
     }
+
+    public function createForum(array $data){
+        $this->forumDAO->createForum($data);
+    }
 }
