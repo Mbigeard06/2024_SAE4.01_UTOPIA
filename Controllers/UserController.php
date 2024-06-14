@@ -79,8 +79,13 @@ class UserController
         return $user;
     }
 
-    public function disconnect(): void
-    {
+    public function getUserById(int $id):User{
+
+        $username = $this->userManager->getUsernameById($id);
+        return $this->getUserByUsername($username[0]["uidUsers"]);
+    }
+
+    public function disconnect():void{
         session_unset();
         session_destroy();
         header("location: index.php");

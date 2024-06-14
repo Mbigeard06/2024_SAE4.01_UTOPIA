@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class User
  *
@@ -16,7 +17,7 @@ class User
     private string $headline;
     private string $profilePicture;
 
-     /**
+    /**
      * Constructeur de la classe User.
      *
      * @param array $data Données pour hydrater l'objet.
@@ -31,14 +32,16 @@ class User
      * Retourne l'id de l'utilisateur
      * @return int
      */
-    public function getId():int{
+    public function getId(): int
+    {
         return $this->id;
     }
 
     /**
      * Définit l'id de l'utilisateur 
      */
-    public function setId(int $id){
+    public function setId(int $id)
+    {
         $this->id = $id;
     }
 
@@ -146,7 +149,8 @@ class User
      * Retourne le niveaqu d'acréditation de l'utilisateur
      * @return int 
      */
-    public function getLevel():int{
+    public function getLevel(): int
+    {
         return $this->level;
     }
 
@@ -154,7 +158,8 @@ class User
      * Défini le niveau d'acréditation de l'utilisateur
      * @param int $level
      */
-    public function setLevel(int $level){
+    public function setLevel(int $level)
+    {
         $this->level = $level;
     }
 
@@ -162,7 +167,8 @@ class User
      * Retourne la bio de l'utilisateur
      * @return string 
      */
-    public function getHeadline():string{
+    public function getHeadline(): string
+    {
         return $this->headline;
     }
 
@@ -171,7 +177,8 @@ class User
      * Définit la bio de l'utilisateur 
      * @param string $headline
      */
-    public function setHeadline(string $headline){
+    public function setHeadline(string $headline)
+    {
         $this->headline = $headline;
     }
 
@@ -180,7 +187,8 @@ class User
      * Retourne la photo de profile de l'utilisateur 
      * @return string
      */
-    public function getProfilePicture():string{
+    public function getProfilePicture(): string
+    {
         return $this->profilePicture;
     }
 
@@ -189,7 +197,8 @@ class User
      * Définit la photo de profile de l'utilisateur
      * @param string $profilePicture
      */
-    public function setProfilePicture(string $profilePicture){
+    public function setProfilePicture(string $profilePicture)
+    {
         $this->profilePicture = $profilePicture;
     }
 
@@ -199,12 +208,12 @@ class User
      *
      * @param array $data Tableau associatif de données pour remplir l'objet.
      */
-    public function hydrate(array $data)
+    public function hydrate(array $data): void
     {
         foreach ($data as $key => $value) {
             $method = 'set' . ucfirst($key);
             if (method_exists($this, $method)) {
-                $this->$method($value);      
+                $this->$method($value);
             }
         }
     }

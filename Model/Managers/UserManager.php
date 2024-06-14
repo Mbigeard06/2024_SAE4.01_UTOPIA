@@ -57,4 +57,8 @@ class UserManager{
         }
         return true;
     }
+
+    public function getUsernameById(int $id):array{
+        return $this->userDao->getUsernameById($id);
+    }
 }

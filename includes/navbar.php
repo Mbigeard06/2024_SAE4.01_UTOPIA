@@ -10,14 +10,14 @@
 
             <div class="collapse navbar-collapse justify-content-right" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto mr-1">
-                <li class="nav-item px-3">
-                    <a class="nav-link" href="#" title="Link to main page">
-                        <i class="fa fa-bar-chart fa-2x"></i>
+              <li class="nav-item px-3">
+                    <a class="nav-link" href="hub.php" title="Link to hub">
+                        <i class="fa fa-sitemap fa-2x" ></i>
                     </a>
                 </li>
-                <li class="nav-item px-3">
-                    <a class="nav-link" href="https://github.com/msaad1999/KLiK--PHP-coded-Social-Media-Website" title="Link to github repository">
-                        <i class="fa fa-github fa-2x" ></i>
+              <li class="nav-item px-3">
+                    <a class="nav-link" href="forum.php" title="Link to forum">
+                    <i class="fa fa-comments fa-2x"></i>
                     </a>
                 </li>
                 <li class="nav-item px-3">
