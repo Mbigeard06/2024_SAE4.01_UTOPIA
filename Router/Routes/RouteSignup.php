@@ -24,12 +24,12 @@ class RouteSignup extends Route
     {
         try{
             $data = [
-                $params["uid"],
-                $params["mail"],
-                $params["pwd"],
-                $params["f-name"],
-                $params["l-name"],
-                $params["gender"],
+                preg_replace('/[^a-zA-Z0-9_-]/', '', $params['uid']),
+                strip_tags($params['mail']),
+                strip_tags($params["pwd"]),
+                preg_replace('/[^a-zA-ZÀ-ÖØ-öø-ÿ\s-]/u', '', $params['f-name']),
+                preg_replace('/[^a-zA-ZÀ-ÖØ-öø-ÿ\s-]/u', '', $params['l-name']),
+                strip_tags($params['gender']),
                 "",
                 "",
                 "default.png"
