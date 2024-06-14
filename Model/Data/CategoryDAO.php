@@ -16,4 +16,9 @@ class CategoryDAO implements ICategoryDAO
         $sql = "select * from categories where cat_id=?;";
         return $this->db->executeQuery($sql, array($id));
     }
+
+    public function getAllCategories():array{
+        $sql = "select * from categories;";
+        return $this->db->executeQuery($sql);
+    }
 }

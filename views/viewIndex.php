@@ -155,8 +155,8 @@
 
                 <div class="col-sm-2 mt-5 leftDivIndex">
                     <br><br>
-                    <a href="create-topic.php" class="btn btn-warning btn-lg btn-block mt-5">Create a Forum</a>
-                    <a href="create-blog.php" class="btn btn-secondary btn-lg btn-block">Create a Blog</a>
+                    <a href="index.php?action=create-forum" class="btn btn-warning btn-lg btn-block mt-5">Create a Forum</a>
+                    <a href="index.php?action=create-blog" class="btn btn-secondary btn-lg btn-block">Create a Blog</a>
                 </div>
 
             </div>

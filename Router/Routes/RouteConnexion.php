@@ -15,12 +15,12 @@ class RouteConnexion extends Route
         $this->userController = $userController;
     }
 
-    protected function get(array $params = [])
+    protected function get(array $params = []):void
     {
         $this->userController->displayConnexion();
     }
 
-    protected function post(array $params = [])
+    protected function post(array $params = []):void
     {
         $username = $params["mailuid"];
         $password = $params["pwd"];

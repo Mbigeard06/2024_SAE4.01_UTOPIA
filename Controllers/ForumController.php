@@ -16,6 +16,13 @@ class ForumController
         $this->userController = new UserController();
     }
 
+    public function displayCreateForum(){
+        $view = new View("CreateForum");
+        $categories = $this->categoryController->getAllCategories();
+        $view->generate(["title"=>"Create a forum", "categories"=>$categories]);
+        
+    }
+
     public function getAllForums(): array
     {
         $data = $this->forumManager->getAllForums();

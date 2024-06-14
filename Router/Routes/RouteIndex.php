@@ -14,10 +14,10 @@ class RouteIndex extends Route{
     }
 
 
-    protected function get(array $params=[]){
+    protected function get(array $params=[]):void{
         $this->mainController->displayIndex();
     }
 
-    protected function post(array $params = []){
+    protected function post(array $params = []):void{
     }
 }

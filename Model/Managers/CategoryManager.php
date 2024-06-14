@@ -13,4 +13,8 @@ class CategoryManager{
     public function getCategoryById(int $id):array{
         return $this->categoryDAO->getCategoryById($id);
     }
+
+    public function getAllCategories():array{
+        return $this->categoryDAO->getAllCategories();
+    }
 }

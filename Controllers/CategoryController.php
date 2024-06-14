@@ -16,4 +16,18 @@ class CategoryController{
         $category = new Category($this->categoryManager->getCategoryById($id));
         return $category;
     }
+
+    public function getAllCategories():array{
+        $data = $this->categoryManager->getAllCategories();
+        $categories = [];
+        foreach($data as $category){
+            $dataFormatted = [
+                "id" => $category["cat_id"],
+                "name" => $category["cat_name"],
+                "description" => $category["cat_description"]
+            ];
+            $categories[] = new Category($dataFormatted);
+        }
+        return $categories;
+    }
 }

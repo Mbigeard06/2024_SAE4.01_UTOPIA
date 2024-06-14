@@ -1,5 +1,5 @@
 <?php
-class view
+class View
 {
     private string $file;
 
