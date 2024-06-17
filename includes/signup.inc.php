@@ -4,15 +4,15 @@ if (isset($_POST['signup-submit']))
     require 'dbh.inc.php';
     
     
-    $userName = $_POST['uid'];
-    $email = $_POST['mail'];
-    $password = $_POST['pwd'];
-    $passwordRepeat  = $_POST['pwd-repeat'];
-    $gender = $_POST['gender'];
-    $headline = $_POST['headline'];
-    $bio = $_POST['bio'];
-    $f_name = $_POST['f-name'];
-    $l_name = $_POST['l-name'];
+    $userName = preg_replace('/[^a-zA-Z0-9_-]/', '', $_POST['uid']);
+    $email = strip_tags($_POST['mail']);
+    $password = strip_tags($_POST['pwd']);
+    $passwordRepeat = strip_tags($_POST['pwd-repeat']);
+    $gender = strip_tags($_POST['gender']);
+    $headline = strip_tags($_POST['headline']);
+    $bio = strip_tags($_POST['bio']);
+    $f_name = preg_replace('/[^a-zA-ZÀ-ÖØ-öø-ÿ\s-]/u', '', $_POST['f-name']);
+    $l_name = preg_replace('/[^a-zA-ZÀ-ÖØ-öø-ÿ\s-]/u', '', $_POST['l-name']);
     
     if (empty($userName) || empty($email) || empty($password) || empty($passwordRepeat))
     {

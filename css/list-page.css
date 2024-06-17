@@ -29,7 +29,8 @@ body {
 .text-white-50 { color: black; }
 
 .btn-warning{
-  background-color: #A72400 !important;
+  background-color: #ff9100 !important;
+  color: black;
 }
 
 .text-primary{

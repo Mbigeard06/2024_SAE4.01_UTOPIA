@@ -10,8 +10,8 @@ if (isset($_POST['create-blog-submit']))
     require 'dbh.inc.php';
     session_start();
     
-    $title = $_POST['btitle'];
-    $content  = $_POST['bcontent'];
+    $title = preg_replace('/[^a-zA-ZÀ-ÖØ-öø-ÿ@_\s-]/u', '', $_POST['btitle']);
+    $content  = preg_replace('/[^a-zA-ZÀ-ÖØ-öø-ÿ@_\s-]/u', '', $_POST['bcontent']);
     
     if (empty($title) || empty($content))
     {

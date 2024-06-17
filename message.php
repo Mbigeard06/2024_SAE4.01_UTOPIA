@@ -110,6 +110,7 @@ include 'includes/HTML-head.php';
 
                                     while ($message = mysqli_fetch_assoc($messages)) {
 
+
                                         echo '<div class="incoming_msg">';
                                         echo '<div class="received_msg">';
                                         echo '<div class="received_withd_msg">';
@@ -117,6 +118,56 @@ include 'includes/HTML-head.php';
                                         echo '</div>';
                                         echo '</div>';
                                         echo '</div>';
+
+                                    if ($resultCheck === 0)
+                                    {
+                                        die("Invalid $_GET ID.");
+                                    }
+                                    else
+                                    {
+                                        $sql = "select * from conversation "
+                                                . "where (user_one = ? AND user_two = ?) "
+                                                . "or (user_one = ? AND user_two = ?)";
+                                        $stmt = mysqli_stmt_init($conn);
+                                        if (!mysqli_stmt_prepare($stmt, $sql))
+                                        {
+                                            die("SQL error");
+                                        }
+                                        else
+                                        {
+                                            mysqli_stmt_bind_param($stmt, "ssss", $user_two, $_SESSION['userId'],
+                                                    $_SESSION['userId'], $user_two);
+
+                                            mysqli_stmt_execute($stmt);
+                                            $conver = mysqli_stmt_get_result($stmt);
+
+                                            if (mysqli_num_rows($conver) > 0)
+                                            {
+
+                                                $fetch = mysqli_fetch_assoc($conver);
+                                                $conversation_id = $fetch['id'];
+
+                                            }
+                                            else
+                                            {
+                                                $sql = "insert into conversation(user_one, user_two) "
+                                                        . "values (?,?)";
+                                                $stmt = mysqli_stmt_init($conn);
+                                                if (!mysqli_stmt_prepare($stmt, $sql))
+                                                {
+                                                    die("SQL error");
+                                                }
+                                                else
+                                                {
+                                                    mysqli_stmt_bind_param($stmt, "ss", $_SESSION['userId'], $user_two);
+                                                    mysqli_stmt_execute($stmt);
+                                                    mysqli_stmt_store_result($stmt);
+
+                                                    $conversation_id = mysqli_insert_id($conn);
+                                                }
+                                            }
+                                        }
+
                                     }
                                 }
                             }

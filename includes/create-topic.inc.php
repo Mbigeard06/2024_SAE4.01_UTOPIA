@@ -9,9 +9,9 @@ if (isset($_POST['create-topic']))
 
     require 'dbh.inc.php';
     
-    $topicSubject = $_POST['topic-subject'];
-    $topicCategory = $_POST['topic-cat'];
-    $postContent = $_POST['post-content'];
+    $topicSubject = strip_tags($_POST['topic-subject']);
+    $topicCategory = strip_tags($_POST['topic-cat']);
+    $postContent = strip_tags($_POST['post-content']);
     
     if (empty($topicSubject) || empty($postContent))
     {

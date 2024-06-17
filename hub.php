@@ -66,7 +66,7 @@
                             <span class="text-right text-primary"><i class="fa fa-thumbs-up" aria-hidden="true"></i>
                                 '.$row['blog_votes'].'<br>';
                     
-                    if ($_SESSION['userLevel'] == 1 || $_SESSION['userLevel'] == $row['blog_by'])
+                    if ($_SESSION['userLevel'] == 1)
                     {
                         echo '<a href="includes/delete-blog.php?id='.$row['idBlog'].'&page=forum" >
                                 <i class="fa fa-trash" aria-hidden="true" style="color: red;"></i>

@@ -55,10 +55,21 @@
                         <label for="password_login" class="sr-only">Email</label>
                         <input type="password" id="password_login" name="pwd" class="form-control form-control-lg mr-1" placeholder="Password">
                     </div>
+                    <div class="form-group">
+                        <label for="captcha"><?php echo $captcha->getQuestion(); ?></label>
+                        <?php
+                            foreach ($captcha->getChoices() as $choice) {
+                                echo '<div class="form-check">
+                                        <input class="form-check-input" type="radio" name="captcha" value="' . $choice . '" required>
+                                        <label class="form-check-label">' . $choice . '</label>
+                                    </div>';
+                            }
+                        ?>                
+                    </div>
                     <input type="submit" id="btn_login" name="login-submit" value="Login">
                 </form>
                 <br>
-                <p>Don't have an account yet ? Signup <a id="link_signup_login" href="signup.php">here</a></p>
+                <p>Don't have an account yet ? Signup <a id="link_signup_login" href="index.php?action=signup">here</a></p>
 
                 <br><br>
                 <div class="position-absolute login-icons">

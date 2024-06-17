@@ -768,6 +768,11 @@ h1, h2, h3, h4, h5, h6, p, a, ul, span, li, img, inpot, button{ margin: 0; paddi
     color: #ff9000;
 }
 
+.leftDivIndex{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
 
 
 

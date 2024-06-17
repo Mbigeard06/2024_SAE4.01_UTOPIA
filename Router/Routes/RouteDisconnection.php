@@ -15,12 +15,12 @@ class RouteDisconnection extends Route
         $this->userController = $userController;
     }
 
-    protected function get(array $params = [])
+    protected function get(array $params = []):void
     {
         $this->userController->disconnect();
     }
 
-    protected function post(array $params = [])
+    protected function post(array $params = []):void
     {
     }
 }

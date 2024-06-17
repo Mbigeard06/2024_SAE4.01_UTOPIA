@@ -41,95 +41,124 @@
                     </ul>
 
                     <br>
-                        <div class="tab-content" id="myTabContent">
+                    <div class="tab-content" id="myTabContent">
 
-                            <div class="tab-pane fade show active" id="forum" role="tabpanel" aria-labelledby="forum-tab">
+                        <div class="tab-pane fade show active" id="forum" role="tabpanel" aria-labelledby="forum-tab">
 
-                                <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
-                                    <img class="mr-3" src="img/200.png" alt="" width="48" height="48">
-                                  <div class="lh-100">
+                            <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
+                                <img class="mr-3" src="img/200.png" alt="" width="48" height="48">
+                                <div class="lh-100">
                                     <h1 class="mb-0 text-white lh-100">Latest Forums</h1>
-                                  </div>
-                                </div>  
-
-                                    <div class="row mb-2">
-  
-
-
                                 </div>
-
                             </div>
 
-                            <div class="tab-pane fade" id="blog" role="blog" aria-labelledby="blog-tab">
+                            <div class="row mb-2">
 
-                                <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
-                                    <img class="mr-3" src="img/200.png" alt="" width="48" height="48">
-                                  <div class="lh-100">
-                                    <h1 class="mb-0 text-white lh-100">Latest Blogs</h1>
-                                  </div>
-                                </div>  
+                                <?php foreach ($forums as $forum) { ?>
+                                    <div class="col-md-6">
+                                        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                                            <a href="posts.php?topic=<?= $forum->getId() ?>">
+                                                <img class="card-img-left flex-auto d-none d-lg-block blogindex-cover" src="img/forum-cover.png" alt="Card image cap">
+                                            </a>
+                                            <div class="card-body d-flex flex-column align-items-start">
+                                                <strong class="d-inline-block mb-2 text-primary text-center  ml-auto">
+                                                    <i class="fa fa-chevron-up" aria-hidden="true"></i><br>
+                                                </strong>
+                                                <h6 class="mb-0">
+                                                    <a class="text-dark" href="posts.php?topic='<?= $forum->getId() ?>'">
+                                                        <?= substr(ucwords($forum->getSubject()), 0, 15) ?>...</a>
+                                                </h6>
+                                                <small class="mb-1 text-muted"><?= date("F jS, Y", strtotime($forum->getDate()->format('Y-m-d H:i:s'))) ?></small>
+                                                <small class="card-text mb-auto">Created By : <?= ucwords($forum->getCreator()->getUsername()) ?></small>
+                                                <a href="posts.php?topic=<?= $forum->getId() ?>">Go To Forum</a>
+                                            </div>
 
-                                <div class="row mb-2">
-
-                                           
-
-
-                                </div>
-
-                            </div>
-
-                            <div class="tab-pane fade" id="poll" role="poll" aria-labelledby="poll-tab">
-
-                                <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
-                                    <img class="mr-3" src="img/200.png" alt="" width="48" height="48">
-                                  <div class="lh-100">
-                                    <h1 class="mb-0 text-white lh-100">Latest Polls</h1>
-                                  </div>
-                                </div>  
-
-                                <div class="my-3 p-3 bg-white rounded shadow-sm">
-
-                                                              </div>    
-
-                            </div>
-
-                            <div class="tab-pane fade" id="event" role="event" aria-labelledby="event-tab">
-
-                                <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
-                                    <img class="mr-3" src="img/200.png" alt="" width="48" height="48">
-                                  <div class="lh-100">
-                                    <h1 class="mb-0 text-white lh-100">Upcoming Events</h1>
-                                  </div>
-                                </div>  
-
-                                <div class="my-3 p-3 bg-white rounded shadow-sm">
-
-                                   
-
-                                </div>    
+                                        </div>
+                                    </div>
+                                <?php } ?>
 
                             </div>
 
                         </div>
 
-                </div>
+                        <div class="tab-pane fade" id="blog" role="blog" aria-labelledby="blog-tab">
 
-                <div class="col-sm-2">
+                            <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
+                                <img class="mr-3" src="img/200.png" alt="" width="48" height="48">
+                                <div class="lh-100">
+                                    <h1 class="mb-0 text-white lh-100">Latest Blogs</h1>
+                                </div>
+                            </div>
 
-                    <div class="text-center p-3 mt-5">
-                        <a href="team.php" target="_blank">
-                            <i class="creater-icon fa fa-users fa-5x" aria-hidden="true"></i>
-                        </a>
-                        <p><br>THE CREATORS</p>
+                            <div class="row mb-2">
+
+                                <?php foreach ($blogs as $blog) { ?>
+                                    <div class="col-md-6">
+                                        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                                            <div class="card-body d-flex flex-column align-items-start">
+                                                <strong class="d-inline-block mb-2 text-primary">
+                                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i><?= $blog->getVotes() ?>
+                                                </strong>
+                                                <h6 class="mb-0">
+                                                    <a class="text-dark" href="blog-page.php?id=<?= $blog->getId() ?>"><?= substr($blog->getTitle(), 0, 10) ?>...</a>
+                                                </h6>
+                                                <small class="mb-1 text-muted"><?= strtotime($blog->getDate()->format('Y-m-d H:i:s')) ?></small>
+                                                <small class="card-text mb-auto"><?= substr($blog->getContent(), 0, 40) ?>...</small>
+                                                <a href="blog-page.php?id=<?= $blog->getId() ?>">Continue reading</a>
+                                            </div>
+                                            <a href="blog-page.php?id=<?= $blog->getId() ?>">
+                                                <img class="card-img-right flex-auto d-none d-lg-block blogindex-cover" src="uploads/<?= $blog->getImage() ?>" alt="Card image cap">
+                                            </a>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade" id="poll" role="poll" aria-labelledby="poll-tab">
+
+                            <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
+                                <img class="mr-3" src="img/200.png" alt="" width="48" height="48">
+                                <div class="lh-100">
+                                    <h1 class="mb-0 text-white lh-100">Latest Polls</h1>
+                                </div>
+                            </div>
+
+                            <div class="my-3 p-3 bg-white rounded shadow-sm">
+
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade" id="event" role="event" aria-labelledby="event-tab">
+
+                            <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
+                                <img class="mr-3" src="img/200.png" alt="" width="48" height="48">
+                                <div class="lh-100">
+                                    <h1 class="mb-0 text-white lh-100">Upcoming Events</h1>
+                                </div>
+                            </div>
+
+                            <div class="my-3 p-3 bg-white rounded shadow-sm">
+
+
+
+                            </div>
+
+                        </div>
+
                     </div>
 
-                    <a href="forum.php" class="btn btn-warning btn-lg btn-block">KLiK Forum</a>
-                    <a href="hub.php" class="btn btn-secondary btn-lg btn-block">KLiK Hub</a>
-                    <br><br><br>
-                    <a href="create-topic.php" class="btn btn-warning btn-lg btn-block">Create a Forum</a>
-                    <a href="create-blog.php" class="btn btn-secondary btn-lg btn-block">Create a Blog</a>
-
                 </div>
+
+                <div class="col-sm-2 mt-5 leftDivIndex">
+                    <br><br>
+                    <a href="index.php?action=create-forum" class="btn btn-warning btn-lg btn-block mt-5">Create a Forum</a>
+                    <a href="index.php?action=create-blog" class="btn btn-secondary btn-lg btn-block">Create a Blog</a>
+                </div>
+
             </div>
         </div>
         <?php include 'includes/footer.php'; ?>
