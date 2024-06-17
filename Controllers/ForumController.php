@@ -28,16 +28,20 @@ class ForumController
         $data = $this->forumManager->getAllForums();
         $forums = [];
         foreach ($data as $forum) {
-            $category = $this->categoryController->getCategoryById($forum["topic_cat"]);
-            $user = $this->userController->getUserById($forum["topic_by"]);
-            $dataFormatted = [
+            $category = $this->categoryController->getCategoryById($forum["category"]);
+            $user = $this->userController->getUserById($forum["creator"]);
+            $forum["idForum"] = $forum["idTopic"];
+            $forum["category"] = $category;
+            $forum["date"] = new DateTime($forum["date"]);
+            $forum["creator"] = $user;
+            /*$dataFormatted = [
                 "id" => $forum["topic_id"],
                 "subject" => $forum["topic_subject"],
                 "date" => new DateTime($forum["topic_date"]),
                 "category" => $category,
                 "creator" => $user
-            ];
-            $forums[] = new Forum($dataFormatted);
+            ];*/
+            $forums[] = new Forum($forum);
         }
         return $forums;
     }

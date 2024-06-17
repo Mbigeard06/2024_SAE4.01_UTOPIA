@@ -20,12 +20,12 @@ class UserDAO implements IUserDAO {
      * @return array|null Les données de l'utilisateur ou null si l'utilisateur n'existe pas.
      */
     public function getUserByUsername(string $username):array {
-        $sql = "SELECT * FROM users WHERE uidUsers = ?";
+        $sql = "SELECT * FROM users WHERE username = ?";
         return $this->db->executeQuery($sql, array($username));
     }
 
     public function getUsernameById(int $id):array{
-        $sql = "select uidUsers from users where idUsers=?;";
+        $sql = "select username from users where idUsers=?;";
         return $this->db->executeQuery($sql, array($id));
     }
 
@@ -36,8 +36,8 @@ class UserDAO implements IUserDAO {
      * @return void
      */
 
-    public function createUser(string $userData) {
-        $sql = "INSERT INTO users (uidUsers, emailUsers, pwdUsers, f_name, l_name, gender, headline, bio, userImg) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public function createUser(array $userData) {
+        $sql = "INSERT INTO users (username, email, password, firstName, lastName, gender, headline, bio, profilePicture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $this->db->executeNonQuery($sql, $userData);
     }
 
@@ -53,7 +53,7 @@ class UserDAO implements IUserDAO {
         $user = $this->getUserByUsername($username);
         if (!empty($user)) {
             $user = $user[0];
-            $result = password_verify($password, $user['pwdUsers']);
+            $result = password_verify($password, $user['password']);
         }
         return $result;
     }

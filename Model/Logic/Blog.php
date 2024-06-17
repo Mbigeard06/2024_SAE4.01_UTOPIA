@@ -2,7 +2,7 @@
 
 class Blog
 {
-    private int $id;
+    private int $idBlog;
     private string $title;
     private string $image;
     private User $creator;
@@ -26,14 +26,14 @@ class Blog
     }
 
 
-    public function getId(): int
+    public function getIdBlog(): int
     {
-        return $this->id;
+        return $this->idBlog;
     }
 
-    public function setId(int $id): void
+    public function setIdBlog(int $idBlog): void
     {
-        $this->id = $id;
+        $this->idBlog = $idBlog;
     }
 
     public function getTitle(): string

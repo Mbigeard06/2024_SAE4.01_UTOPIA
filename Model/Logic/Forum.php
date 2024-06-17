@@ -1,7 +1,7 @@
 <?php
 
 class Forum{
-    private int $id;
+    private int $idForum;
     private string $subject;
     private DateTime $date;
     private Category $category;
@@ -37,9 +37,9 @@ class Forum{
      *
      * @return int
      */
-    public function getId(): int
+    public function getIdForum(): int
     {
-        return $this->id;
+        return $this->idForum;
     }
 
     /**
@@ -47,9 +47,9 @@ class Forum{
      *
      * @param int $id
      */
-    public function setId(int $id): void
+    public function setIdForum(int $idForum): void
     {
-        $this->id = $id;
+        $this->idForum = $idForum;
     }
 
     /**

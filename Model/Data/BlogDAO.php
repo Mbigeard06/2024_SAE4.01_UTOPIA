@@ -14,7 +14,7 @@ class BlogDAO implements IBlogDAO{
     }
 
     public function getAllBlogs():array{
-        $sql = "select * from blogs order by blog_date desc limit 6;";
+        $sql = "select * from blogs order by date desc limit 6;";
         return $this->db->executeQuery($sql);
     }
 }

@@ -19,7 +19,7 @@ interface IUserDAO {
      * @param array $userData Les données de l'utilisateur à créer.
      * @return bool True si l'utilisateur a été créé avec succès, sinon false.
      */
-    public function createUser(string $userData);
+    public function createUser(array $userData);
 
     /**
      * Vérifie les informations d'identification d'un utilisateur.

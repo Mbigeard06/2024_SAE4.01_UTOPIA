@@ -1,7 +1,7 @@
 <?php
 
 class Category{
-    private int $id;
+    private int $idCategory;
     private string $name;
     private string $description;
 
@@ -35,9 +35,9 @@ class Category{
      *
      * @return int
      */
-    public function getId(): int
+    public function getIdCategory(): int
     {
-        return $this->id;
+        return $this->idCategory;
     }
 
     /**
@@ -45,9 +45,9 @@ class Category{
      *
      * @param int $id
      */
-    public function setId(int $id): void
+    public function setIdCategory(int $idCategory): void
     {
-        $this->id = $id;
+        $this->idCategory = $idCategory;
     }
 
     /**

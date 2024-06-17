@@ -7,7 +7,7 @@
  */
 class User
 {
-    private int $id;
+    private int $idUser;
     private string $username;
     private string $email;
     private string $password;
@@ -32,17 +32,17 @@ class User
      * Retourne l'id de l'utilisateur
      * @return int
      */
-    public function getId(): int
+    public function getIdUser(): int
     {
-        return $this->id;
+        return $this->idUser;
     }
 
     /**
      * Définit l'id de l'utilisateur 
      */
-    public function setId(int $id)
+    public function setIdUser(int $idUser)
     {
-        $this->id = $id;
+        $this->idUser = $idUser;
     }
 
     /**

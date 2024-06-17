@@ -64,7 +64,7 @@ class UserController
     {
         $data = $this->userManager->getUserByUsername($username);
         $data = $data[0];
-        $formattedData = [
+        /*$formattedData = [
             "id" => $data["idUsers"],
             "username" => $data["uidUsers"],
             "email" => $data["emailUsers"],
@@ -74,15 +74,15 @@ class UserController
             "level" => $data["userLevel"],
             "headline" => $data["headline"],
             "profilePicture" => $data["userImg"]
-        ];
-        $user = new User($formattedData);
+        ];*/
+        $user = new User($data);
         return $user;
     }
 
     public function getUserById(int $id):User{
 
         $username = $this->userManager->getUsernameById($id);
-        return $this->getUserByUsername($username[0]["uidUsers"]);
+        return $this->getUserByUsername($username[0]["username"]);
     }
 
     public function disconnect():void{

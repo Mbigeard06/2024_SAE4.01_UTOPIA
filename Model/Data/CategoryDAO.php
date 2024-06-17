@@ -13,7 +13,7 @@ class CategoryDAO implements ICategoryDAO
     
     public function getCategoryById(int $id): array
     {
-        $sql = "select * from categories where cat_id=?;";
+        $sql = "select * from categories where idCategory=?;";
         return $this->db->executeQuery($sql, array($id));
     }
 
