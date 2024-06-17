@@ -10,6 +10,6 @@ abstract class Route{
         }
     }
 
-    protected abstract function get(array $params = []);
-    protected abstract function post(array $params = []);
+    protected abstract function get(array $params = []):void;
+    protected abstract function post(array $params = []):void;
 }

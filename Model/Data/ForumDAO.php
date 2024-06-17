@@ -21,4 +21,9 @@ class ForumDAO implements IForumDAO
         $sql = "select * from topics where topic_id=?;";
         return $this->db->executeQuery($sql, array($id));
     }
+
+    public function createForum(array $data){
+        $sql = "insert into topics (topic_subject, topic_date, topic_cat, topic_by) values (?,?,?,?);";
+        $this->db->executeNonQuery($sql, $data);
+    }
 }

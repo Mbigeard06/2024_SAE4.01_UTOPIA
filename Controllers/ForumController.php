@@ -16,6 +16,13 @@ class ForumController
         $this->userController = new UserController();
     }
 
+    public function displayCreateForum(){
+        $view = new View("CreateForum");
+        $categories = $this->categoryController->getAllCategories();
+        $view->generate(["title"=>"Create a forum", "categories"=>$categories]);
+        
+    }
+
     public function getAllForums(): array
     {
         $data = $this->forumManager->getAllForums();
@@ -33,5 +40,15 @@ class ForumController
             $forums[] = new Forum($dataFormatted);
         }
         return $forums;
+    }
+
+    public function createForum(array $data){
+        $dataFormatted = [
+            $data["topic-subject"],
+            (new DateTime("now"))->format('Y-m-d H:i:s'),
+            $data["topic-cat"],
+            $_SESSION["connectedUser"]->getId()
+        ];
+        $this->forumManager->createForum($dataFormatted);
     }
 }
