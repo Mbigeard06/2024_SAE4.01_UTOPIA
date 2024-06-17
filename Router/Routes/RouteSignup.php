@@ -15,12 +15,12 @@ class RouteSignup extends Route
         $this->userController = $userController;
     }
 
-    protected function get(array $params = [])
+    protected function get(array $params = []):void
     {
         $this->userController->displaySignup();
     }
 
-    protected function post(array $params = [])
+    protected function post(array $params = []):void
     {
         try{
             $data = [
