@@ -12,7 +12,7 @@ class ForumDAO implements IForumDAO
 
     public function getAllForums(): array
     {
-        $sql = "select * from topics;";
+        $sql = "select * from topics order by topic_date desc limit 6;";
         return $this->db->executeQuery($sql);
     }
 
