@@ -2,6 +2,7 @@
 require_once 'Database.php'; 
 require_once "IUserDAO.php";
 
+
 /**
  * Représente un objet d'accès aux données (DAO) pour les utilisateurs.
  */
@@ -34,6 +35,7 @@ class UserDAO implements IUserDAO {
      * @param array $userData Les données de l'utilisateur à créer.
      * @return void
      */
+
     public function createUser(string $userData) {
         $sql = "INSERT INTO users (uidUsers, emailUsers, pwdUsers, f_name, l_name, gender, headline, bio, userImg) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $this->db->executeNonQuery($sql, $userData);

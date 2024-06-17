@@ -29,6 +29,7 @@ class Router{
         $this->routesList["index"] = new RouteIndex($this->controllersList["main"]);
         $this->routesList["connexion"] = new RouteConnexion($this->controllersList["user"]);
         $this->routesList["disconnection"] = new RouteDisconnection($this->controllersList["user"]);
+        $this->routesList["signup"] = new RouteSignup($this->controllersList["user"]);
         $this->routesList["create-blog"] = new RouteCreateBlog($this->controllersList["blog"]);
         $this->routesList["create-forum"] = new RouteCreateForum($this->controllersList["forum"]);
     }
