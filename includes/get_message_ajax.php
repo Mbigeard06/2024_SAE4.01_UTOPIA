@@ -2,9 +2,8 @@
     session_start();
     require("dbh.inc.php");
     if(isset($_GET['c_id'])){
-        $conversation_id = base64_decode($_GET['c_id']);
-        
-        $q = mysqli_query($conn, "SELECT * FROM messages WHERE conversation_id = ".$conversation_id);
+        $conversation_id = $_GET['c_id'];
+        $q = mysqli_query($conn, "SELECT * FROM messages WHERE conversation_id = '$conversation_id'");
         
         if(mysqli_num_rows($q) > 0){
             while ($m = mysqli_fetch_assoc($q)) {

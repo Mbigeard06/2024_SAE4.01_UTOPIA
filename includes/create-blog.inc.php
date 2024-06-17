@@ -43,7 +43,7 @@ if (isset($_POST['create-blog-submit']))
             }
             else
             {
-                $id = $_SESSION['blog_id'];
+                $id = $_SESSION['idBlog'];
                 
                 $FileNameNew = 'blog-cover.png';
                 

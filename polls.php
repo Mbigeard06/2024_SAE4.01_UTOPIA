@@ -37,10 +37,10 @@
         
         <?php
 
-            $sql = "select p.id, p.subject, p.created, p.poll_desc, p.locked, (
+            $sql = "select p.idPoll, p.subject, p.created, p.poll_desc, p.locked, (
                         select count(*) 
                         from poll_votes v
-                        where v.poll_id = p.id
+                        where v.poll_id = p.idPoll
                         ) as votes
                     from polls p 
                     order by votes desc";

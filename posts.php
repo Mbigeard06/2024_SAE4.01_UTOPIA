@@ -73,8 +73,8 @@
     }
     
     
-    $sql = "select * from topics, categories where topic_id=? "
-            . "and topic_cat = cat_id";
+    $sql = "select * from topics, categories where idTopic=? "
+            . "and topic_cat = idCategory";
     $stmt = mysqli_stmt_init($conn);
     
     if (!mysqli_stmt_prepare($stmt, $sql))
@@ -118,7 +118,7 @@
                 $sql = "select * from posts p, users u "
                         . "where p.post_topic=? "
                         . "and p.post_by=u.idUsers "
-                        . "order by p.post_id;";
+                        . "order by p.idPosts;";
                 $stmt = mysqli_stmt_init($conn);    
 
                 if (!mysqli_stmt_prepare($stmt, $sql))
@@ -151,7 +151,7 @@
                         }
                         else
                         {
-                            mysqli_stmt_bind_param($stmt, "ss", $row['post_id'], $_SESSION['userId']);
+                            mysqli_stmt_bind_param($stmt, "ss", $row['idPosts'], $_SESSION['userId']);
                             mysqli_stmt_execute($stmt);
                             mysqli_stmt_store_result($stmt);
 
@@ -174,7 +174,7 @@
                         }
                         else
                         {
-                            mysqli_stmt_bind_param($stmt, "ss", $row['post_id'], $_SESSION['userId']);
+                            mysqli_stmt_bind_param($stmt, "ss", $row['idPosts'], $_SESSION['userId']);
                             mysqli_stmt_execute($stmt);
                             mysqli_stmt_store_result($stmt);
 
@@ -224,13 +224,13 @@
                         
                         if ( ($row['post_by']==$_SESSION['userId']) || ($_SESSION['userLevel'] == 1))
                         {
-                            echo '<a href="includes/delete-post.php?topic='.$topic.'&post='.$row['post_id'].'&by='.$row['post_by'].'" >'
+                            echo '<a href="includes/delete-post.php?topic='.$topic.'&post='.$row['idPosts'].'&by='.$row['post_by'].'" >'
                                 . '<i class="fa fa-trash fa-2x" aria-hidden="true"></i></a><br>';
                         }
                         
                         if ($voted_u)
                         {
-                            echo "<a href='includes/post-vote.inc.php?topic=".$topic."&post=".$row['post_id']."&vote=1' >";
+                            echo "<a href='includes/post-vote.inc.php?topic=".$topic."&post=".$row['idPosts']."&vote=1' >";
                         }
                         echo '<i class="fa fa-chevron-up fa-3x" aria-hidden="true"></i></a>';
 
@@ -240,7 +240,7 @@
                         
                         if ($voted_d)
                         {
-                            echo "<a href='includes/post-vote.inc.php?topic=".$topic."&post=".$row['post_id']."&vote=-1' >";
+                            echo "<a href='includes/post-vote.inc.php?topic=".$topic."&post=".$row['idPosts']."&vote=-1' >";
                         }
                         echo '<i class="fa fa-chevron-down fa-3x" aria-hidden="true"></i></a>';
                         

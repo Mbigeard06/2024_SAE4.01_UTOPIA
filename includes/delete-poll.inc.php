@@ -9,7 +9,7 @@ if (isset($_GET['pollid']) && isset($_SESSION['userId']) && ($_SESSION['userLeve
     
     $poll = $_GET['pollid'];
     
-    $sql = "delete from polls where id=?";
+    $sql = "delete from polls where idPoll=?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql))
     {

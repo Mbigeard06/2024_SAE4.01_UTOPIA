@@ -42,6 +42,10 @@
                     }
                 }
                 */ ?>
+
+                
+
+
                 <form method="post" action="index.php?action=connexion" class="form-inline justify-content-center">
                     <div class="form-group">
                         <label for="name_login" class="sr-only">Name</label>
@@ -76,12 +80,23 @@
                         <i class="fa fa-github fa-2x social-icon"></i>
                     </a>
                 </div>
+                <div id="myModal" class="modal">
 
-
+                    <!-- Contenu du pop-up -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p>Pour améliorer nos services et vous offrir une expérience personnalisée, nous devons stocker vos données personnelles. En continuant, vous consentez à ce stockage. Veuillez confirmer votre accord pour que nous puissions continuer à vous offrir une meilleure expérience utilisateur.</p>
+                        <div class="modal-buttons">
+                            <button class="modal-button accept" id="acceptBtn">J'accepte</button>
+                            <button class="modal-button reject" id="rejectBtn">Je refuse</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
+<script src="js/login.js"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </body>

@@ -51,7 +51,7 @@
                                         </span>
                                     
                                     <?php
-                                        $sql = "select cat_id, cat_name from categories;";
+                                        $sql = "select idCategory, cat_name from categories;";
                                         $stmt = mysqli_stmt_init($conn);    
 
                                         if (!mysqli_stmt_prepare($stmt, $sql))
@@ -85,7 +85,7 @@
                                         <?php 
                                             while($row = mysqli_fetch_assoc($result))
                                             {
-                                                echo '<option value='.$row['cat_id'].'>' . $row['cat_name'] . '</option>';
+                                                echo '<option value='.$row['idCategory'].'>' . $row['cat_name'] . '</option>';
                                             }
                                         ?>
                                         </select><br><br>
