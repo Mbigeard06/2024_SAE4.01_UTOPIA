@@ -7,7 +7,7 @@
 
 
         <div class="wrap-contact2">
-            <form class="contact2-form" action="includes/create-blog.inc.php" method='post' enctype="multipart/form-data">
+            <form class="contact2-form" action="" method='post' enctype="multipart/form-data">
 
                 <label class="btn btn-primary position-absolute mt-2 ml-2">
                     Change Cover Image <input type="file" id="imgInp" name='dp' hidden>
@@ -20,19 +20,7 @@
                 </span>
 
                 <span class="text-center">
-                    <?php
-                    if (isset($_GET['error'])) {
-                        if ($_GET['error'] == 'emptyfields') {
-                            echo '<h5 class="text-danger">*Fill In All The Fields</h5>';
-                        } else if ($_GET['error'] == 'catnametaken') {
-                            echo '<h5 class="text-danger">*A category with the given name already exists</h5>';
-                        } else if ($_GET['error'] == 'sqlerror') {
-                            echo '<h5 class="text-danger">*Website Error: Contact admin to have the issue fixed</h5>';
-                        }
-                    } else if (isset($_GET['catcreation']) == 'success') {
-                        echo '<h5 class="text-success">*Category successfully created</h5>';
-                    }
-                    ?>
+                    
                 </span>
 
                 <div class="wrap-input2 validate-input" data-validate="Name is required">

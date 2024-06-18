@@ -10,80 +10,40 @@
                     </span>
 
                     <span class="text-center">
-                        <?php
-                        /*if (isset($_GET['error'])) {
-                            if ($_GET['error'] == 'emptyfields') {
-                                echo '<h5 class="text-danger">*Fill In All The Fields</h5>';
-                            } else if ($_GET['error'] == 'sqlerror') {
-                                echo '<h5 class="text-danger">*Website Error: Contact admin to have the issue fixed</h5>';
-                            }
-                        } else if (isset($_GET['operation']) == 'success') {
-                            echo '<h5 class="text-success">*Forum successfully created</h5>';
-                        }*/
-                        ?>
+
                     </span>
 
-                    <?php
-                    /*
-                    $sql = "select cat_id, cat_name from categories;";
-                    $stmt = mysqli_stmt_init($conn);
-
-                    if (!mysqli_stmt_prepare($stmt, $sql)) {
-                        die('sql error');
-                    } else {
-                        mysqli_stmt_execute($stmt);
-                        $result = mysqli_stmt_get_result($stmt);
-
-                        if (mysqli_num_rows($result) == 0) {
-                            echo "<h5 class='text-center text-muted'>You cannot create a topic before the admin creates "
-                                . "some categories</h5>";
-                        } else {*/
-                    ?>
 
 
-
-                            <div class="wrap-input2 validate-input" data-validate="Name is required">
-                                <input class="input2" type="text" name="topic-subject">
-                                <span class="focus-input2" data-placeholder="Forum Subject"></span>
-                            </div>
-
-
-                            <label>Category</label>
-                            <select class="form-control" name="topic-cat">
-
-                                <?php foreach($categories as $category){ ?>
-                                    <option value=<?=$category->getId()?>><?=$category->getName()?></option>
-                                <?php }?>    
-                                <?php
-                                /*
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    echo '<option value=' . $row['cat_id'] . '>' . $row['cat_name'] . '</option>';
-                                }*/
-                                ?>
-                            </select><br><br>
+                    <div class="wrap-input2 validate-input" data-validate="Name is required">
+                        <input class="input2" type="text" name="topic-subject">
+                        <span class="focus-input2" data-placeholder="Forum Subject"></span>
+                    </div>
 
 
-                            <div class="wrap-input2 validate-input" data-validate="Description is required">
-                                <textarea class="input2" name="post-content"></textarea>
-                                <span class="focus-input2" data-placeholder="Forum Question"></span>
-                            </div>
+                    <label>Category</label>
+                    <select class="form-control" name="topic-cat">
 
-                            <div class="container-contact2-form-btn">
-                                <div class="wrap-contact2-form-btn">
-                                    <div class="contact2-form-bgbtn"></div>
-                                    <button class="contact2-form-btn" type="submit" name="create-topic">
-                                        Create Forum
-                                    </button>
-                                </div>
-                            </div>
+                        <?php foreach ($categories as $category) { ?>
+                            <option value=<?= $category->getIdCategory() ?>><?= $category->getName() ?></option>
+                        <?php } ?>
+
+                    </select><br><br>
 
 
+                    <div class="wrap-input2 validate-input" data-validate="Description is required">
+                        <textarea class="input2" name="post-content"></textarea>
+                        <span class="focus-input2" data-placeholder="Forum Question"></span>
+                    </div>
 
-                    <?php
-                    /*
-                        }
-                    }*/
-                    ?>
+                    <div class="container-contact2-form-btn">
+                        <div class="wrap-contact2-form-btn">
+                            <div class="contact2-form-bgbtn"></div>
+                            <button class="contact2-form-btn" type="submit" name="create-topic">
+                                Create Forum
+                            </button>
+                        </div>
+                    </div>
 
                     <div class="text-center">
                         <br><br><a class="btn btn-light btn-lg btn-block" href="topics.php">

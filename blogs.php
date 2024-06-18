@@ -6,7 +6,7 @@
     
     define('TITLE',"Blogs | KLiK");
     
-    if(!isset($_SESSION['userId']))
+    if(!isset($_SESSION['connectedUser']))
     {
         header("Location: login.php");
         exit();

@@ -21,11 +21,6 @@ class CategoryController{
         $data = $this->categoryManager->getAllCategories();
         $categories = [];
         foreach($data as $category){
-            /*$dataFormatted = [
-                "id" => $category["cat_id"],
-                "name" => $category["cat_name"],
-                "description" => $category["cat_description"]
-            ];*/
             $categories[] = new Category($category);
         }
         return $categories;

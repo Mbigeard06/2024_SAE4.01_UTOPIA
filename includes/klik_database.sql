@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost
--- Généré le : lun. 17 juin 2024 à 09:26
--- Version du serveur : 8.0.17
--- Version de PHP : 8.3.8
+-- Hôte : 127.0.0.1
+-- Généré le : mar. 18 juin 2024 à 09:10
+-- Version du serveur : 10.4.32-MariaDB
+-- Version de PHP : 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `grp-502_s4_sae`
+-- Base de données : `klik_database`
 --
 
 -- --------------------------------------------------------
@@ -29,13 +29,13 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `blogs` (
   `idBlog` int(11) NOT NULL,
-  `title` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `image` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'default.png',
+  `title` varchar(100) NOT NULL,
+  `image` varchar(1000) NOT NULL DEFAULT 'default.png',
   `creator` int(11) NOT NULL,
   `date` date NOT NULL,
-  `votes` int(11) NOT NULL DEFAULT '0',
-  `content` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `votes` int(11) NOT NULL DEFAULT 0,
+  `content` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `blogs`
@@ -71,8 +71,8 @@ CREATE TABLE `blogvotes` (
   `voteBlog` int(11) NOT NULL,
   `voteBy` int(11) NOT NULL,
   `voteDate` date NOT NULL,
-  `vote` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `vote` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `blogvotes`
@@ -103,9 +103,9 @@ INSERT INTO `blogvotes` (`idBlogvotes`, `voteBlog`, `voteBy`, `voteDate`, `vote`
 
 CREATE TABLE `categories` (
   `idCategory` int(8) NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `name` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `categories`
@@ -133,7 +133,7 @@ CREATE TABLE `events` (
   `event_image` varchar(200) NOT NULL,
   `headline` varchar(100) NOT NULL,
   `description` varchar(6000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `events`
@@ -151,6 +151,35 @@ INSERT INTO `events` (`idEvent`, `event_by`, `title`, `date_created`, `event_dat
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `forums`
+--
+
+CREATE TABLE `forums` (
+  `idForum` int(8) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `date` datetime NOT NULL,
+  `category` int(8) NOT NULL,
+  `creator` int(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Déchargement des données de la table `forums`
+--
+
+INSERT INTO `forums` (`idForum`, `subject`, `date`, `category`, `creator`) VALUES
+(31, 'how to plant a nuclear bomb', '2018-11-18 11:13:00', 5, 24),
+(32, 'how to kill myself', '2018-11-18 11:22:59', 5, 24),
+(35, 'lol', '2018-11-21 16:04:52', 5, 25),
+(36, 'how to drink tea', '2018-12-16 21:59:22', 9, 24),
+(39, 'qqqqqqqqqqqqqqq', '2018-12-17 22:27:00', 8, 24),
+(41, 'aa', '2018-12-17 22:44:48', 5, 24),
+(42, 'Help in SQL', '2018-12-24 11:57:29', 9, 36),
+(43, 'Debugging', '2018-12-24 12:04:30', 9, 35),
+(44, 'Libraries', '2018-12-24 12:11:09', 9, 35);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `messages`
 --
 
@@ -159,7 +188,7 @@ CREATE TABLE `messages` (
   `user_from` int(11) NOT NULL,
   `user_to` int(11) NOT NULL,
   `message` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `messages`
@@ -254,8 +283,8 @@ CREATE TABLE `polls` (
   `status` enum('1','0') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '1',
   `created_by` int(11) NOT NULL,
   `poll_desc` varchar(5000) NOT NULL,
-  `locked` int(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `locked` int(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `polls`
@@ -280,7 +309,7 @@ CREATE TABLE `poll_options` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   `status` enum('1','0') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `poll_options`
@@ -315,7 +344,7 @@ CREATE TABLE `poll_votes` (
   `poll_id` int(11) NOT NULL,
   `poll_option_id` int(11) NOT NULL,
   `vote_by` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `poll_votes`
@@ -346,8 +375,8 @@ CREATE TABLE `posts` (
   `post_date` datetime NOT NULL,
   `post_topic` int(8) NOT NULL,
   `post_by` int(8) NOT NULL,
-  `post_votes` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `post_votes` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `posts`
@@ -396,8 +425,8 @@ CREATE TABLE `postvotes` (
   `votePost` int(11) NOT NULL,
   `voteBy` int(11) NOT NULL,
   `voteDate` date NOT NULL,
-  `vote` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `vote` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `postvotes`
@@ -450,7 +479,7 @@ CREATE TABLE `pwdreset` (
   `pwdResetSelector` text NOT NULL,
   `pwdResetToken` longtext NOT NULL,
   `pwdResetExpires` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `pwdreset`
@@ -468,57 +497,28 @@ INSERT INTO `pwdreset` (`idPwdReset`, `pwdResetEmail`, `pwdResetSelector`, `pwdR
 -- --------------------------------------------------------
 
 --
--- Structure de la table `topics`
---
-
-CREATE TABLE `topics` (
-  `idTopic` int(8) NOT NULL,
-  `subject` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `date` datetime NOT NULL,
-  `category` int(8) NOT NULL,
-  `creator` int(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `topics`
---
-
-INSERT INTO `topics` (`idTopic`, `subject`, `date`, `category`, `creator`) VALUES
-(31, 'how to plant a nuclear bomb', '2018-11-18 11:13:00', 5, 24),
-(32, 'how to kill myself', '2018-11-18 11:22:59', 5, 24),
-(35, 'lol', '2018-11-21 16:04:52', 5, 25),
-(36, 'how to drink tea', '2018-12-16 21:59:22', 9, 24),
-(39, 'qqqqqqqqqqqqqqq', '2018-12-17 22:27:00', 8, 24),
-(41, 'aa', '2018-12-17 22:44:48', 5, 24),
-(42, 'Help in SQL', '2018-12-24 11:57:29', 9, 36),
-(43, 'Debugging', '2018-12-24 12:04:30', 9, 35),
-(44, 'Libraries', '2018-12-24 12:11:09', 9, 35);
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `users`
 --
 
 CREATE TABLE `users` (
-  `idUsers` int(11) NOT NULL,
-  `level` int(11) NOT NULL DEFAULT '0',
-  `firstName` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `lastName` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `username` tinytext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `email` tinytext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `password` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `idUser` int(11) NOT NULL,
+  `level` int(11) NOT NULL DEFAULT 0,
+  `firstName` varchar(50) NOT NULL,
+  `lastName` varchar(50) NOT NULL,
+  `username` tinytext NOT NULL,
+  `email` tinytext NOT NULL,
+  `password` longtext NOT NULL,
   `gender` char(1) NOT NULL,
   `headline` varchar(500) DEFAULT NULL,
   `bio` varchar(4000) DEFAULT NULL,
-  `profilePicture` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT 'default.png'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `profilePicture` varchar(500) DEFAULT 'default.png'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`idUsers`, `level`, `firstName`, `lastName`, `username`, `email`, `password`, `gender`, `headline`, `bio`, `profilePicture`) VALUES
+INSERT INTO `users` (`idUser`, `level`, `firstName`, `lastName`, `username`, `email`, `password`, `gender`, `headline`, `bio`, `profilePicture`) VALUES
 (24, 1, 'Crazy', 'Programmer', 'saad', 'muhammadsaad.crytek@gmail.com', '$2y$10$NlmqH7ELe9VUFwLqWuFcv.2Js/8jJ36Jga3KWYvXFuaaQN4CzaEtO', 'm', 'CEO of Google and Tesla (Elon is my wife)', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '5c2268b62fa342.98640611.jpg'),
 (25, 0, '', '', 'sadcat', 'a@a.a', '$2y$10$RiiU91TqjjVhPdVpypQBtuq0etClplrZ3HNTLPFrUheJ.sy7ZifwK', 'f', '', '', '5bf28f767563d4.32287587.jpg'),
 (26, 0, '', '', 'crazyblogger', 'aaa@gmail.com', '$2y$10$zXwVteLyKxjwSMDk.a8/HeoYzmfFInzvftURiCyt27z03mgbdkSNy', 'm', '', '', '5c2097e915f3e7.13501262.jpg'),
@@ -534,7 +534,8 @@ INSERT INTO `users` (`idUsers`, `level`, `firstName`, `lastName`, `username`, `e
 (37, 0, 'Syed', 'Kamal', 'syedanaskamal', 'syedanaskamal@gmail.com', '$2y$10$.fUUvM3BoaCPV9Blp8CobONwQpI1r6kSUnts.QTm3a9Yovo5le.N6', 'm', 'wassup', 'no', 'default.png'),
 (38, 0, '', '', 'testuser', 'testuser@test.com', '$2y$10$80YI6fiwFyOLHhn4CIOG/.xSAmkvG1L12LHGXjlNMdjwxeQCx/GNy', 'm', '', '', '5c20b68db30f81.29224418.jpg'),
 (39, 0, '', '', 'marium', 'ms.merium.fatima@gmail.com', '$2y$10$l0AOTRif1CfL7pONxdOxHuyg4worYd4yagtUcom9u/LPeQs6n4ZN2', 'f', '', '', 'default.png'),
-(40, 0, 'mssssss', 'mssssss', 'mssssss', 'mzazdamlzda@gmail.com', '$2y$10$h2X/1mxY7dnLXSfVexI1EuU5/kZVtu2g0kJwsl4e3XSjU4xd1Tq4q', 'm', ' ', ' ', 'default.png');
+(40, 0, 'mssssss', 'mssssss', 'mssssss', 'mzazdamlzda@gmail.com', '$2y$10$h2X/1mxY7dnLXSfVexI1EuU5/kZVtu2g0kJwsl4e3XSjU4xd1Tq4q', 'm', ' ', ' ', 'default.png'),
+(43, 0, 'Clément', 'Boutet', 'clement', 'cboutetdrumsgo10@gmail.com', '$2y$10$TpovoEo9kB/ae.0q6nfczuY8Z3/.8ImS3wyQfOGR/bF1XNUw/8Sxq', 'm', '', '', 'default.png');
 
 --
 -- Index pour les tables déchargées
@@ -568,6 +569,14 @@ ALTER TABLE `categories`
 ALTER TABLE `events`
   ADD PRIMARY KEY (`idEvent`),
   ADD KEY `events_ibfk_1` (`event_by`);
+
+--
+-- Index pour la table `forums`
+--
+ALTER TABLE `forums`
+  ADD PRIMARY KEY (`idForum`),
+  ADD KEY `topics_ibfk_1` (`category`),
+  ADD KEY `topics_ibfk_2` (`creator`);
 
 --
 -- Index pour la table `messages`
@@ -622,18 +631,10 @@ ALTER TABLE `pwdreset`
   ADD PRIMARY KEY (`idPwdReset`);
 
 --
--- Index pour la table `topics`
---
-ALTER TABLE `topics`
-  ADD PRIMARY KEY (`idTopic`),
-  ADD KEY `topics_ibfk_1` (`category`),
-  ADD KEY `topics_ibfk_2` (`creator`);
-
---
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`idUsers`);
+  ADD PRIMARY KEY (`idUser`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -658,6 +659,12 @@ ALTER TABLE `categories`
   MODIFY `idCategory` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
+-- AUTO_INCREMENT pour la table `forums`
+--
+ALTER TABLE `forums`
+  MODIFY `idForum` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
+--
 -- AUTO_INCREMENT pour la table `polls`
 --
 ALTER TABLE `polls`
@@ -676,16 +683,10 @@ ALTER TABLE `poll_votes`
   MODIFY `idPollvotes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT pour la table `topics`
---
-ALTER TABLE `topics`
-  MODIFY `idTopic` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
-
---
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `idUsers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- Contraintes pour les tables déchargées
@@ -695,33 +696,40 @@ ALTER TABLE `users`
 -- Contraintes pour la table `blogs`
 --
 ALTER TABLE `blogs`
-  ADD CONSTRAINT `blogs_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `users` (`idUsers`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `blogs_ibfk_1` FOREIGN KEY (`creator`) REFERENCES `users` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `blogvotes`
 --
 ALTER TABLE `blogvotes`
   ADD CONSTRAINT `blogvotes_ibfk_1` FOREIGN KEY (`voteBlog`) REFERENCES `blogs` (`idBlog`),
-  ADD CONSTRAINT `blogvotes_ibfk_2` FOREIGN KEY (`voteBy`) REFERENCES `users` (`idUsers`);
+  ADD CONSTRAINT `blogvotes_ibfk_2` FOREIGN KEY (`voteBy`) REFERENCES `users` (`idUser`);
 
 --
 -- Contraintes pour la table `events`
 --
 ALTER TABLE `events`
-  ADD CONSTRAINT `events_ibfk_1` FOREIGN KEY (`event_by`) REFERENCES `users` (`idUsers`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `events_ibfk_1` FOREIGN KEY (`event_by`) REFERENCES `users` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `forums`
+--
+ALTER TABLE `forums`
+  ADD CONSTRAINT `forums_ibfk_1` FOREIGN KEY (`category`) REFERENCES `categories` (`idCategory`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `forums_ibfk_2` FOREIGN KEY (`creator`) REFERENCES `users` (`idUser`) ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `messages`
 --
 ALTER TABLE `messages`
-  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`user_from`) REFERENCES `users` (`idUsers`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`user_to`) REFERENCES `users` (`idUsers`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`user_from`) REFERENCES `users` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`user_to`) REFERENCES `users` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `polls`
 --
 ALTER TABLE `polls`
-  ADD CONSTRAINT `polls_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`idUsers`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `polls_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `poll_options`
@@ -735,27 +743,20 @@ ALTER TABLE `poll_options`
 ALTER TABLE `poll_votes`
   ADD CONSTRAINT `poll_votes_ibfk_1` FOREIGN KEY (`poll_id`) REFERENCES `polls` (`idPoll`) ON DELETE CASCADE,
   ADD CONSTRAINT `poll_votes_ibfk_2` FOREIGN KEY (`poll_option_id`) REFERENCES `poll_options` (`idPolloptions`) ON DELETE CASCADE,
-  ADD CONSTRAINT `poll_votes_ibfk_3` FOREIGN KEY (`vote_by`) REFERENCES `users` (`idUsers`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `poll_votes_ibfk_3` FOREIGN KEY (`vote_by`) REFERENCES `users` (`idUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `posts`
 --
 ALTER TABLE `posts`
-  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`post_topic`) REFERENCES `topics` (`idTopic`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`post_by`) REFERENCES `users` (`idUsers`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`post_topic`) REFERENCES `forums` (`idForum`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`post_by`) REFERENCES `users` (`idUser`) ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `postvotes`
 --
 ALTER TABLE `postvotes`
-  ADD CONSTRAINT `postvotes_ibfk_1` FOREIGN KEY (`voteBy`) REFERENCES `users` (`idUsers`) ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `topics`
---
-ALTER TABLE `topics`
-  ADD CONSTRAINT `topics_ibfk_1` FOREIGN KEY (`category`) REFERENCES `categories` (`idCategory`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `topics_ibfk_2` FOREIGN KEY (`creator`) REFERENCES `users` (`idUsers`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `postvotes_ibfk_1` FOREIGN KEY (`voteBy`) REFERENCES `users` (`idUser`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

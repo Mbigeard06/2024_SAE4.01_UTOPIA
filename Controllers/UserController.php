@@ -64,17 +64,6 @@ class UserController
     {
         $data = $this->userManager->getUserByUsername($username);
         $data = $data[0];
-        /*$formattedData = [
-            "id" => $data["idUsers"],
-            "username" => $data["uidUsers"],
-            "email" => $data["emailUsers"],
-            "password" => $data["pwdUsers"],
-            "firstName" => $data["f_name"],
-            "lastName" => $data["l_name"],
-            "level" => $data["userLevel"],
-            "headline" => $data["headline"],
-            "profilePicture" => $data["userImg"]
-        ];*/
         $user = new User($data);
         return $user;
     }

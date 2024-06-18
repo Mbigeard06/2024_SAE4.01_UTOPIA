@@ -25,7 +25,7 @@ class UserDAO implements IUserDAO {
     }
 
     public function getUsernameById(int $id):array{
-        $sql = "select username from users where idUsers=?;";
+        $sql = "select username from users where idUser=?;";
         return $this->db->executeQuery($sql, array($id));
     }
 

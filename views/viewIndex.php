@@ -1,10 +1,6 @@
 <link href="css/list-page.css" rel="stylesheet">
 <link href="css/loader.css" rel="stylesheet">
-</head>
 
-<body>
-
-    <div id="content">
 
 <?php include 'includes/navbar.php'; ?>
 
@@ -161,13 +157,9 @@
 
     </div>
 </div>
-<?php include 'includes/footer.php'; ?>    </div>
+<?php include 'includes/footer.php'; ?> </div>
 
 
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-
-</body>
-
-</html>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>

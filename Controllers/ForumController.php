@@ -29,18 +29,10 @@ class ForumController
         $forums = [];
         foreach ($data as $forum) {
             $category = $this->categoryController->getCategoryById($forum["category"]);
-            $user = $this->userController->getUserById($forum["creator"]);
-            $forum["idForum"] = $forum["idTopic"];
+            $creator = $this->userController->getUserById($forum["creator"]);
             $forum["category"] = $category;
             $forum["date"] = new DateTime($forum["date"]);
-            $forum["creator"] = $user;
-            /*$dataFormatted = [
-                "id" => $forum["topic_id"],
-                "subject" => $forum["topic_subject"],
-                "date" => new DateTime($forum["topic_date"]),
-                "category" => $category,
-                "creator" => $user
-            ];*/
+            $forum["creator"] = $creator;
             $forums[] = new Forum($forum);
         }
         return $forums;
@@ -51,7 +43,7 @@ class ForumController
             $data["topic-subject"],
             (new DateTime("now"))->format('Y-m-d H:i:s'),
             $data["topic-cat"],
-            $_SESSION["connectedUser"]->getId()
+            $_SESSION["connectedUser"]->getIdUser()
         ];
         $this->forumManager->createForum($dataFormatted);
     }

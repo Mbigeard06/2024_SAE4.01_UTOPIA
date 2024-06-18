@@ -27,15 +27,6 @@ class BlogController
         foreach ($data as $blog) {
             $blog["date"] = new DateTime($blog["date"]);
             $blog["creator"] = $this->userController->getUserById($blog["creator"]);
-            /*$dataFormatted = [
-                "id" => $blog["blog_id"],
-                "title" => $blog["blog_title"],
-                "image" => $blog["blog_img"],
-                "creator" => $this->userController->getUserById($blog["blog_by"]),
-                "date" => new DateTime($blog["blog_date"]),
-                "votes" => $blog["blog_votes"],
-                "content" => $blog["blog_content"]
-            ];*/
             $blogs[] = new Blog($blog);
         }
         return $blogs;
