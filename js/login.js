@@ -11,12 +11,10 @@ var modal = document.getElementById("myModal");
     // Lorsque l'utilisateur clique sur un des boutons, fermer le pop-up
     acceptBtn.onclick = function() {
         modal.style.display = "none";
-        alert("Vous avez accepté.");
     }
 
     rejectBtn.onclick = function() {
         modal.style.display = "none";
-        alert("Vous avez refusé.");
     }
 
     // Lorsque l'utilisateur clique sur le bouton de fermeture, fermer le pop-up

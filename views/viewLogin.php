@@ -13,35 +13,7 @@
                         </div>'
                     );
                 }
-                /*
-
-                if (isset($_GET['error'])) {
-                    if ($_GET['error'] == 'emptyfields') {
-                        echo '<div class="alert alert-danger" role="alert">
-                                        <strong>Error: </strong>Fill In All The Fields
-                                      </div>';
-                    } else if ($_GET['error'] == 'nouser') {
-                        echo '<div class="alert alert-danger" role="alert">
-                                        <strong>Error: </strong>Username does not exist
-                                      </div>';
-                    } else if ($_GET['error'] == 'wrongpwd') {;
-                        echo '<div class="alert alert-danger" role="alert">
-                                        <strong>Error: </strong>Wrong password - 
-                                         <a href="reset-pwd.php" class="alert-link">Forgot Password?</a>
-                                      </div>';
-                    } else if ($_GET['error'] == 'sqlerror') {
-                        echo '<div class="alert alert-danger" role="alert">
-                                        <strong>Error: </strong>Website error. Contact admin to have it fixed
-                                      </div>';
-                    }
-                } else if (isset($_GET['newpwd'])) {
-                    if ($_GET['newpwd'] == 'passwordupdated') {
-                        echo '<div class="alert alert-success" role="alert">
-                                        <strong>Password Updated </strong>Login with your new password
-                                      </div>';
-                    }
-                }
-                */ ?>
+                 ?>
 
                 
 
@@ -56,7 +28,7 @@
                         <input type="password" id="password_login" name="pwd" class="form-control form-control-lg mr-1" placeholder="Password">
                     </div>
                     <div class="form-group">
-                        <label for="captcha"><?php echo $captcha->getQuestion(); ?></label>
+                        <label for="captcha"><?=$captcha->getQuestion(); ?></label>
                         <?php
                             foreach ($captcha->getChoices() as $choice) {
                                 echo '<div class="form-check">
