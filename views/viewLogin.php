@@ -51,8 +51,9 @@
                         <label for="password_login" class="sr-only">Email</label>
                         <input type="password" id="password_login" name="pwd" class="form-control form-control-lg mr-1" placeholder="Password">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group-captcha">
                         <label for="captcha"><?php echo $captcha->getQuestion(); ?></label>
+                        
                         <?php
                             foreach ($captcha->getChoices() as $choice) {
                                 echo '<div class="form-check">
