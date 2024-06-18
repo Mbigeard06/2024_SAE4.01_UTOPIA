@@ -1,16 +1,27 @@
 <?php
+
+/**
+ * Classe qui permet de générer les vues
+ */
 class View
 {
     private string $file;
 
+    /**
+     * Constructeur de la classe
+     */
     public function __construct(string $action)
     {
         // Détermination du nom du fichier vue à partir de l'action
         $this->file = "Views/view" . $action . ".php";
     }
 
-    // Génère et affiche la vue
-    public function generate(array $data)
+
+    /**
+     * Génère et affiche la vue et y place les deonnées associées
+     * @param array $data données à afficher dans la vue
+     */
+    public function generate(array $data): void
     {
         // Génération de la partie spécifique de la vue
         $content = $this->generateFile($this->file, $data);
@@ -24,7 +35,7 @@ class View
     }
 
     // Génère un fichier vue et renvoie le résultat produit
-    private function generateFile(string $file, array $data)
+    private function generateFile(string $file, array $data): string
     {
         if (file_exists($file)) {
             // Rend les éléments du tableau $donnees accessibles dans la vue

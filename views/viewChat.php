@@ -5,15 +5,12 @@ require 'includes/dbh.inc.php';
 
 define('TITLE', "Inbox | KLiK");
 
-if (!isset($_SESSION['connectedUser'])) {
-    header("Location: login.php");
-    exit();
-}
 
 include 'includes/HTML-head.php';
 ?>
 
 <link href="css/inbox.css" rel="stylesheet">
+<link href="css/list-page.css" rel="stylesheet">
 </head>
 
 <body>
@@ -33,13 +30,14 @@ include 'includes/HTML-head.php';
 
                         <?php
 
-                        $sql = "SELECT * FROM users WHERE idUsers != ?";
+                        $sql = "SELECT * FROM users WHERE idUser != ?";
                         $stmt = mysqli_stmt_init($conn);
 
                         if (!mysqli_stmt_prepare($stmt, $sql)) {
                             die('sql error');
                         } else {
-                            mysqli_stmt_bind_param($stmt, "s", $_SESSION['userId']);
+                            $id = $_SESSION['connectedUser']->getIdUser();
+                            mysqli_stmt_bind_param($stmt, "s", $id);
                             mysqli_stmt_execute($stmt);
                             $result = mysqli_stmt_get_result($stmt);
 
@@ -50,11 +48,11 @@ include 'includes/HTML-head.php';
                                     <div class="chat_list">
                                         <div class="chat_people">
                                             <div class="chat_img">
-                                                <img class="chat_people_img" src="uploads/<?php echo $row['userImg'] ?>" alt="">
+                                                <img class="chat_people_img" src="uploads/<?php echo $row['profilePicture'] ?>" alt="">
                                             </div>
                                             <div class="chat_ib">
                                                 <h5>
-                                                    <?php echo ucwords($row['uidUsers']) ?>
+                                                    <?php echo ucwords($row['idUser']) ?>
                                                     <span class="chat_date">KLiK User</span>
                                                 </h5>
                                                 <p>Click on the User to start chatting</p>

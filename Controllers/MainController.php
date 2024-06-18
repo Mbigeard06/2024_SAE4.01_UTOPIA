@@ -2,18 +2,27 @@
 
 require_once("Views/View.php");
 
+/**
+ * Controller principal de l'application
+ */
 class MainController
 {
     private ForumController $forumController;
     private BlogController $blogController;
 
+    /**
+     * Constructeur de la classe
+     */
     public function __construct()
     {
         $this->forumController = new ForumController();
         $this->blogController = new BlogController();
     }
 
-    public function displayIndex()
+    /**
+     * Récupère les données nécessaires et affiche la page d'index 
+     */
+    public function displayIndex(): void
     {
         $forums = $this->forumController->getAllForums();
         $blogs = $this->blogController->getAllBlogs();

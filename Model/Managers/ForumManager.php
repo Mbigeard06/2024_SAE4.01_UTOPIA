@@ -3,18 +3,39 @@
 require_once("Model/Data/IForumDAO.php");
 require_once("Model/Data/ForumDAO.php");
 
-class ForumManager{
+
+/**
+ * Manager des forums
+ */
+class ForumManager
+{
     private IForumDAO $forumDAO;
 
-    public function __construct(){
+    /**
+     * Constructeur de la classe
+     */
+    public function __construct()
+    {
         $this->forumDAO = new ForumDAO();
     }
 
-    public function getAllForums():array{
+
+    /**
+     * Récupère tous les forums en bdd
+     * @return array la liste des forums
+     */
+    public function getAllForums(): array
+    {
         return $this->forumDAO->getAllForums();
     }
 
-    public function createForum(array $data){
+
+    /**
+     * Ajoute un forum en bdd
+     * @param array $data données des fourms à ajouter
+     */
+    public function createForum(array $data): void
+    {
         $this->forumDAO->createForum($data);
     }
 }

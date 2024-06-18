@@ -5,11 +5,17 @@ require_once("Router/Route.php");
 require_once("Controllers/UserController.php");
 
 
+/**
+ * Route qui gère les intéractions avec le système de connexion
+ */
 class RouteConnexion extends Route
 {
 
     private UserController $userController;
 
+    /**
+     * Constructeur de la classe 
+     */
     public function __construct($userController)
     {
         $this->userController = $userController;

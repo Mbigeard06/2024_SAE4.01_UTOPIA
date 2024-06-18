@@ -21,7 +21,7 @@
                     </a>
                 </li>
                 <li class="nav-item px-3">
-                    <a class="nav-link" href="message.php" title="Link to mailbox">
+                    <a class="nav-link" href="index.php?action=chat" title="Link to mailbox">
                         <i class="fa fa-envelope fa-2x" ></i>
                     </a>
                 </li>

@@ -9,15 +9,11 @@ require_once "IDatabase.php";
  */
 class Database implements IDatabase
 {
-    /**
-     * @var PDO $db Instance de PDO pour la connexion à la base de données.
-     */
+
     private PDO $db;
 
     /**
-     * Constructeur de la classe Database.
-     *
-     * Initialise la connexion à la base de données en utilisant PDO.
+     * Constructeur de la classe Database, initialise la connexion à la base de données en utilisant PDO
      */
     public function __construct()
     {
@@ -32,7 +28,8 @@ class Database implements IDatabase
     }
 
 
-    public function executeNonQuery(string $request, array $params = [])
+
+    public function executeNonQuery(string $request, array $params = []): void
     {
         $stmt = $this->db->prepare($request);
         $stmt->execute($params);

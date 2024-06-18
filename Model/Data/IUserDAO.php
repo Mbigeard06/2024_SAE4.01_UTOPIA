@@ -7,10 +7,15 @@ interface IUserDAO {
      * Récupère un utilisateur en fonction de son nom d'utilisateur.
      *
      * @param string $username Le nom d'utilisateur de l'utilisateur à récupérer.
-     * @return mixed L'utilisateur correspondant au nom d'utilisateur spécifié.
+     * @return array L'utilisateur correspondant au nom d'utilisateur spécifié.
      */
-    public function getUserByUsername(string $username);
+    public function getUserByUsername(string $username):array;
 
+    /**
+     * Récupère le login d'un utilisateur en foncton de son id
+     * @param int $id identifiant de l'utisateur 
+     * @return array liste contenant le le login de l'utilisateur souhaité
+     */
     public function getUsernameById(int $id):array;
 
     /**
@@ -19,7 +24,7 @@ interface IUserDAO {
      * @param array $userData Les données de l'utilisateur à créer.
      * @return bool True si l'utilisateur a été créé avec succès, sinon false.
      */
-    public function createUser(array $userData);
+    public function createUser(array $userData):void;
 
     /**
      * Vérifie les informations d'identification d'un utilisateur.
@@ -28,5 +33,5 @@ interface IUserDAO {
      * @param string $password Le mot de passe de l'utilisateur à vérifier.
      * @return bool True si les informations d'identification sont valides, sinon false.
      */
-    public function verifyUserCredentials(string $username, string $password);
+    public function verifyUserCredentials(string $username, string $password):bool;
 }

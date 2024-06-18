@@ -4,12 +4,18 @@
 require_once("Router/Route.php");
 require_once("Controllers/UserController.php");
 
-
+/**
+ * Route qui gère le processus d'inscription
+ */
 class RouteSignup extends Route
 {
 
     private UserController $userController;
 
+
+    /**
+     * Constructeur de la classe
+     */
     public function __construct($userController)
     {
         $this->userController = $userController;
