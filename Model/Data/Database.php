@@ -18,9 +18,9 @@ class Database implements IDatabase
     public function __construct()
     {
         $this->db = new PDO(
-            "mysql:host=localhost;dbname=klik_database",
+            "mysql:host=localhost;dbname=klik_new",
             "root",
-            "",
+            "lol123",
             array(
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
             )
