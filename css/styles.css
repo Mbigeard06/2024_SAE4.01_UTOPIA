@@ -1,7 +1,10 @@
 
 html,
 body {
-    height: 100%;
+    margin: 0;
+    padding-top: 1;
+    min-height: 100vh;
+    background-color: #fffde7; /* La couleur de fond, vous pouvez la modifier */
 }
 
 textarea {
@@ -771,6 +774,32 @@ h1, h2, h3, h4, h5, h6, p, a, ul, span, li, img, inpot, button{ margin: 0; paddi
 .leftDivIndex{
     padding-left: 50px;
     padding-right: 50px;
+}
+
+.form-group-captcha label {
+    font-size: 18px; /* Changez cette valeur pour agrandir ou réduire la taille du texte */
+    font-weight: bold; 
+}
+
+.form-check-input{
+    margin-top: 8px !important;
+    margin-left: 8px !important;
+}
+
+.form-check{
+
+    width: -webkit-fill-available;
+}
+
+.form-group-captcha{  
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    padding-bottom: 15px;
+    margin: 10px !important;
+    justify-content: center;
 }
 
 
